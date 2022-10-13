@@ -29,20 +29,20 @@ int main()
 /*===========================================================================*/
 
 
-/*#include <stdio.h>
+//#include <stdio.h>
+//
+//int main()
+//{
+//	printf("d: %d\n", -5);  // -5
+//	printf("d: %o\n", -5);  // 37777777773
+//	printf("d: %u\n", -5);  // 4294967291
+//	printf("d: %lf\n", -5);  //specified: 'double', received: 'int'
+//	printf("d: %le\n", -5);  //specified: 'double', received: 'int'
+//	printf("d: %lg\n", -5);  //specified: 'double', received: 'int'
+//	printf("d: %s\n", -5);  //specified: 'char*', received: 'int'
+//	getchar();
+//	return 0;
 
-int main()
-{
-	printf("d: %d\n", -5);  // -5
-	printf("d: %o\n", -5);  // 37777777773
-	printf("d: %u\n", -5);  // 4294967291
-	printf("d: %lf\n", -5);  //specified: 'double', received: 'int'
-	printf("d: %le\n", -5);  //specified: 'double', received: 'int'
-	printf("d: %lg\n", -5);  //specified: 'double', received: 'int'
-	printf("d: %s\n", -5);  //specified: 'char*', received: 'int'
-	getchar();
-	return 0;
-}*/
 
 
 /*===========================================================================*/
@@ -50,18 +50,18 @@ int main()
 /*===========================================================================*/
 
 
-/*#include <stdio.h>
-
-int main()
-{
-	printf("d: %d\n", -5.0);  //  -random
-	printf("d: %o\n", -5.0);  // 0
-	printf("d: %u\n", -5.0);  // 0
-	printf("d: %lf\n", -5.0); // -5.000000
-	printf("d: %le\n", -5.0);  // -5.000000e+00
-	printf("d: %lg\n", -5.0);  // -5
-	printf("d: %s\n", -5.0);  // (null)
-}*/
+//#include <stdio.h>
+//
+//int main()
+//{
+//	printf("d: %d\n", -5.0);  //  -random
+//	printf("d: %o\n", -5.0);  // 0
+//	printf("d: %u\n", -5.0);  // 0
+//	printf("d: %lf\n", -5.0); // -5.000000
+//	printf("d: %le\n", -5.0);  // -5.000000e+00
+//	printf("d: %lg\n", -5.0);  // -5
+//	printf("d: %s\n", -5.0);  // (null)
+//}
 
 
 /*===========================================================================*/
@@ -110,10 +110,10 @@ int main()
 //
 //int main()
 //{
-//	//printf("%s\n", "ala");	//ala
-//	//printf("%s\n", ’ala’);	//b³¹d kompilacji
-//	/*printf("%s\n", ala);*/	//b³¹d kompilacji
-//	/*printf("%s\n""ala");*/	//nieprawid³owy znak
+//	printf("%s\n", "ala");	//ala
+//	printf("%s\n", ’ala’);	//blad kompilacji
+//	printf("%s\n", ala);	//blad kompilacji
+//	printf("%s\n""ala");	//nieprawidlowy znak
 //	printf("%s\n", "5");		// 5	
 //	printf("%s\n", ’5’);		//b³¹d kompilacji
 //	printf("%s\n", 5);			// 5
