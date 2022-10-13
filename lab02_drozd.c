@@ -114,9 +114,9 @@ int main()
 //	printf("%s\n", ’ala’);	//blad kompilacji
 //	printf("%s\n", ala);	//blad kompilacji
 //	printf("%s\n""ala");	//nieprawidlowy znak
-//	printf("%s\n", "5");		// 5	
-//	printf("%s\n", ’5’);		//b³¹d kompilacji
-//	printf("%s\n", 5);			// 5
+//	printf("%s\n", "5");	// 5	
+//	printf("%s\n", ’5’);	//b³¹d kompilacji
+//	printf("%s\n", 5);		// 5
 //	getchar();
 //	return 0;
 //}
