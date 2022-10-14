@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="factorial.c" />
     <ClCompile Include="lab01_drozd.c" />
     <ClCompile Include="lab02_drozd.c" />
   </ItemGroup>

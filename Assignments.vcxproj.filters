@@ -21,5 +21,8 @@
     <ClCompile Include="lab02_drozd.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="factorial.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
