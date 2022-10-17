@@ -153,23 +153,27 @@
 
 int main()
 {
-	const int a = 0;
-	const int b = 0;
-	int x;
-	int y;
-	const int promien = 1;
+	const double a = 0.0;
+	const double b = 0.0;
+	double x;
+	double y;
+	const double promien = 1.0;
 	printf("Program sluzy do sprawdzenia czy podany przez uzytkownika punkt nalezy do okregu o srodku (0,0) i promieniu rownemu 1. \nAutor: Jakub Drozd\n\n");
 	printf("Podaj wspolrzedne x i y punktu:\n");
-	scanf_s("%d", &x);
-	scanf_s("%d", &y);
-	if ((pow((x - a), 2) + pow((y - b), 2)) == pow(promien, 2)) {
-		printf("Punkt %d, %d nalezy do okregu", x, y);
+	if (scanf_s("%lf", &x)!=1 || scanf_s("%lf", &y)!=1)
+	{
+		printf("Bledne dane");
+		printf("\nKoniec programu.");
+		return 0;
+	}
+	else if ((pow((x - a), 2.0) + pow((y - b), 2.0)) == pow(promien, 2.0)) {
+		printf("Punkt %lf, %lf nalezy do okregu", x, y);
 		printf("\nKoniec programu.");
 		return 0;
 	}
 	else
 	{
-		printf("Punkt %d, %d nie nalezy do okregu", x, y);
+		printf("Punkt %lf, %lf nie nalezy do okregu", x, y);
 		printf("\nKoniec programu.");
 		return 0;
 	}
