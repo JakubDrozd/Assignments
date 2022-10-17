@@ -7,6 +7,7 @@
 //
 //int main()
 //{
+//	printf("Program sluzy do wypisywania liczb calkowitych podanych przez uzytkownika.\nAutor: Jakub Drozd\n\n");
 //	int liczba1;
 //	int liczba2;
 //	printf("Podaj liczby calkowite:\n");
@@ -29,6 +30,7 @@
 //#include <stdio.h>
 //
 //int main() {
+//	printf("Program sluzy do konwersji wprowadzonej przez uzytkownika liczby calkowitej nieujemnej z systemu szesnastkowego na \ndziesetny.\nAutor: Jakub Drozd\n\n");
 //	int liczba;
 //	int liczbaNaDziesietny;
 //	printf("Podaj liczbe calkowita w systemie szesnastkowym:\n");
@@ -55,6 +57,7 @@
 //int main()
 //{
 //int liczba;
+//printf("Program sluzy do konwersji wprowadzonej przez uzytkownika liczby calkowitej z systemu dziesietnego na szesnatkowy.\nAutor: Jakub Drozd\n\n");
 //	printf("Podaj liczbe calkowita w systemie dziesetnym:\n");
 //	if (scanf_s("%d", &liczba)!=1) {
 //	printf("Bledne dane.");
@@ -75,6 +78,7 @@
 //#include <stdio.h>	
 //	int main()
 //	{
+//		printf("Program sluzy do konwersji wprowadzonej przez uzytkownika liczby calkowitej nieujemnej z systemu dziesietnego na szesnatkowy.\nAutor: Jakub Drozd\n\n");
 //		int liczba;
 //		printf("Podaj liczbe calkowita nieujemna w systemie dziesetnym:\n");
 //		if (scanf_s("%d", &liczba) != 1 || liczba <= 0) {
@@ -97,6 +101,7 @@
 //
 //int main()
 //{
+//	printf("Program sluzy do sprawdzenia czy podana przez uzytkownika liczba calkowita jest dodatnia czy ujemna.\nAutor: Jakub Drozd\n\n");
 //	int liczba;
 //	printf("Podaj liczbe calkowita:\n");
 //	if (scanf_s("%d", &liczba) != 1) {
@@ -126,6 +131,7 @@
 //int main() {
 //	char input;
 //	char nextchar;
+//	printf("Program sluzy do sprawdzenia czy uzytkownik wpisuje litere \"t\" lub litere \"T\".\nAutor: Jakub Drozd\n\n");
 //	printf("Prosze wpisac duza lub mala litere \"t\":\n");
 //	input = getchar();
 //	nextchar = getchar();
@@ -136,7 +142,7 @@
 //		return 0;
 //	}
 //	else {
-//		printf("Podales: \"%c\"", input);
+//		printf("Podales litere: \"%c\"", input);
 //		printf("\nKoniec programu.");
 //		return 0;
 //	}
@@ -185,42 +191,42 @@
 /*===========================================================================*/
 
 
-#include <stdio.h>
-#include <math.h>
-
-int main()
-{
-	double srodek1 = 0.0;
-	double srodek2 = 0.0;
-	double promien = 1.0;
-	double x;
-	double y;
-	double odleglosc;
-	printf("Program sluzy do sprawdzenia gdzie punkt wyznaczony przez uzytkownika znajduje sie w stosunku do okregu o srodku (0,0) i promieniu 1.\nAutor: Jakub Drozd\n\n");
-	printf("Podaj wspolrzedne x i y punktu:\n");
-	if (scanf_s("%lf", &x)!=1.0 || scanf_s("%lf", &y)!=1.0)
-	{
-		printf("Bledne dane.");
-		printf("\nKoniec programu.");
-		return 0;
-	}
-	odleglosc = sqrt(pow((x - srodek1), 2.0) + pow((y - srodek2), 2.0));
-	if (odleglosc == promien)
-	{
-		printf("Punkt (%lf, %lf) lezy na okregu", x, y);
-		printf("\nKoniec programu.");
-		return 0;
-	} else if(odleglosc > promien){
-		printf("Punkt (%lf, %lf) lezy na zewnatrz okregu", x, y);
-		printf("\nKoniec programu.");
-		return 0;
-	}
-	else
-	{
-		printf("Punkt (%lf, %lf) lezy wewnatrz okregu", x, y);
-		printf("\nKoniec programu.");
-		return 0;
-	}
-}
+//#include <stdio.h>
+//#include <math.h>
+//
+//int main()
+//{
+//	double srodek1 = 0.0;
+//	double srodek2 = 0.0;
+//	double promien = 1.0;
+//	double x;
+//	double y;
+//	double odleglosc;
+//	printf("Program sluzy do sprawdzenia gdzie punkt wyznaczony przez uzytkownika znajduje sie w stosunku do okregu o srodku (0,0) i promieniu 1.\nAutor: Jakub Drozd\n\n");
+//	printf("Podaj wspolrzedne x i y punktu:\n");
+//	if (scanf_s("%lf", &x)!=1.0 || scanf_s("%lf", &y)!=1.0)
+//	{
+//		printf("Bledne dane.");
+//		printf("\nKoniec programu.");
+//		return 0;
+//	}
+//	odleglosc = sqrt(pow((x - srodek1), 2.0) + pow((y - srodek2), 2.0));
+//	if (odleglosc == promien)
+//	{
+//		printf("Punkt (%lf, %lf) lezy na okregu", x, y);
+//		printf("\nKoniec programu.");
+//		return 0;
+//	} else if(odleglosc > promien){
+//		printf("Punkt (%lf, %lf) lezy na zewnatrz okregu", x, y);
+//		printf("\nKoniec programu.");
+//		return 0;
+//	}
+//	else
+//	{
+//		printf("Punkt (%lf, %lf) lezy wewnatrz okregu", x, y);
+//		printf("\nKoniec programu.");
+//		return 0;
+//	}
+//}
 
 
