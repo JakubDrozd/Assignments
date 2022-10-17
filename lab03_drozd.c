@@ -148,36 +148,36 @@
 /*===========================================================================*/
 
 
-#include <stdio.h>
-#include <math.h>
-
-int main()
-{
-	const double a = 0.0;
-	const double b = 0.0;
-	double x;
-	double y;
-	const double promien = 1.0;
-	printf("Program sluzy do sprawdzenia czy podany przez uzytkownika punkt nalezy do okregu o srodku (0,0) i promieniu rownemu 1. \nAutor: Jakub Drozd\n\n");
-	printf("Podaj wspolrzedne x i y punktu:\n");
-	if (scanf_s("%lf", &x)!=1 || scanf_s("%lf", &y)!=1)
-	{
-		printf("Bledne dane");
-		printf("\nKoniec programu.");
-		return 0;
-	}
-	else if ((pow((x - a), 2.0) + pow((y - b), 2.0)) == pow(promien, 2.0)) {
-		printf("Punkt %lf, %lf nalezy do okregu", x, y);
-		printf("\nKoniec programu.");
-		return 0;
-	}
-	else
-	{
-		printf("Punkt %lf, %lf nie nalezy do okregu", x, y);
-		printf("\nKoniec programu.");
-		return 0;
-	}
-}
+//#include <stdio.h>
+//#include <math.h>
+//
+//int main()
+//{
+//	const double a = 0.0;
+//	const double b = 0.0;
+//	double x;
+//	double y;
+//	const double promien = 1.0;
+//	printf("Program sluzy do sprawdzenia czy podany przez uzytkownika punkt nalezy do okregu o srodku (0,0) i promieniu rownemu 1. \nAutor: Jakub Drozd\n\n");
+//	printf("Podaj wspolrzedne x i y punktu:\n");
+//	if (scanf_s("%lf", &x)!=1 || scanf_s("%lf", &y)!=1)
+//	{
+//		printf("Bledne dane");
+//		printf("\nKoniec programu.");
+//		return 0;
+//	}
+//	else if ((pow((x - a), 2.0) + pow((y - b), 2.0)) == pow(promien, 2.0)) {
+//		printf("Punkt %lf, %lf nalezy do okregu", x, y);
+//		printf("\nKoniec programu.");
+//		return 0;
+//	}
+//	else
+//	{
+//		printf("Punkt %lf, %lf nie nalezy do okregu", x, y);
+//		printf("\nKoniec programu.");
+//		return 0;
+//	}
+//}
 
 
 /*===========================================================================*/
@@ -185,11 +185,42 @@ int main()
 /*===========================================================================*/
 
 
-//#include <stdio.h>
-//
-//int main()
-//{
-//
-//}
+#include <stdio.h>
+#include <math.h>
+
+int main()
+{
+	double srodek1 = 0.0;
+	double srodek2 = 0.0;
+	double promien = 1.0;
+	double x;
+	double y;
+	double odleglosc;
+	printf("Program sluzy do sprawdzenia gdzie punkt wyznaczony przez uzytkownika znajduje sie w stosunku do okregu o srodku (0,0) i promieniu 1.\nAutor: Jakub Drozd\n\n");
+	printf("Podaj wspolrzedne x i y punktu:\n");
+	if (scanf_s("%lf", &x)!=1.0 || scanf_s("%lf", &y)!=1.0)
+	{
+		printf("Bledne dane.");
+		printf("\nKoniec programu.");
+		return 0;
+	}
+	odleglosc = sqrt(pow((x - srodek1), 2.0) + pow((y - srodek2), 2.0));
+	if (odleglosc == promien)
+	{
+		printf("Punkt (%lf, %lf) lezy na okregu", x, y);
+		printf("\nKoniec programu.");
+		return 0;
+	} else if(odleglosc > promien){
+		printf("Punkt (%lf, %lf) lezy na zewnatrz okregu", x, y);
+		printf("\nKoniec programu.");
+		return 0;
+	}
+	else
+	{
+		printf("Punkt (%lf, %lf) lezy wewnatrz okregu", x, y);
+		printf("\nKoniec programu.");
+		return 0;
+	}
+}
 
 
