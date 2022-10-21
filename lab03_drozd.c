@@ -3,23 +3,23 @@
 /*===========================================================================*/
 
 
-//#include <stdio.h>
-//
-//int main()
-//{
-//	printf("Program sluzy do wypisywania liczb calkowitych podanych przez uzytkownika.\nAutor: Jakub Drozd\n\n");
-//	int liczba1;
-//	int liczba2;
-//	printf("Podaj liczby calkowite:\n");
-//	if (scanf_s("%d", &liczba1) != 1 || scanf_s("%d", &liczba2) != 1) {
-//		printf("Bledne dane.");
-//		printf("\nKoniec programu.");
-//		return 0;
-//	}
-//	printf("Podales liczby calkowite: %d i %d", liczba1, liczba2);
-//	printf("\nKoniec programu.\n");
-//	return 0;
-//}
+#include <stdio.h>
+
+int main()
+{
+	printf("Program sluzy do wypisywania liczb calkowitych podanych przez uzytkownika.\nAutor: Jakub Drozd\n\n");
+	int liczba1;
+	int liczba2;
+	printf("Podaj liczby calkowite:\n");
+	if (scanf_s("%d", &liczba1) != 1 || scanf_s("%d", &liczba2) != 1) {
+		printf("Bledne dane.");
+		printf("\nKoniec programu.");
+		return 0;
+	}
+	printf("Podales liczby calkowite: %d i %d", liczba1, liczba2);
+	printf("\nKoniec programu.\n");
+	return 0;
+}
 
 
 /*===========================================================================*/
