@@ -130,7 +130,6 @@
 //
 //int main() {
 //	char input;
-//	char nextchar;
 //	printf("Program sluzy do sprawdzenia czy uzytkownik wpisuje litere \"t\" lub litere \"T\".\nAutor: Jakub Drozd\n\n");
 //	printf("Prosze wpisac duza lub mala litere \"t\":\n");
 //	input = getchar();
