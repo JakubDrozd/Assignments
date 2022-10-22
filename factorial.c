@@ -18,6 +18,7 @@
 #include <stdio.h>
 int main() {
 	int liczba;
+	double liczba2 = 3.0f;
 	printf("Podaj liczbe calkowita\n");
 	if (scanf_s("%d", &liczba)!=1 || getchar() != '\n')
 	{
