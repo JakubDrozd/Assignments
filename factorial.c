@@ -19,7 +19,7 @@
 int main() {
 	int liczba;
 	printf("Podaj liczbe calkowita\n");
-	if (!scanf_s("%d", &liczba))
+	if (scanf_s("%d", &liczba)!=1 || getchar() != '\n')
 	{
 		printf("Bledne dane.");
 		printf("\nKoniec programu.");
