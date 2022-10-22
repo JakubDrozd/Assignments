@@ -134,8 +134,7 @@
 //	printf("Program sluzy do sprawdzenia czy uzytkownik wpisuje litere \"t\" lub litere \"T\".\nAutor: Jakub Drozd\n\n");
 //	printf("Prosze wpisac duza lub mala litere \"t\":\n");
 //	input = getchar();
-//	nextchar = getchar();
-//	if (input != 't' && input !='T' || nextchar != '\n')
+//	if (input != 't' && input !='T' || getchar() != '\n')
 //	{
 //		printf("Bledne dane");
 //		printf("\nKoniec programu");
