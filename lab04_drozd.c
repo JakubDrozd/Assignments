@@ -141,52 +141,58 @@
 /*===========================================================================*/
 
 
-#include <stdio.h>
-#include <math.h>
-
-int main()
-//Dziedzina to x <0, 1>
-{
-	int x;
-	int y;
-	const double e = 2.72;
-	printf("Program sluzy do roztrzygniecia gdzie lezy punkt podany przez uzytkownika w stosunku do funkcji:\n");
-	printf("f(x) = sqrt(|arccos(x) + e^x/ln(x)|)");
-	printf("\nAutor: Jakub Drozd\n");
-	printf("Prosze o podanie wspolrzednej x: ");
-	if (scanf_s("%d", &x)!=1 || getchar()!='\n')
-	{
-		printf("Bledne dane.");
-		printf("\nKoniec programu.");
-		return 0;
-	}
-	else if (x < 0 || x>1)
-	{
-		printf("%d nie nale¿y do dziedziny funkcji", x);
-		printf("\nKoniec programu.");
-		return 0;
-	}
-	printf("Prosze o podanie wpolrzednej y: ");
-	if (scanf_s("%d", &y) != 1 || getchar()!='\n')
-	{
-		printf("Bledne dane.");
-		printf("Koniec programu.");
-		return 0;
-	}
-	x = (double)x;
-	y = (double)y;
-	double funkcja = fabs(sqrt(acos(x) + (pow(e, x) / log(x))));
-	if (y == funkcja)
-	{
-		printf("%d, %d jest punktem wykresu funkcji f(x)", (int)x, (int)y);
-		printf("Koniec programu.");
-		return 0;
-	}
-	else if (true)
-	{
-
-	}
-}
+//#include <stdio.h>
+//#include <math.h>
+//
+//int main()
+////Dziedzina to x <0, 1>
+//{
+//	double x;
+//	double y;
+//	const double e = 2.72;
+//	printf("Program sluzy do roztrzygniecia gdzie lezy punkt podany przez uzytkownika w stosunku do funkcji:\n");
+//	printf("f(x) = sqrt(|arccos(x) + e^x/ln(x)|)");
+//	printf("\nAutor: Jakub Drozd\n");
+//	printf("Prosze o podanie wspolrzednej x: ");
+//	if (scanf_s("%lf", &x)!=1 || getchar()!='\n')
+//	{
+//		printf("Bledne dane.");
+//		printf("\nKoniec programu.");
+//		return 0;
+//	}
+//	else if (x < 0 || x>1)
+//	{
+//		printf("%.3lf nie nalezy do dziedziny funkcji", x);
+//		printf("\nKoniec programu.");
+//		return 0;
+//	}
+//	printf("Prosze o podanie wpolrzednej y: ");
+//	if (scanf_s("%lf", &y) != 1 || getchar()!='\n')
+//	{
+//		printf("Bledne dane.");
+//		printf("Koniec programu.");
+//		return 0;
+//	}
+//	double funkcja = fabs(sqrt(acos(x) + (pow(e, x) / log(x))));
+//	if (y == funkcja)
+//	{
+//		printf("%.3lf, %.3lf jest punktem wykresu funkcji f(x)", x, y);
+//		printf("\nKoniec programu.");
+//		return 0;
+//	}
+//	else if (y > funkcja)
+//	{
+//		printf("%.3lf, %.3lf jest nad wykresem funkcji f(x)", x, y);
+//		printf("\nKoniec programu.");
+//		return 0;
+//	}
+//	else if (y < funkcja)
+//	{
+//		printf("%.3lf, %.3lf jest pod wykresem funkcji f(x)", x, y);
+//		printf("\nKoniec programu.");
+//		return 0;
+//	}
+//}
 
 
 /*===========================================================================*/
@@ -194,12 +200,27 @@ int main()
 /*===========================================================================*/
 
 
-//#include <stdio.h>
-//
-//int main()
-//{
-//
-//}
+#include <stdio.h>
+
+int main()
+{
+	int x = 0;
+	printf("Testowanie instr. przypisania.\n\n");
+	x+=2;
+	printf("Po x+=2; wart. x jest: %d\n", x);
+	x *= (x + 1);
+	printf("Po x *= x + 1 wart. x jest: %d\n", x);
+	x+=1;
+	printf("Po x+=1 wart. x jest: %d\n", x);
+	x -= 3 / 4;
+	printf("Po x -= 3 / 4 wart. x jest: %d\n", x);
+	x /= x + 1;
+	printf("Po x /= x + 1 wart. x jest: %d\n", x);
+	x-=1;
+	printf("Po x-=1 wart. x jest: %d\n", x);
+	printf("\n\nKoniec programu. \n");
+	return 0;
+}
 
 
 /*===========================================================================*/
