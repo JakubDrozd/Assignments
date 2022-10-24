@@ -272,10 +272,11 @@ int main()
 		printf("\nKoniec programu.");
 		return 0;
 	}
-	double czescPierwsza = sqrt(pow(x, 2) + 1);
-	double czescDruga = log(pow(x, 2) + 1) / (5 + sin(pow(x, 2) + 1));
-	double czescTrzecia = pow(e, (sin(pow(x, 2) + 1)));
-	double y = czescPierwsza + czescDruga + czescTrzecia;
+	double pom1;
+	double pom2;
+	pom1 = pow(x, 2) + 1;
+	pom2 = sin(pom1);
+	double y = sqrt(pom1) + ((log(pom1)) / (5 + pom2)) - (pow(e, pom2));
 	printf("f(%.3lf) = %.3lf", x, y);
 	printf("\nKoniec programu.");
 	return 0;
@@ -292,7 +293,14 @@ int main()
 //
 //int main()
 //{
+//	double x;
+//	printf("Program oblicza wartosc x^8, gdzie x jest liczba podana przez uzytkownika\n");
+//	printf("Autor: Jakub Drozd\n");
+//	printf("Prosze podaj x: ");
+//	if (scanf_s("%lf", &x)!=1 || getchar()!='\n')
+//	{
 //
+//	}
 //}
 
 
