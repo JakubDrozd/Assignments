@@ -107,12 +107,33 @@
 /*===========================================================================*/
 
 
-#include <stdio.h>
-
-int main()
-{
-
-}
+//#include <stdio.h>
+//
+//int main()
+//{
+//	double liczba;
+//	printf("Program sluzy do zaokraglania liczb wymiernych z rozszerzeniem dziesietnym do liczb calkowitych\nAutor: Jakub Drozd\n");
+//	printf("Podaj liczbe niecalkowita w rozszerzeniu dziesietnym: ");
+//	if (scanf_s("%lf", &liczba)!=1 || getchar()!='\n')
+//	{
+//		printf("Bledne dane.");
+//		printf("\nKoniec programu.\n");
+//		return 0;
+//	}
+//	int zaokr = (int)liczba;
+//	if (liczba == zaokr)
+//	{
+//		printf("Podana liczba %lf jest calkowita", liczba);
+//		printf("\nKoniec programu.\n");
+//		return 0;
+//	}
+//	else
+//	{
+//		printf("Podana liczba %.2lf nie jest calkowita i zostala zaokraglona do %d", liczba, zaokr);
+//		printf("\nKoniec programu.\n");
+//		return 0;
+//	}
+//}
 
 
 /*===========================================================================*/
@@ -120,12 +141,52 @@ int main()
 /*===========================================================================*/
 
 
-//#include <stdio.h>
-//
-//int main()
-//{
-//
-//}
+#include <stdio.h>
+#include <math.h>
+
+int main()
+//Dziedzina to x <0, 1>
+{
+	int x;
+	int y;
+	const double e = 2.72;
+	printf("Program sluzy do roztrzygniecia gdzie lezy punkt podany przez uzytkownika w stosunku do funkcji:\n");
+	printf("f(x) = sqrt(|arccos(x) + e^x/ln(x)|)");
+	printf("\nAutor: Jakub Drozd\n");
+	printf("Prosze o podanie wspolrzednej x: ");
+	if (scanf_s("%d", &x)!=1 || getchar()!='\n')
+	{
+		printf("Bledne dane.");
+		printf("\nKoniec programu.");
+		return 0;
+	}
+	else if (x < 0 || x>1)
+	{
+		printf("%d nie nale¿y do dziedziny funkcji", x);
+		printf("\nKoniec programu.");
+		return 0;
+	}
+	printf("Prosze o podanie wpolrzednej y: ");
+	if (scanf_s("%d", &y) != 1 || getchar()!='\n')
+	{
+		printf("Bledne dane.");
+		printf("Koniec programu.");
+		return 0;
+	}
+	x = (double)x;
+	y = (double)y;
+	double funkcja = fabs(sqrt(acos(x) + (pow(e, x) / log(x))));
+	if (y == funkcja)
+	{
+		printf("%d, %d jest punktem wykresu funkcji f(x)", (int)x, (int)y);
+		printf("Koniec programu.");
+		return 0;
+	}
+	else if (true)
+	{
+
+	}
+}
 
 
 /*===========================================================================*/
