@@ -200,27 +200,27 @@
 /*===========================================================================*/
 
 
-#include <stdio.h>
-
-int main()
-{
-	int x = 0;
-	printf("Testowanie instr. przypisania.\n\n");
-	x+=2;
-	printf("Po x+=2; wart. x jest: %d\n", x);
-	x *= (x + 1);
-	printf("Po x *= x + 1 wart. x jest: %d\n", x);
-	x+=1;
-	printf("Po x+=1 wart. x jest: %d\n", x);
-	x -= 3 / 4;
-	printf("Po x -= 3 / 4 wart. x jest: %d\n", x);
-	x /= x + 1;
-	printf("Po x /= x + 1 wart. x jest: %d\n", x);
-	x-=1;
-	printf("Po x-=1 wart. x jest: %d\n", x);
-	printf("\n\nKoniec programu. \n");
-	return 0;
-}
+//#include <stdio.h>
+//
+//int main()
+//{
+//	int x = 0;
+//	printf("Testowanie instr. przypisania.\n\n");
+//	x+=2;
+//	printf("Po x+=2; wart. x jest: %d\n", x);
+//	x *= (x + 1);
+//	printf("Po x *= x + 1 wart. x jest: %d\n", x);
+//	x+=1;
+//	printf("Po x+=1 wart. x jest: %d\n", x);
+//	x -= 3 / 4;
+//	printf("Po x -= 3 / 4 wart. x jest: %d\n", x);
+//	x /= x + 1;
+//	printf("Po x /= x + 1 wart. x jest: %d\n", x);
+//	x-=1;
+//	printf("Po x-=1 wart. x jest: %d\n", x);
+//	printf("\n\nKoniec programu. \n");
+//	return 0;
+//}
 
 
 /*===========================================================================*/
@@ -232,7 +232,20 @@ int main()
 //
 //int main()
 //{
-//
+//	int x = 0;
+//	int y;
+//	y = x + 7; /*1*/
+//	printf("\ny = (x++) + 7 = %d", y);
+//	x += 1;
+//	y = (x+1) + 7; /*2*/
+//	printf("\ny = (x+1) + 7 = %d", y);
+//	y = 7 + x; /*3*/
+//	printf("\ny = 7 + (x++) = %d", y);
+//	x += 1;
+//	y = 7 + (x+1); /*4*/
+//	printf("\ny = 7 + (++x) = %d", y);
+//	y = 7 + (x + 1); /*5*/
+//	printf("\ny = 7 + (x + 1) = %d", y);
 //}
 
 
@@ -241,12 +254,33 @@ int main()
 /*===========================================================================*/
 
 
-//#include <stdio.h>
-//
-//int main()
-//{
-//
-//}
+#include <stdio.h>
+#include <math.h>
+
+int main()
+{
+	printf("Program oblicza wartosc funkcji\n");
+	printf("f(x)=sqrt(x^2+1)+ln(x^2+1)/(5 + sin(x^2+1))-e^sin(x^2+1)");
+	printf(" dla x podanego przez uzytkownika\n");
+	printf("Autor: Jakub Drozd\n");
+	printf("Prosze podac liczbe aby obliczyc wartosc funkcji: ");
+	double x;
+	const double e = 2.72;
+	if (scanf_s("%lf", &x)!= 1 || getchar()!='\n')
+	{
+		printf("Bledne dane.");
+		printf("\nKoniec programu.");
+		return 0;
+	}
+	double czescPierwsza = sqrt(pow(x, 2) + 1);
+	double czescDruga = log(pow(x, 2) + 1) / (5 + sin(pow(x, 2) + 1));
+	double czescTrzecia = pow(e, (sin(pow(x, 2) + 1)));
+	double y = czescPierwsza + czescDruga + czescTrzecia;
+	printf("f(%.3lf) = %.3lf", x, y);
+	printf("\nKoniec programu.");
+	return 0;
+
+}
 
 
 /*===========================================================================*/
