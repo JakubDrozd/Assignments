@@ -254,34 +254,34 @@
 /*===========================================================================*/
 
 
-#include <stdio.h>
-#include <math.h>
-
-int main()
-{
-	printf("Program oblicza wartosc funkcji\n");
-	printf("f(x)=sqrt(x^2+1)+ln(x^2+1)/(5 + sin(x^2+1))-e^sin(x^2+1)");
-	printf(" dla x podanego przez uzytkownika\n");
-	printf("Autor: Jakub Drozd\n");
-	printf("Prosze podac liczbe aby obliczyc wartosc funkcji: ");
-	double x;
-	const double e = 2.72;
-	if (scanf_s("%lf", &x)!= 1 || getchar()!='\n')
-	{
-		printf("Bledne dane.");
-		printf("\nKoniec programu.");
-		return 0;
-	}
-	double pom1;
-	double pom2;
-	pom1 = pow(x, 2) + 1;
-	pom2 = sin(pom1);
-	double y = sqrt(pom1) + ((log(pom1)) / (5 + pom2)) - (pow(e, pom2));
-	printf("f(%.3lf) = %.3lf", x, y);
-	printf("\nKoniec programu.");
-	return 0;
-
-}
+//#include <stdio.h>
+//#include <math.h>
+//
+//int main()
+//{
+//	printf("Program oblicza wartosc funkcji\n");
+//	printf("f(x)=sqrt(x^2+1)+ln(x^2+1)/(5 + sin(x^2+1))-e^sin(x^2+1)");
+//	printf(" dla x podanego przez uzytkownika\n");
+//	printf("Autor: Jakub Drozd\n");
+//	printf("Prosze podac liczbe aby obliczyc wartosc funkcji: ");
+//	double x;
+//	const double e = 2.72;
+//	if (scanf_s("%lf", &x)!= 1 || getchar()!='\n')
+//	{
+//		printf("Bledne dane.");
+//		printf("\nKoniec programu.");
+//		return 0;
+//	}
+//	double pom1;
+//	double pom2;
+//	pom1 = pow(x, 2) + 1;
+//	pom2 = sin(pom1);
+//	double y = sqrt(pom1) + ((log(pom1)) / (5 + pom2)) - (pow(e, pom2));
+//	printf("f(%.3lf) = %.3lf", x, y);
+//	printf("\nKoniec programu.");
+//	return 0;
+//
+//}
 
 
 /*===========================================================================*/
@@ -289,18 +289,26 @@ int main()
 /*===========================================================================*/
 
 
-//#include <stdio.h>
-//
-//int main()
-//{
-//	double x;
-//	printf("Program oblicza wartosc x^8, gdzie x jest liczba podana przez uzytkownika\n");
-//	printf("Autor: Jakub Drozd\n");
-//	printf("Prosze podaj x: ");
-//	if (scanf_s("%lf", &x)!=1 || getchar()!='\n')
-//	{
-//
-//	}
-//}
+#include <stdio.h>
+#include <math.h>
 
+int main()
+{
 
+	double liczba;
+	printf("Program oblicza wartosc x^8, gdzie x jest liczba podana przez uzytkownika\n");
+	printf("Autor: Jakub Drozd\n");
+	printf("Prosze podaj x: ");
+	if (scanf_s("%lf", &liczba)!=1 || getchar()!='\n')
+	{
+		printf("Bledne dane.");
+		printf("\nKoniec programu.");
+		return 0;
+	}
+	for (int i = 0; i < 3; i++)
+	{
+		liczba *= liczba;
+	}
+	printf("\nRecznie = %lf", liczba);
+	return 0;
+}
