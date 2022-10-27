@@ -289,25 +289,25 @@
 /*===========================================================================*/
 
 
-#include <stdio.h>
-#include <math.h>
-
-int main()
-{
-
-	double liczba;
-	printf("Program oblicza wartosc x^8, gdzie x jest liczba podana przez uzytkownika\n");
-	printf("Autor: Jakub Drozd\n");
-	printf("Prosze podaj x: ");
-	if (scanf_s("%lf", &liczba)!=1 || getchar()!='\n')
-	{
-		printf("Bledne dane.");
-		printf("\nKoniec programu.");
-		return 0;
-	}
-	liczba = liczba * liczba;
-	liczba = liczba * liczba;
-	liczba = liczba * liczba;
-	printf("\nRecznie = %lf", liczba);
-	return 0;
-}
+//#include <stdio.h>
+//#include <math.h>
+//
+//int main()
+//{
+//
+//	double liczba;
+//	printf("Program oblicza wartosc x^8, gdzie x jest liczba podana przez uzytkownika\n");
+//	printf("Autor: Jakub Drozd\n");
+//	printf("Prosze podaj x: ");
+//	if (scanf_s("%lf", &liczba)!=1 || getchar()!='\n')
+//	{
+//		printf("Bledne dane.");
+//		printf("\nKoniec programu.");
+//		return 0;
+//	}
+//	liczba = liczba * liczba;
+//	liczba = liczba * liczba;
+//	liczba = liczba * liczba;
+//	printf("\nRecznie = %lf", liczba);
+//	return 0;
+//}
