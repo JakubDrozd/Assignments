@@ -3,34 +3,34 @@
 /*===========================================================================*/
 
 
-//#include <stdio.h>
-//
-//int main()
-//{
-//	int x;
-//	int y;
-//	printf("Program sluzy do wyznaczenia czy punkt podany przez uzytkownika lezy na pierwszej cwiartce ukladu wspolrzednych\nAutor: Jakub Drozd\n");
-//	printf("Prosze podac wpolrzedna \"x\": ");
-//	if (scanf_s("%d", &x) != 1) {
-//		scanf_s("%d", &x);
-//	}
-//	printf("Prosze podac wpolrzedna \"y\": ");
-//	if (scanf_s("%d", &y) != 1) {
-//		scanf_s("%d", &y);
-//	}
-//	if (x <= 0 || y <= 0)
-//	{
-//		printf("Punkt o podanych wspolrzednych x=%d i y=%d NIE nalezy do pierwszej cwiartki ukladu wspolrzednych", x, y);
-//		printf("\nKoniec programu.");
-//		return 0;
-//	}
-//	else
-//	{
-//		printf("Punkt o podanych wspolrzednych x=%d i y=%d NALEZY do pierwszej cwiartki ukladu wspolrzednych", x, y);
-//		printf("\nKoniec programu.");
-//		return 0;
-//	}
-//}
+#include <stdio.h>
+
+int main()
+{
+	int x;
+	int y;
+	printf("Program sluzy do wyznaczenia czy punkt podany przez uzytkownika lezy na pierwszej cwiartce ukladu wspolrzednych\nAutor: Jakub Drozd\n");
+	printf("Prosze podac wpolrzedna \"x\": ");
+	if (scanf_s("%d", &x) != 1) {
+		scanf_s("%d", &x);
+	}
+	printf("Prosze podac wpolrzedna \"y\": ");
+	if (scanf_s("%d", &y) != 1) {
+		scanf_s("%d", &y);
+	}
+	if (x <= 0 || y <= 0)
+	{
+		printf("Punkt o podanych wspolrzednych x=%d i y=%d NIE nalezy do pierwszej cwiartki ukladu wspolrzednych", x, y);
+		printf("\nKoniec programu.");
+		return 0;
+	}
+	else
+	{
+		printf("Punkt o podanych wspolrzednych x=%d i y=%d NALEZY do pierwszej cwiartki ukladu wspolrzednych", x, y);
+		printf("\nKoniec programu.");
+		return 0;
+	}
+}
 
 
 /*===========================================================================*/
@@ -289,25 +289,25 @@
 /*===========================================================================*/
 
 
-#include <stdio.h>
-#include <math.h>
-
-int main()
-{
-
-	double liczba;
-	printf("Program oblicza wartosc x^8, gdzie x jest liczba podana przez uzytkownika\n");
-	printf("Autor: Jakub Drozd\n");
-	printf("Prosze podaj x: ");
-	if (scanf_s("%lf", &liczba)!=1 || getchar()!='\n')
-	{
-		printf("Bledne dane.");
-		printf("\nKoniec programu.");
-		return 0;
-	}
-	liczba = liczba * liczba;
-	liczba = liczba * liczba;
-	liczba = liczba * liczba;
-	printf("Podana przez ciebie liczba podniesiona do potegi 8 wynosi: %.2lf", liczba);
-	return 0;
-}
+//#include <stdio.h>
+//#include <math.h>
+//
+//int main()
+//{
+//
+//	double liczba;
+//	printf("Program oblicza wartosc x^8, gdzie x jest liczba podana przez uzytkownika\n");
+//	printf("Autor: Jakub Drozd\n");
+//	printf("Prosze podaj x: ");
+//	if (scanf_s("%lf", &liczba)!=1 || getchar()!='\n')
+//	{
+//		printf("Bledne dane.");
+//		printf("\nKoniec programu.");
+//		return 0;
+//	}
+//	liczba = liczba * liczba;
+//	liczba = liczba * liczba;
+//	liczba = liczba * liczba;
+//	printf("Podana przez ciebie liczba podniesiona do potegi 8 wynosi: %.2lf", liczba);
+//	return 0;
+//}
