@@ -132,6 +132,7 @@
     <ClCompile Include="lab02_drozd.c" />
     <ClCompile Include="lab03_drozd.c" />
     <ClCompile Include="lab04_drozd.c" />
+    <ClCompile Include="lab05_drozd.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
