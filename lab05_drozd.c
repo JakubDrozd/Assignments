@@ -217,37 +217,37 @@
 /*===========================================================================*/
 
 
-#include <stdio.h>
-#include <math.h>
-
-int main()
-{
-	printf("Program oblicza wartosc funkcji f(x) = 2^x dla x > 0, -1 w p.p dla x podanego przez u¿ytkownika.\nAutor: Jakub Drozd");
-	printf("\nProsze o podanie liczby zmiennopozycyjnej: ");
-	double x;
-	if (scanf_s("%lf", &x)!=1 || getchar()!='\n')
-	{
-		printf("Bledne dane.");
-		printf("\nKoniec programu.\n");
-		return 0;
-	}
-	else {
-		int warunek = (int)x > 0;
-		printf("x = %.2lf", x);
-		switch (warunek)
-		{
-		case 1:
-			x = pow(2, x);
-			break;
-		default:
-			x = -1;
-			break;
-		}
-		printf("\nf(x) = %.2lf", x);
-	}
-	printf("\nKoniec programu.");
-	return 0;
-}
+//#include <stdio.h>
+//#include <math.h>
+//
+//int main()
+//{
+//	printf("Program oblicza wartosc funkcji f(x) = 2^x dla x > 0, -1 w p.p dla x podanego przez u¿ytkownika.\nAutor: Jakub Drozd");
+//	printf("\nProsze o podanie liczby zmiennopozycyjnej: ");
+//	double x;
+//	if (scanf_s("%lf", &x)!=1 || getchar()!='\n')
+//	{
+//		printf("Bledne dane.");
+//		printf("\nKoniec programu.\n");
+//		return 0;
+//	}
+//	else {
+//		int warunek = (int)x > 0;
+//		printf("x = %.2lf", x);
+//		switch (warunek)
+//		{
+//		case 1:
+//			x = pow(2, x);
+//			break;
+//		default:
+//			x = -1;
+//			break;
+//		}
+//		printf("\nf(x) = %.2lf", x);
+//	}
+//	printf("\nKoniec programu.");
+//	return 0;
+//}
 
 
 /*===========================================================================*/
@@ -256,10 +256,59 @@ int main()
 
 
 //#include <stdio.h>
+//#include <math.h>
 //
 //int main()
 //{
-//
+//	printf("Program oblicza odleglosc punktu (x, y) od poczatku ukladu wspolrzednych, gdzie x i y podaje uzytkownik.\nAutor: Jakub Drozd");
+//	printf("\nPodaj wspolrzedna x: ");
+//	double x;
+//	double y;
+//	double R;
+//	double drugieR;
+//	if (scanf_s("%lf", &x) != 1 || getchar()!='\n')
+//	{
+//		printf("Bledne dane.");
+//		printf("\nKoniec programu.\n");
+//		return 0;
+//	}
+//	printf("Podaj wspolrzedna y: ");
+//	if (scanf_s("%lf", &y) != 1 || getchar() != '\n')
+//	{
+//		printf("Bledne dane.");
+//		printf("\nKoniec programu.\n");
+//		return 0;
+//	}
+//	else
+//	{
+//		R = sqrt(pow(x,2)+pow(y,2));
+//		if (x == 0)
+//		{
+//			drugieR = abs(y);
+//		}
+//		else if (abs(x) >= abs(y) && x!= 0)
+//		{
+//			drugieR = abs(x) * (sqrt(1 + pow((y / x), 2)));
+//		}
+//		else
+//		{
+//			drugieR = abs(y) * (sqrt(1 + pow((x / y), 2)));
+//		}
+//		if (R == drugieR)
+//		{
+//			printf("\nOBA ALGORYTMY DAJA TEN SAM WYNIK.");
+//			printf("\nOdleglosc punktu (%.2lf, %.2lf) od (0, 0) wynosi %.2lf", x, y, R);
+//		}
+//		else
+//		{
+//			printf("\nALGORYTMY DAJA ROZNE WYNIKI.");
+//			printf("\nOdleglosc punktu (%.2lf, %.2lf) od (0, 0) wynosi: ", x, y);
+//			printf("\nwg \"klasycznego\" algorytmu %.17lf", R);
+//			printf("\nwg \"specjalnego\" algorytmu %.17lf", drugieR);
+//			printf("\nWartosc bezwzgledna roznicy miedzy wynikami: %E", abs(R - drugieR));
+//		}
+//	}
+//	return 0;
 //}
 
 
