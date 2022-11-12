@@ -65,77 +65,152 @@
 
 
 /*===========================================================================*/
-/*                               ZADANIE 38                                  */
+/*                               ZADANIE 38.1                                */
 /*===========================================================================*/
 
 
-#include <stdio.h>
+//#include <stdio.h>
+//
+//int main()
+//{
+//	printf("Program wykonuje operacje arytmetyczne.\nAutor: Jakub Drozd");
+//	printf("\nPodaj pierwsza liczbe: ");
+//	double pierwszaLiczba;
+//	double drugaLiczba;
+//	int wybor;
+//	if (scanf_s("%lf", &pierwszaLiczba) != 1 || getchar() != '\n')
+//	{
+//		printf("Bledne dane.");
+//		printf("\nKoniec programu.");
+//		return 0;
+//	}
+//	printf("Podaj druga liczbe: ");
+//	if (scanf_s("%lf", &drugaLiczba) != 1 || getchar() != '\n')
+//	{
+//		printf("Bledne dane.");
+//		printf("\nKoniec programu.");
+//	}
+//	else {
+//		printf("\nPierwsza liczba: %.2lf", pierwszaLiczba);
+//		printf("\nDruga liczba: %.2lf", drugaLiczba);
+//		printf("\n\nJakie dzialanie chcesz wykonac?");
+//		printf("\n1. dodawanie");
+//		printf("\n2. odejmowanie");
+//		printf("\n3. mnozenie");
+//		printf("\n4. dzielenie\n");
+//		if (scanf_s("%d", &wybor) != 1 || getchar() != '\n' || wybor > 4 && wybor < 1)
+//		{
+//			printf("Wybrana operacja nie istnieje");
+//			printf("\nKoniec programu.");
+//			return 0;
+//		}
+//		else if (wybor == 1)
+//		{
+//			printf("\nWybrano operacje dodawania\n");
+//			printf("%.2lf + %.2lf = %.2lf", pierwszaLiczba, drugaLiczba, pierwszaLiczba + drugaLiczba);
+//		}
+//		else if (wybor == 2)
+//		{
+//			printf("\nWybrano operacje odejmowania\n");
+//			printf("%.2lf - %.2lf = %.2lf", pierwszaLiczba, drugaLiczba, pierwszaLiczba - drugaLiczba);
+//		}
+//		else if (wybor == 3)
+//		{
+//			printf("\nWybrano operacje mnozenia\n");
+//			printf("%.2lf * %.2lf = %.2lf", pierwszaLiczba, drugaLiczba, pierwszaLiczba * drugaLiczba);
+//		}
+//		else if (wybor == 4)
+//		{
+//			printf("\nWybrano operacje dzielenia\n");
+//			if (drugaLiczba == 0)
+//			{
+//				printf("Nie mozna dzielic przez '0'\n");
+//			}
+//			else
+//			{
+//				printf("%.2lf / %.2lf = %.2lf\n", pierwszaLiczba, drugaLiczba, pierwszaLiczba / drugaLiczba);
+//			}
+//		}
+//		printf("\nKoniec programu.\n");
+//		return 0;
+//		}
+//	}
 
-int main()
-{
-	printf("Program wykonuje operacje arytmetyczne.\nAutor: Jakub Drozd");
-	printf("\nPodaj pierwsza liczbe: ");
-	double pierwszaLiczba;
-	double drugaLiczba;
-	int wybor;
-	if (scanf_s("%lf", &pierwszaLiczba) != 1 || getchar() != '\n')
-	{
-		printf("Bledne dane.");
-		printf("\nKoniec programu.");
-		return 0;
-	}
-	printf("Podaj druga liczbe: ");
-	if (scanf_s("%lf", &drugaLiczba) != 1 || getchar() != '\n')
-	{
-		printf("Bledne dane.");
-		printf("\nKoniec programu.");
-	}
-	else {
-		printf("\nPierwsza liczba: %.2lf", pierwszaLiczba);
-		printf("\nDruga liczba: %.2lf", drugaLiczba);
-		printf("\n\nJakie dzialanie chcesz wykonac?");
-		printf("\n1. dodawanie");
-		printf("\n2. odejmowanie");
-		printf("\n3. mnozenie");
-		printf("\n4. dzielenie\n");
-		if (scanf_s("%d", &wybor) != 1 || getchar() != '\n' || wybor > 4 && wybor < 1)
-		{
-			printf("Wybrana operacja nie istnieje");
-			printf("\Koniec programu.");
-			return 0;
-		}
-		else if (wybor == 1)
-		{
-			printf("\nWybrano operacje dodawania\n");
-			printf("%.2lf + %.2lf = %.2lf", pierwszaLiczba, drugaLiczba, pierwszaLiczba + drugaLiczba);
-		}
-		else if (wybor == 2)
-		{
-			printf("\nWybrano operacje odejmowania\n");
-			printf("%.2lf - %.2lf = %.2lf", pierwszaLiczba, drugaLiczba, pierwszaLiczba - drugaLiczba);
-		}
-		else if (wybor == 3)
-		{
-			printf("\nWybrano operacje mnozenia\n");
-			printf("%.2lf * %.2lf = %.2lf", pierwszaLiczba, drugaLiczba, pierwszaLiczba * drugaLiczba);
-		}
-		else if (wybor == 4)
-		{
-			printf("\nWybrano operacje dzielenia\n");
-			if (drugaLiczba == 0)
-			{
-				printf("Nie mozna dzielic przez '0'\n");
-			}
-			else
-			{
-				printf("%.2lf / %.2lf = %.2lf\n", pierwszaLiczba, drugaLiczba, pierwszaLiczba / drugaLiczba);
-			}
-		}
-		printf("\nKoniec programu.\n");
-		return 0;
-		}
-	}
+/*===========================================================================*/
+/*                               ZADANIE 38.2                                */
+/*===========================================================================*/
 
+
+//#include <stdio.h>
+//
+//int main()
+//{
+//	printf("Program wykonuje operacje arytmetyczne.\nAutor: Jakub Drozd");
+//	double pierwszaLiczba;
+//	double drugaLiczba;
+//	int wybor;
+//	printf("\nPodaj pierwsza liczbe: ");
+//	if (scanf_s("%lf", &pierwszaLiczba) != 1 || getchar() != '\n')
+//	{
+//		printf("Bledne dane.");
+//		printf("\nKoniec programu.\n");
+//		return 0;
+//	}
+//	printf("Podaj druga liczbe: ");
+//	if (scanf_s("%lf", &drugaLiczba)!=1 || getchar()!='\n')
+//	{
+//		printf("Bledne dane.");
+//		printf("\nKoniec programu.\n");
+//	}
+//	else
+//	{
+//		printf("Pierwsza liczba %.2lf", pierwszaLiczba);
+//		printf("\nDruga liczba %.2lf", drugaLiczba);
+//		printf("\n\nJakie dzialanie chcesz wykonac?");
+//		printf("\n1. dodawanie");
+//		printf("\n2. odejmowanie");
+//		printf("\n3. mnozenie");
+//		printf("\n4. dzielenie\n");
+//		if (scanf_s("%d", &wybor)!=1 || getchar()!='\n')
+//		{
+//			printf("Bledne dane.");
+//			printf("\nKoniec programu.\n");
+//		}
+//		else {
+//			switch (wybor)
+//			{
+//			case 1:
+//				printf("\nWybrano operacje dodawania\n");
+//				printf("%.2lf + %.2lf = %.2lf", pierwszaLiczba, drugaLiczba, pierwszaLiczba + drugaLiczba);
+//				break;
+//			case 2:
+//				printf("\nWybrano operacje odejmowania\n");
+//				printf("%.2lf - %.2lf = %.2lf", pierwszaLiczba, drugaLiczba, pierwszaLiczba - drugaLiczba);
+//				break;
+//			case 3:
+//				printf("\nWybrano operacje mnozenia\n");
+//				printf("%.2lf * %.2lf = %.2lf", pierwszaLiczba, drugaLiczba, pierwszaLiczba * drugaLiczba);
+//				break;
+//			case 4:
+//				printf("\nWybrano operacje dzielenia\n");
+//				if (drugaLiczba == 0)
+//				{
+//					printf("Nie mozna dzielic przez '0'\n");
+//				}
+//				else
+//				{
+//					printf("%.2lf / %.2lf = %.2lf", pierwszaLiczba, drugaLiczba, pierwszaLiczba / drugaLiczba);
+//				}
+//				break;
+//			default:
+//				printf("Wybrana operacja nie istnieje");
+//				break;
+//			}
+//		}
+//		printf("\nKoniec programu.\n");
+//		return 0;
+//	}
+//}
 
 /*===========================================================================*/
 /*                               ZADANIE 39                                  */
