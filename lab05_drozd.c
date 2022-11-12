@@ -321,7 +321,50 @@
 //
 //int main()
 //{
-//
+//	printf("Program sprawdza czy dwa wektory o wspolrzednych podanych przez uzytkownika sa do siebie prostopadle czy rownolegle.\nAutor: Jakub Drozd ");
+//	printf("\nPodaj wspolrzedne pierwszego wektora: ");
+//	int pX;
+//	int pY;
+//	int dX;
+//	int dY;
+//	if (scanf_s("%d", &pX)!=1 || getchar()!='\n')
+//	{
+//		printf("Bledne dane.");
+//		printf("\nKoniec programu.\n");
+//		return 0;
+//	}
+//	if (scanf_s("%d", &pY) != 1 || getchar() != '\n')
+//	{
+//		printf("Bledne dane.");
+//		printf("\nKoniec programu.\n");
+//		return 0;
+//	}
+//	printf("\nPierwszy wektor: [%d, %d]\n", pX, pY);
+//	printf("\nPodaj wspolrzedne drugiego wektora: ");
+//	if (scanf_s("%d", &dX) != 1 || getchar() != '\n')
+//	{
+//		printf("Bledne dane.");
+//		printf("\nKoniec programu.\n");
+//		return 0;
+//	}
+//	if (scanf_s("%d", &dY) != 1 || getchar() != '\n')
+//	{
+//		printf("Bledne dane.");
+//		printf("\nKoniec programu.\n");
+//		return 0;
+//	}
+//	printf("Drugi wektor: [%d, %d]\n", dX, dY);
+//	if (((pX * dY) - (dX * pY)) == 0) {
+//		printf("Wektory [%d, %d] i [%d, %d] sa rownolegle", pX, pY, dX, dY);
+//	}
+//	else if (((pX * dX) + (pY * dY)) == 0) {
+//		printf("Wektory [%d, %d] i [%d, %d] sa prostopadle", pX, pY, dX, dY);
+//	}
+//	else {
+//		printf("Wektory [%d, %d] i [%d, %d] nie sa ani prostopadle ani rownolegle wobec siebie", pX, pY, dX, dY);
+//	}
+//	printf("\nKoniec programu.\n");
+//	return 0;
 //}
 
 
@@ -347,7 +390,39 @@
 //
 //int main()
 //{
-//
+//	printf("Program pokazuje uzytkownikowi ktora z trzech podanych przez niego liczb jest najmniejsza.\nAutor: Jakub Drozd");
+//	printf("\nPodaj trzy liczby: \n");
+//	double pierwsza;
+//	double druga;
+//	double trzecia;
+//	if (scanf_s("%lf", &pierwsza)!=1 || getchar()!='\n')
+//	{
+//		printf("Bledne dane.");
+//		printf("\nKoniec programu.\n");
+//	}
+//	if (scanf_s("%lf", &druga) != 1 || getchar() != '\n')
+//	{
+//		printf("Bledne dane.");
+//		printf("\nKoniec programu.\n");
+//	}
+//	if (scanf_s("%lf", &trzecia) != 1 || getchar() != '\n')
+//	{
+//		printf("Bledne dane.");
+//		printf("\nKoniec programu.\n");
+//	}
+//	if (pierwsza >= druga && pierwsza >= trzecia)
+//	{
+//		printf("Najwieksza liczba to %.5lf", pierwsza);
+//	}
+//	else if (druga >= pierwsza && druga >= trzecia) {
+//		printf("Najwieksza liczba to %.5lf", druga);
+//	}
+//	else if (trzecia >= pierwsza && trzecia >= druga)
+//	{
+//		printf("Najwieksza liczba to %.5lf", trzecia);
+//	}
+//	printf("\nKoniec programu.\n");
+//	return 0;
 //}
 
 
