@@ -374,11 +374,160 @@
 
 
 //#include <stdio.h>
+//#include <math.h>
 //
 //int main()
 //{
-//
-//}
+//	printf("Program oblicza pole wybranego przez uzytkownika trojkata.\nAutor: Jakub Drozd");
+//	double h;
+//	double aJeden;
+//	double aDwa;
+//	double aTrzy;
+//	double kat;
+//	int wybor;
+//	int wyborKat;
+//	const double pi = 3.14;
+//	printf("\nJakie dane chcesz podac: ");
+//	printf("\n1. bok i spuszczona nan wysokosc");
+//	printf("\n2. dwa boki i kat miedzy nimi");
+//	printf("\n3. trzy boki\n");
+//	if (scanf_s("%d", &wybor) != 1 || getchar() != '\n' || wybor < 1 || wybor > 3) {
+//		printf("Wybrana operacja nie istnieje");
+//		printf("\nKoniec programu.\n");
+//		return 0;
+//	}
+//	else if (wybor == 1)
+//	{
+//		printf("Podaj bok na ktorym lezy wysokosc: ");
+//		if (scanf_s("%lf", &aJeden) != 1 || getchar() != '\n' || aJeden <= 0)
+//		{
+//			printf("Podany bok nie moze byc rowny '0' lub byc ujemnej dlugosci");
+//			printf("\nKoniec programu.\n");
+//			return 0;
+//		}
+//		else
+//		{
+//			printf("Podaj wysokosc lezaca na podanym boku: ");
+//			if (scanf_s("%lf", &h) != 1 || getchar() != '\n' || h <= 0)
+//			{
+//				printf("Podana wysokosc nie moze byc rowna '0' lub byc ujemnej dlugosci");
+//				printf("\nKoniec programu.\n");
+//				return 0;
+//			}
+//			else
+//			{
+//				double pole = (aJeden * h) / 2;
+//				printf("Pole trojkata o boku %.2lf i lezacej na nim wysokosci %.2lf wynosi %lf", aJeden, h, pole);
+//			}
+//		}
+//	}
+//	else if (wybor == 2)
+//	{
+//		printf("Podaj pierwszy bok: ");
+//		if (scanf_s("%lf", &aJeden) != 1 || getchar() != '\n' || aJeden <= 0)
+//		{
+//			printf("Podany bok nie moze byc rowny '0' lub byc ujemnej dlugosci");
+//			printf("\nKoniec programu.\n");
+//			return 0;
+//		}
+//		else
+//		{
+//			printf("Podaj drugi bok: ");
+//			if (scanf_s("%lf", &aDwa) != 1 || getchar() != '\n' || aDwa <= 0)
+//			{
+//				printf("Podany bok nie moze byc rowny '0' lub byc ujemnej dlugosci");
+//				printf("\nKoniec programu.\n");
+//				return 0;
+//			}
+//			else
+//			{
+//				printf("Podaj kat miedzy bokami: ");
+//				printf("\n1. W stopniach");
+//				printf("\n2. W radianach\n");
+//				if (scanf_s("%d", &wyborKat) != 1 || getchar() != '\n' || wyborKat > 2 || wyborKat < 0)
+//				{
+//					printf("Wybrana operacja nie istnieje.");
+//					printf("\nKoniec programu.\n");
+//					return 0;
+//				}
+//				if (wyborKat == 1)
+//				{
+//					printf("\nPodaj kat w stopniach: ");
+//					if (scanf_s("%lf", &kat) != 1 || getchar() != '\n')
+//					{
+//						printf("Bledne dane.");
+//						printf("\nKoniec programu.\n");
+//						return 0;
+//					}
+//					else
+//					{
+//						kat = kat * (pi / 180);
+//						double pole = 0.5 * aJeden * aDwa * sin(kat);
+//						printf("Pole trojkata o bokach %.2lf, %.2lf i kacie miedzy nimi %.2lf (radiany) wynosi %lf", aJeden, aDwa, kat, pole);
+//					}
+//				}
+//				else if (wyborKat == 2)
+//				{
+//					printf("\nPodaj kat w radianach: ");
+//					if (scanf_s("%lf", &kat) != 1 || getchar() != '\n')
+//					{
+//						printf("Bledne dane.");
+//						printf("\nKoniec programu.\n");
+//						return 0;
+//					}
+//					else
+//					{
+//						double pole = 0.5 * aJeden * aDwa * sin(kat);
+//						printf("Pole trojkata o bokach %.2lf, %.2lf i kacie miedzy nimi %.2lf wynosi %lf", aJeden, aDwa, kat, pole);
+//					}
+//				}
+//			}
+//		}
+//	}
+//	else
+//	{
+//		printf("Podaj pierwszy bok: ");
+//		if (scanf_s("%lf", &aJeden) != 1 || getchar() != '\n' || aJeden <= 0)
+//		{
+//			printf("Podany bok nie moze byc rowny '0' lub byc ujemnej dlugosci");
+//			printf("\nKoniec programu.\n");
+//			return 0;
+//		}
+//		else
+//		{
+//			printf("Podaj drugi bok: ");
+//			if (scanf_s("%lf", &aDwa) != 1 || getchar() != '\n' || aDwa <= 0)
+//			{
+//				printf("Podany bok nie moze byc rowny '0' lub byc ujemnej dlugosci");
+//				printf("\nKoniec programu.\n");
+//				return 0;
+//			}
+//			else {
+//				printf("Podaj trzeci bok: ");
+//				if (scanf_s("%lf", &aTrzy) != 1 || getchar() != '\n' || aTrzy <= 0)
+//				{
+//					printf("Podany bok nie moze byc rowny '0' lub byc ujemnej dlugosci");
+//					printf("\nKoniec programu.\n");
+//					return 0;
+//				}
+//				else
+//					{
+//					if (aJeden + aDwa <= aTrzy || aJeden + aTrzy <= aDwa || aDwa + aTrzy <= aJeden) {
+//						printf("Nie mozna zbudowac trojkata z podanych bokow");
+//						return 0;
+//					}
+//					else
+//					{
+//						double pole = (aJeden + aDwa + aTrzy) / 2;
+//						printf("Pole trojkata o bokach %.2lf, %.2lf i %.2lf wynosi %lf", aJeden, aDwa, aTrzy, pole);
+//					}
+//					}
+//				}
+//			}
+//		}
+//		printf("\nKoniec programu.\n");
+//		return 0;
+//	}
 
 
 /*===========================================================================*/
