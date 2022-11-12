@@ -217,12 +217,37 @@
 /*===========================================================================*/
 
 
-//#include <stdio.h>
-//
-//int main()
-//{
-//
-//}
+#include <stdio.h>
+#include <math.h>
+
+int main()
+{
+	printf("Program oblicza wartosc funkcji f(x) = 2^x dla x > 0, -1 w p.p dla x podanego przez u¿ytkownika.\nAutor: Jakub Drozd");
+	printf("\nProsze o podanie liczby zmiennopozycyjnej: ");
+	double x;
+	if (scanf_s("%lf", &x)!=1 || getchar()!='\n')
+	{
+		printf("Bledne dane.");
+		printf("\nKoniec programu.\n");
+		return 0;
+	}
+	else {
+		int warunek = (int)x > 0;
+		printf("x = %.2lf", x);
+		switch (warunek)
+		{
+		case 1:
+			x = pow(2, x);
+			break;
+		default:
+			x = -1;
+			break;
+		}
+		printf("\nf(x) = %.2lf", x);
+	}
+	printf("\nKoniec programu.");
+	return 0;
+}
 
 
 /*===========================================================================*/
