@@ -14,27 +14,3 @@
 //	printf("\nKoniec programu.");
 //	return 0;
 //}
-
-//#include <stdio.h>
-//int main() {
-//	int liczba;
-//	double liczba2 = 3.0f;
-//	printf("Podaj liczbe calkowita\n");
-//	if (scanf_s("%d", &liczba)!=1 || getchar() != '\n')
-//	{
-//		printf("Bledne dane.");
-//		printf("\nKoniec programu.");
-//		return 0;
-//	}
-//	if (liczba >0)
-//	{
-//		printf("Podana liczba %d jest dodatnia", liczba);
-//		printf("\nKoniec programu.");
-//		return 0;
-//	}
-//	else if (liczba <=0) {
-//		printf("Podana liczba %d jest niedodatnia", liczba);
-//		printf("\nKoniec programu.");
-//		return 0;
-//	}
-//}
