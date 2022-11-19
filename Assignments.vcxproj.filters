@@ -33,5 +33,8 @@
     <ClCompile Include="lab05_drozd.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="lab06_drozd.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
