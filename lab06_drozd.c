@@ -382,6 +382,45 @@
 /*===========================================================================*/
 
 
+//#include <stdio.h>
+//#include <math.h>
+//
+//int factorial(int n) {
+//	int i = 2;
+//	int wynik = 1;
+//	while (i <= n)
+//	{
+//		wynik *= i;
+//		i++;
+//	}
+//	return wynik;
+//}
+//
+//int main()
+//{
+//	printf("Program oblicza wartosc n dla funkcji f(n) = (3^n)/(n+1)!, g(n) = 3^n, h(n) = (n+1)!\nAutor: Jakub Drozd\n");
+//	printf("Podaj liczbe n: ");
+//	int n;
+//	while (scanf_s("%d", &n)!=1 || getchar()!='\n')
+//	{
+//		printf("Bledne dane. Popraw: ");
+//		int c;
+//		while ((c = getchar()) != '\n' && c != EOF)
+//			;
+//	}
+//	double gN = pow(3, n);
+//	double hN = factorial(n + 1);
+//	double fN = gN / hN;
+//	printf("f(%d) = %.4lg", n, fN);
+//	printf("\nKoniec programu\n");
+//}
+
+
+/*===========================================================================*/
+/*                               ZADANIE 51                                  */
+/*===========================================================================*/
+
+
 #include <stdio.h>
 #include <math.h>
 
@@ -398,34 +437,24 @@ int factorial(int n) {
 
 int main()
 {
-	printf("Program oblicza wartosc n dla funkcji f(n) = (3^n)/(n+1)!, g(n) = 3^n, h(n) = (n+1)!\nAutor: Jakub Drozd\n");
-	printf("Podaj liczbe n: ");
-	int n;
-	while (scanf_s("%d", &n)!=1 || getchar()!='\n')
+	printf("Program znajduje najmniejsza wartosc liczby naturalnej n, takiej ze:\n(90^n)/(n+1)! < 1 \nAutor: Jakub Drozd\n");
+	double najmniejsza = 0;
+	int n = 1;
+	double licznik = pow(90, n);
+	double mianownik = factorial(n + 1);
+	double wartosc = licznik / mianownik;
+	while (n <= 3)
 	{
-		printf("Bledne dane. Popraw: ");
-		int c;
-		while ((c = getchar()) != '\n' && c != EOF)
-			;
+		if (wartosc <1)
+		{
+			if (najmniejsza > wartosc)
+			{
+				najmniejsza = n;
+			}
+			n++;
+		}
 	}
-	double gN = pow(3, n);
-	double hN = factorial(n + 1);
-	double fN = gN / hN;
-	printf("f(%d) = %.4lg", n, fN);
+	printf("\nNajmniejsza wartosc n to %lf", najmniejsza);
 	printf("\nKoniec programu\n");
 }
-
-
-/*===========================================================================*/
-/*                               ZADANIE 51                                  */
-/*===========================================================================*/
-
-
-//#include <stdio.h>
-//
-//int main()
-//{
-//
-//}
-
 
