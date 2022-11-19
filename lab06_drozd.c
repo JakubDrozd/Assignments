@@ -421,40 +421,30 @@
 /*===========================================================================*/
 
 
-#include <stdio.h>
-#include <math.h>
-
-int factorial(int n) {
-	int i = 2;
-	int wynik = 1;
-	while (i <= n)
-	{
-		wynik *= i;
-		i++;
-	}
-	return wynik;
-}
-
-int main()
-{
-	printf("Program znajduje najmniejsza wartosc liczby naturalnej n, takiej ze:\n(90^n)/(n+1)! < 1 \nAutor: Jakub Drozd\n");
-	double najmniejsza = 0;
-	int n = 1;
-	double licznik = pow(90, n);
-	double mianownik = factorial(n + 1);
-	double wartosc = licznik / mianownik;
-	while (n <= 3)
-	{
-		if (wartosc <1)
-		{
-			if (najmniejsza > wartosc)
-			{
-				najmniejsza = n;
-			}
-			n++;
-		}
-	}
-	printf("\nNajmniejsza wartosc n to %lf", najmniejsza);
-	printf("\nKoniec programu\n");
-}
+//#include <stdio.h>
+//#include <math.h>
+//
+//int factorial(int n) {
+//	int i = 2;
+//	int wynik = 1;
+//	while (i <= n)
+//	{
+//		wynik *= i;
+//		i++;
+//	}
+//	return wynik;
+//}
+//
+//int main()
+//{
+//	printf("Program znajduje najmniejsza wartosc liczby naturalnej n, takiej ze:\n(90^n)/(n+1)! < 1 \nAutor: Jakub Drozd\n");
+//	int n = 1;
+//		double licznik = pow(90, n);
+//		double mianownik = factorial(n + 1);
+//		double wartosc = licznik / mianownik;
+//		printf("\n%lf\n", wartosc);
+//		printf("Najmniejsza wartosc liczby naturalnej n to: %d", n);
+//	
+//	printf("\nKoniec programu\n");
+//}
 
