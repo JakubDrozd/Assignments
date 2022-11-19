@@ -114,7 +114,7 @@
 //		return 0;
 //	}
 //	min = 10 * min + (znak - '0');
-//	if (godz > 59) {
+//	if (min > 59) {
 //		printf("Minuty powinny byc z zakresu 0-59.\n");
 //		printf("\nKoniec programu.\n\n");
 //		return 0;
@@ -152,10 +152,168 @@
 
 
 //#include <stdio.h>
+//#include <ctype.h>
 //
 //int main()
 //{
+//	printf("Program wypisuje date z lat 2001-2050 wypisana przez uzytkownika.\nAutor: Jakub Drozd\n");
+//	printf("Podaj dowolna date w formacie (dd.mm.rr): ");
+//	int dzien = 0;
+//	int miesiac = 0;
+//	int rok = 0;
+//	char znak;
+//	znak = getchar();
+//	if (znak < '0' || znak > '3')
+//	{
+//		printf("Pierwszy znak powinien byc cyfra od 0 do 3.\n");
+//		printf("\nKoniec programu.\n\n");
+//		return 0;
+//	}
+//	dzien = znak - '0';
+//	znak = getchar();
+//	if (!isdigit(znak))
+//	{
+//		printf("Drugi znak powinien byc cyfra.\n");
+//		printf("\nKoniec programu.\n\n");
+//		return 0;
+//	}
+//	dzien = 10 * dzien + (znak - '0');
+//	if (dzien > 31) {
+//		printf("Dzien miesiaca powinien byc z zakresu 1-31.\n");
+//		printf("\nKoniec programu.\n\n");
+//		return 0;
+//	}
+//	if (getchar() != '.') {
+//		printf("Trzeci znak powinien byc kropka.\n");
+//		printf("\nKoniec programu.\n\n");
+//		return 0;
+//	}
+//	znak = getchar();
+//	if (znak < '0' || znak > '1')
+//	{
+//		printf("Czwarty znak powinien byc cyfra od 0 do 1.\n");
+//		printf("\nKoniec programu.\n\n");
+//		return 0;
+//	}
+//	miesiac = znak - '0';
+//	znak = getchar();
+//	if (znak < '0' || znak > '9')
+//	{
+//		printf("Piaty znak powinien byc cyfra od 0 do 9.\n");
+//		printf("\nKoniec programu.\n\n");
+//		return 0;
+//	}
+//	miesiac = 10 * miesiac + (znak - '0');
+//	if (miesiac > 12) {
+//		printf("Miesiac powinien byc liczba z zakresu od 1 do 12.\n");
+//		printf("\nKoniec programu.\n\n");
+//		return 0;
+//	}
+//	znak = getchar();
+//	if (znak != '.')
+//	{
+//		printf("Szosty znak powinien byc kropka.\n");
+//		printf("\nKoniec programu.\n\n");
+//		return 0;
+//	}
+//	znak = getchar();
+//	if (znak < '0' || znak > '5')
+//	{
+//		printf("Siodmy znak powinien byc cyfra od 0 do 5.\n");
+//		printf("\nKoniec programu.\n\n");
+//		return 0;
+//	}
+//	rok = znak - '0';
+//	znak = getchar();
+//	if (!isdigit(znak))
+//	{
+//		printf("Osmy znak powinien byc cyfra.\n");
+//		printf("\nKoniec programu.\n\n");
+//		return 0;
+//	}
+//	rok = 10 * rok + (znak - '0');
+//	if (rok < 1 || rok > 50) {
+//		printf("Rok powinien byc liczba z zakresu od 1 do 50.\n");
+//		printf("\nKoniec programu.\n\n");
+//		return 0;
+//	}
+//	int czyPrzestepny = ((rok % 4 == 0 && rok % 100 != 0) || (rok % 400 == 0));
+//	znak = getchar();
+//		if (znak != '\n')
+//		{
+//			printf("Dziewiaty znak powinien byc enterem.\n");
+//			printf("\nKoniec programu.\n\n");
+//			return 0;
+//		}
+//		else
+//		{
 //
+//			if (miesiac == 2 && czyPrzestepny == 1 && dzien > 29)
+//			{
+//				printf("Luty w roku 20%d moze miec maksymalnie 29 dni", rok);
+//				printf("\nKoniec programu.\n\n");
+//				return 0;
+//			}
+//			else if (miesiac == 2 && czyPrzestepny == 0 && dzien > 28)
+//			{
+//				printf("Luty w roku 20%d moze miec maksymalnie 28 dni", rok);
+//				printf("\nKoniec programu.\n\n");
+//				return 0;
+//			}
+//			else if ((miesiac == 4 || miesiac == 6 || miesiac == 9 || miesiac == 11) && dzien > 30)
+//			{
+//				printf("Podany miesiac moze miec maksymalnie 30 dni");
+//				printf("\nKoniec programu.\n\n");
+//				return 0;
+//			}
+//			else
+//			{
+//				printf("\nOto podana data\n");
+//				switch (miesiac)
+//				{
+//				case 1:
+//					printf("%d stycznia 20%02d", dzien, rok);
+//					break;
+//				case 2:
+//					printf("%d luty 20%02d", dzien, rok);
+//					break;
+//				case 3:
+//					printf("%d marca 20%02d", dzien, rok);
+//					break;
+//				case 4:
+//					printf("%d kwietnia 20%02d", dzien, rok);
+//					break;
+//				case 5:
+//					printf("%d maja 20%02d", dzien, rok);
+//					break;
+//				case 6:
+//					printf("%d czerwca 20%02d", dzien, rok);
+//					break;
+//				case 7:
+//					printf("%d lipca 20%02d", dzien, rok);
+//					break;
+//				case 8:
+//					printf("%d sierpnia 20%02d", dzien, rok);
+//					break;
+//				case 9:
+//					printf("%d wrzesnia 20%02d", dzien, rok);
+//					break;
+//				case 10:
+//					printf("%d pazdziernika 20%02d", dzien, rok);
+//					break;
+//				case 11:
+//					printf("%d listopada 20%02d", dzien, rok);
+//					break;
+//				case 12:
+//					printf("%d grudnia 20%02d", dzien, rok);
+//					break;
+//				default:
+//					break;
+//				}
+//			}
+//			printf("\nKoniec programu\n");
+//		}
+//		return 0;
 //}
 
 
