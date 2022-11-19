@@ -323,10 +323,23 @@
 
 
 //#include <stdio.h>
+//#include <math.h>
 //
 //int main()
 //{
-//
+//	printf("Program probuje wypisac 50 poczatkowych poteg liczby 2 na ekranie.\nAutor: Jakub Drozd\n");
+//	int liczba;
+//	int i = 50;
+//	int potega = 0;
+//	while (i >= 0)
+//	{
+//		liczba = pow(2, potega);
+//		printf("\n2^%d : %d", potega, liczba);
+//		i--;
+//		potega++;
+//	}
+//	printf("\nKoniec programu\n");
+//	return 0;
 //}
 
 
