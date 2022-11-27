@@ -87,12 +87,34 @@
 /*===========================================================================*/
 
 
-//#include <stdio.h>
-//
-//int main()
-//{
-//
-//}
+#include <stdio.h>
+#include <limits.h>
+
+int main()
+{
+	printf("Program wyznacza minimum z podanych liczb\nAutor: Jakub Drozd\n");
+	printf("Podaj liczby naturalne, aby zakonczyc wpisz 0\n");
+	int liczba = 1;
+	int min = INT_MAX;
+	while (liczba != 0)
+	{
+		printf("Podaj liczbe: ");
+		while (scanf_s("%d", &liczba)!=1 || liczba < 0 || getchar()!='\n')
+		{
+			printf("Bledne dane, popraw: ");
+			int c;
+			while ((c = getchar()) != '\n' && c != EOF)
+				;
+		}
+		if (liczba != 0 && liczba < min)
+		{
+			min = liczba;
+		}
+	}
+	printf("Najmniejsza z podanych liczb to: %d", min);
+	printf("\nKoniec programu\n");
+	return 0;
+}
 
 
 /*===========================================================================*/
