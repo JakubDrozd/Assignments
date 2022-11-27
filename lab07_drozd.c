@@ -189,9 +189,6 @@ int main()
 		
 	}
 	ilosc -= 1;
-	printf("\nsuma = %lf", (double)suma);
-	printf("\niloczyn = %lf", (double)iloczyn);
-	printf("\nilosc = %d", ilosc);
 	double sredniaAry = (double)suma / ilosc;
 	double sredniaGeo = pow(iloczyn, (1.0 / ilosc));
 	printf("\nSrednia arytmetyczna podanych liczb: %lf\n", sredniaAry);
