@@ -203,33 +203,33 @@
 /*===========================================================================*/
 
 
-#include <stdio.h>
-#include <math.h>
-
-int main()
-{
-	printf("Program wczytuje ciag 0 i 1 o max. dlugosci 32 i przedstawia ja w postaci liczby dziesietnej\nAutor: Jakub Drozd\n");
-	long long liczba;
-	double wynik = 0;
-	double i = 0;
-	double reszta;
-	printf("Podaj ciag 0 i 1 NIE DLUZSZY niz 32:\n");
-	if (scanf_s("%lld", &liczba)!=1 || getchar()!='\n')
-	{
-		printf("Bledne dane.");
-		printf("\nKoniec programu\n");
-	}
-	while (liczba!=0)
-	{
-		reszta = liczba % 10;
-		liczba = liczba / 10;
-		wynik = wynik + reszta * pow(2,i);
-		i++;
-	}
-	printf("Podana przez ciebie liczba w systemie dwojkowym to %.0lf w systemie dziesietnym", wynik);
-	printf("\nKoniec programu\n");
-	return 0;
-}
+//#include <stdio.h>
+//#include <math.h>
+//
+//int main()
+//{
+//	printf("Program wczytuje ciag 0 i 1 o max. dlugosci 32 i przedstawia ja w postaci liczby dziesietnej\nAutor: Jakub Drozd\n");
+//	long long liczba;
+//	double wynik = 0;
+//	double i = 0;
+//	double reszta;
+//	printf("Podaj ciag 0 i 1 NIE DLUZSZY niz 32:\n");
+//	if (scanf_s("%lld", &liczba)!=1 || getchar() != '\n')
+//	{
+//		printf("Bledne dane.");
+//		printf("\nKoniec programu\n");
+//	}
+//	while (liczba!=0)
+//	{
+//		reszta = liczba % 10;
+//		liczba = liczba / 10;
+//		wynik = wynik + reszta * pow(2,i);
+//		i++;
+//	}
+//	printf("Podana przez ciebie liczba w systemie dwojkowym to %.0lf w systemie dziesietnym", wynik);
+//	printf("\nKoniec programu\n");
+//	return 0;
+//}
 
 
 /*===========================================================================*/
