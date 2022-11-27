@@ -42,7 +42,18 @@
 //
 //int main()
 //{
-//
+//	printf("Program wypisuje liczbe naturalna podana przez uzytkownika.\nAutor: Jakub Drozd\n");
+//	int liczba;
+//	printf("Podaj dowolna liczbe naturalna: ");
+//	while (scanf_s("%d", &liczba)!=1 || liczba <= 0 || getchar()!='\n')
+//	{
+//		printf("Bledne dane, popraw: ");
+//		int c;
+//		while ((c = getchar()) != '\n' && c != EOF);
+//	}
+//	printf("Podales liczbe: %d", liczba);
+//	printf("\nKoniec programu\n");
+//	return 0;
 //}
 
 
@@ -55,7 +66,19 @@
 //
 //int main()
 //{
-//
+//	printf("Program prosi o podanie literki 't' i wypisuje komunikat dla uzytkownika\nAutor: Jakub Drozd\n");
+//	char znak;
+//	printf("\nPodaj literke 't': ");
+//	while (scanf_s("%c", &znak) != 1 || znak != 't' || getchar() != '\n')
+//	{
+//		printf("Bledne dane, popraw: ");
+//		int c;
+//		while ((c = getchar()) != '\n' && c != EOF)
+//			;
+//	}
+//	printf("Wpisales literke 't'");
+//	printf("\nKoniec programu\n");
+//	return 0;
 //}
 
 
