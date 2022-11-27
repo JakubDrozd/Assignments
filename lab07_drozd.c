@@ -3,34 +3,34 @@
 /*===========================================================================*/
 
 
-//#include <stdio.h>
-//
-//int main()
-//{
-//	printf("Program wypisuje tekst podany przez uzytkownika przy czym usuwa zbedne spacje.\nAutor: Jakub Drozd\n");
-//	char znak;
-//	int czyBialo;
-//	printf("Podaj tekst:\n");
-//	while ((znak = getchar()) != '\n' )
-//	{
-//		if (znak == ' ' && czyBialo)
-//		{
-//			continue;
-//		}
-//		if (znak == ' ' && !czyBialo)
-//		{
-//			czyBialo = 1;
-//			putchar(znak);
-//		}
-//		else
-//		{
-//		putchar(znak);
-//		czyBialo = 0;
-//		}
-//	}
-//	printf("\nKoniec programu\n");
-//	return 0;
-//}
+#include <stdio.h>
+
+int main()
+{
+	printf("Program wypisuje tekst podany przez uzytkownika przy czym usuwa zbedne spacje.\nAutor: Jakub Drozd\n");
+	char znak;
+	int czyBialo;
+	printf("Podaj tekst:\n");
+	while ((znak = getchar()) != '\n' )
+	{
+		if (znak == ' ' && czyBialo)
+		{
+			continue;
+		}
+		if (znak == ' ' && !czyBialo)
+		{
+			czyBialo = 1;
+			putchar(znak);
+		}
+		else
+		{
+		putchar(znak);
+		czyBialo = 0;
+		}
+	}
+	printf("\nKoniec programu\n");
+	return 0;
+}
 
 
 /*===========================================================================*/
