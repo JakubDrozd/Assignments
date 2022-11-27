@@ -122,33 +122,33 @@
 /*===========================================================================*/
 
 
-#include <stdio.h>
-
-int main()
-{
-	int ilosc = 1;
-	double liczba;
-	double suma = 0;
-	printf("Program oblicza srednia dla podanych liczb zmiennopozycyjnych.\nAutor: Jakub Drozd\n");
-	printf("Podaj 10 liczb zmiennopozycyjnych:\n");
-	while (ilosc <= 10)
-	{
-		printf("%d. ", ilosc);
-		while (scanf_s("%lf", &liczba)!=1 || getchar()!='\n')
-		{
-			printf("Bledne dane, popraw: ");
-			int c;
-			while ((c = getchar()) != '\n' && c != EOF)
-				;
-		}
-		suma += liczba;
-		ilosc++;
-	}
-	double srednia = suma / 10;
-	printf("Srednia arytmetyczna podanych liczb wynosi: %lf", srednia);
-	printf("\nKoniec programu\n");
-	return 0;
-}
+//#include <stdio.h>
+//
+//int main()
+//{
+//	int ilosc = 0;
+//	double liczba;
+//	double suma = 0;
+//	printf("Program oblicza srednia dla podanych liczb zmiennopozycyjnych.\nAutor: Jakub Drozd\n");
+//	printf("Podaj 10 liczb zmiennopozycyjnych:\n");
+//	while (ilosc < 10)
+//	{
+//		printf("%d. ", ilosc+1);
+//		while (scanf_s("%lf", &liczba)!=1 || getchar()!='\n')
+//		{
+//			printf("%d. Bledne dane, popraw: ", ilosc);
+//			int c;
+//			while ((c = getchar()) != '\n' && c != EOF)
+//				;
+//		}
+//		suma += liczba;
+//		ilosc++;
+//	}
+//	double srednia = suma / ilosc;
+//	printf("Srednia arytmetyczna podanych liczb wynosi: %lf", srednia);
+//	printf("\nKoniec programu\n");
+//	return 0;
+//}
 
 
 /*===========================================================================*/
@@ -156,12 +156,49 @@ int main()
 /*===========================================================================*/
 
 
-//#include <stdio.h>
-//
-//int main()
-//{
-//
-//}
+#include <stdio.h>
+#include <math.h>
+
+int main()
+{
+	int ilosc = 1;
+	int liczba = 1;
+	int suma = 0;
+	int iloczyn = 1;
+	printf("Program wczytuje ciag liczb calkowitych dodatnich i wypisuje ich srednia arytmetyczna i geometryczna\nAutor: Jakub Drozd\n");
+	printf("Podaj ciag liczb calkowitych, zaby zakonczyc, podaj 0\n");
+	while (liczba !=0)
+	{
+		printf("%d. ", ilosc);
+		while (scanf_s("%d", &liczba)!=1 || liczba < 0 || getchar()!='\n')
+		{
+			printf("%d. Bledne dane, popraw: ", ilosc);
+			int c;
+			while ((c = getchar()) != '\n' && c != EOF);
+		}
+		if (liczba == 0)
+		{
+			continue;
+		}
+		else
+		{
+			suma += liczba;
+			iloczyn *= liczba;
+			ilosc++;
+		}
+		
+	}
+	ilosc -= 1;
+	printf("\nsuma = %lf", (double)suma);
+	printf("\niloczyn = %lf", (double)iloczyn);
+	printf("\nilosc = %d", ilosc);
+	double sredniaAry = (double)suma / ilosc;
+	double sredniaGeo = pow(iloczyn, (1.0 / ilosc));
+	printf("\nSrednia arytmetyczna podanych liczb: %lf\n", sredniaAry);
+	printf("Srednia geometryczna podanych liczb: %lf", sredniaGeo);
+	printf("\nKoniec programu\n");
+	return 0;
+}
 
 
 /*===========================================================================*/
