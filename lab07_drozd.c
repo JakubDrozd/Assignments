@@ -237,11 +237,84 @@
 /*===========================================================================*/
 
 
-//#include <stdio.h>
-//
-//int main()
-//{
-//
-//}
+#include <stdio.h>
+#include <limits.h>
+
+int main()
+{
+	printf("Program wykonuje wybrane operacje na podanych przez niego liczbach\nAutor: Jakub Drozd\n");
+	int wybor = 1;
+	int a = INT_MAX;
+	int b = INT_MAX;
+	int c;
+	while (wybor != 0) {
+		printf("\n0. Zakoncz program\n");
+		printf("1. Wczytaj liczby\n");
+		printf("2. Dodaj\n");
+		printf("3. Odejmij\n");
+		printf("4. Pomnoz\n");
+		printf("5. Podziel\n\n");
+		if (scanf_s("%d", &wybor) != 1 || wybor < 0 || wybor > 5 || getchar() != '\n')
+		{
+			printf("Nieznana operacja\n");
+			while ((c = getchar()) != '\n' && c != EOF);
+		}
+		else
+		{
+			if (wybor == 0)
+			{
+				printf("\nKoniec programu\n");
+				return 0;
+			}
+			if (wybor == 1)
+			{
+				printf("\nPodaj liczby a i b: \n");
+				printf("a: ");
+				while (scanf_s("%d", &a) != 1 || getchar() != '\n')
+				{
+					printf("Bledne dane, popraw.");
+					printf("\na: ");
+					while ((c = getchar()) != '\n' && c != EOF);
+				}
+				printf("b: ");
+				while (scanf_s("%d", &b) != 1 || getchar() != '\n')
+				{
+					printf("Bledne dane, popraw.");
+					printf("\nb: ");
+					while ((c = getchar()) != '\n' && c != EOF);
+				}
+				printf("\na = %d\n", a);
+				printf("b = %d\n\n", b);
+			}
+			if ((wybor >= 2 || wybor <= 5) && a == INT_MAX && b == INT_MAX)
+			{
+				printf("\nNie mozna wykonac operacji arytmetycznych, dopoki nie zostana wczytane liczby\n");
+			}
+			else if (wybor == 2)
+			{
+				printf("\n%d + %d = %d", a, b, a + b);
+			}
+			else if (wybor == 3)
+			{
+				printf("\n%d - %d = %d", a, b, a - b);
+			}
+			else if (wybor == 4)
+			{
+				printf("\n%d * %d = %d", a, b, a * b);
+			}
+			else if (wybor == 5)
+			{
+				if (b == 0)
+				{
+					printf("\nNie mozna wykonac dzielenia przez 0");
+				}
+				else
+				{
+					printf("\n%d / %d = %lf", a, b, (double)a / (double)b);
+				}
+			}
+		}
+	}
+}
 
 
