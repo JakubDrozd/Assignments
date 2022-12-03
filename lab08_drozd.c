@@ -397,27 +397,27 @@
 /*===========================================================================*/
 
 
-#include <stdio.h>
-#include <math.h>
-
-int main()
-{
-	printf("Program wypisuje n poczatkowych poteg dwojki, gdzie n podaje uzytkownik.\nAutor: Jakub Drozd\n");
-	int n;
-	printf("Podaj dowolna liczbe n: ");
-	while (scanf_s("%d", &n)!= 1 || getchar()!='\n')
-	{
-		int c;
-		while ((c = getchar()) != '\n' && c != EOF)
-			;
-	}
-	for (int i = 1; i <= n; i++)
-	{
-		printf("\n2^%d = %d\n", i, (int)pow(2, i));
-	}
-	printf("\nKoniec programu.\n");
-	return 0;
-}
+//#include <stdio.h>
+//#include <math.h>
+//
+//int main()
+//{
+//	printf("Program wypisuje n poczatkowych poteg dwojki, gdzie n podaje uzytkownik.\nAutor: Jakub Drozd\n");
+//	int n;
+//	printf("Podaj dowolna liczbe n: ");
+//	while (scanf_s("%d", &n)!= 1 || getchar()!='\n')
+//	{
+//		int c;
+//		while ((c = getchar()) != '\n' && c != EOF)
+//			;
+//	}
+//	for (int i = 1; i <= n; i++)
+//	{
+//		printf("\n2^%d = %d\n", i, (int)pow(2, i));
+//	}
+//	printf("\nKoniec programu.\n");
+//	return 0;
+//}
 
 
 /*===========================================================================*/
@@ -429,7 +429,27 @@ int main()
 //
 //int main()
 //{
-//
+//	int ilosc;
+//	double liczba;
+//	double suma = 0;
+//	printf("Program oblicza srednia dla podanych liczb zmiennopozycyjnych.\nAutor: Jakub Drozd\n");
+//	printf("Podaj 10 liczb zmiennopozycyjnych:\n");
+//	for ( ilosc = 0; ilosc < 10; ilosc++)
+//	{
+//		printf("%d. ", ilosc + 1);
+//		while (scanf_s("%lf", &liczba) != 1 || getchar() != '\n')
+//		{
+//			printf("%d. Bledne dane, popraw: ", ilosc);
+//			int c;
+//			while ((c = getchar()) != '\n' && c != EOF)
+//				;
+//		}
+//		suma += liczba;
+//	}
+//	double srednia = suma / ilosc;
+//	printf("Srednia arytmetyczna podanych liczb wynosi: %lf", srednia);
+//	printf("\nKoniec programu\n");
+//	return 0;
 //}
 
 
