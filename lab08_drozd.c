@@ -318,12 +318,55 @@
 /*                               ZADANIE 63                                  */
 /*===========================================================================*/
 
-
 //#include <stdio.h>
+//#include <math.h>
+//#define POCZ 0.0 //poczatek przedzialu
+//#define KON 0.125 //koniec przedzialu
+//#define ILE 33 //liczba punktow
 //
-//int main()
-//{
+//int pierwowzor() {
+//	double krok = (KON - POCZ) / (ILE - 1);//odl. miedzy pkt.
+//	int i = 0;
+//	printf("Program oblicza bledy przyblizenia");
+//	printf(" funkcji sin(x) przez x\ndla %d", ILE);
+//	printf(" rownoodleglych punktow z przedzial");
+//	printf("u [%.g,%g].\n\n%-14s", POCZ, KON, "x");
+//	printf("%-13s%-12s", "sin(x)", "x - sin(x)");
+//	printf("%-12s\n", "|(x-sin(x))/x|");
+//	while (i <= ILE) {
+//		double x = POCZ + i * krok;
+//		double sin_x = sin(x);
+//		double bl_b = x - sin_x;
+//		double bl_w = x != 0.0 ? fabs(bl_b / x) : -1.0;
+//		printf("\n%11.9f%14.9f%12.3e", x, sin_x, bl_b);
+//		if (bl_w != -1.0)
+//			printf("%12.3e", bl_w);
+//		i++;
+//	}
+//	printf("\n\nKoniec programu.\n");
+//}
 //
+//
+//int main() {
+//	pierwowzor();
+//	printf("\n------------------------------------------------\n");
+//	double krok = (KON - POCZ) / (ILE - 1);//odl. miedzy pkt.
+//	printf("Program oblicza bledy przyblizenia");
+//	printf(" funkcji sin(x) przez x\ndla %d", ILE);
+//	printf(" rownoodleglych punktow z przedzial");
+//	printf("u [%.g,%g].\n\n%-14s", POCZ, KON, "x");
+//	printf("%-13s%-12s", "sin(x)", "x - sin(x)");
+//	printf("%-12s\n", "|(x-sin(x))/x|");
+//	for (int i = 0; i <= ILE; i++) {
+//		double x = POCZ + i * krok;
+//		double sin_x = sin(x);
+//		double bl_b = x - sin_x;
+//		double bl_w = x != 0.0 ? fabs(bl_b / x) : -1.0;
+//		printf("\n%11.9f%14.9f%12.3e", x, sin_x, bl_b);
+//		if (bl_w != -1.0)
+//			printf("%12.3e", bl_w);
+//	}
+//	printf("\n\nKoniec programu.\n");
 //}
 
 
