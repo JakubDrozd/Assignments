@@ -397,12 +397,27 @@
 /*===========================================================================*/
 
 
-//#include <stdio.h>
-//
-//int main()
-//{
-//
-//}
+#include <stdio.h>
+#include <math.h>
+
+int main()
+{
+	printf("Program wypisuje n poczatkowych poteg dwojki, gdzie n podaje uzytkownik.\nAutor: Jakub Drozd\n");
+	int n;
+	printf("Podaj dowolna liczbe n: ");
+	while (scanf_s("%d", &n)!= 1 || getchar()!='\n')
+	{
+		int c;
+		while ((c = getchar()) != '\n' && c != EOF)
+			;
+	}
+	for (int i = 1; i <= n; i++)
+	{
+		printf("\n2^%d = %d\n", i, (int)pow(2, i));
+	}
+	printf("\nKoniec programu.\n");
+	return 0;
+}
 
 
 /*===========================================================================*/
