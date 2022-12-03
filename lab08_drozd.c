@@ -376,10 +376,19 @@
 
 
 //#include <stdio.h>
-//
+//#include <limits.h>
+//// INT_MAX = 2147483647
 //int main()
 //{
-//
+//	printf("Program probuje wypisac 10 koljnych liczb zaczynajac od INT_MAX - 5, poslugujac sie zmiennymi typu int.\nAutor: Jakub Drozd\n");
+//	int liczba = INT_MAX - 5;
+//	for (int i = 0; i < 10; i++)
+//	{
+//		liczba += 1;
+//		printf("\n%d\n", liczba);
+//	}
+//	printf("\nKoniec programu.\n");
+//	return 0;
 //}
 
 
