@@ -159,10 +159,86 @@
 
 
 //#include <stdio.h>
+//#include <ctype.h>
 //
 //int main()
 //{
-//
+//	printf("Program wypisuje godzine wprowadzona przez uzytkownika.\nAutor: Jakub Drozd\n");
+//	printf("Podaj dowolna godzine w formacie (hh:mm): ");
+//	int godz = 0;
+//	int min = 0;
+//	char znak;
+//	znak = getchar();
+//	if (znak < '0' || znak > '2')
+//	{
+//		printf("Pierwszy znak powinien byc cyfra 0, 1, 2.\n");
+//		printf("\nKoniec programu.\n\n");
+//		return 0;
+//	}
+//	godz = znak - '0';
+//	znak = getchar();
+//	if (!isdigit(znak))
+//	{
+//		printf("Drugi znak powinien byc cyfra.\n");
+//		printf("\nKoniec programu.\n\n");
+//		return 0;
+//	}
+//	godz = 10 * godz + (znak - '0');
+//	if (godz > 23) { 
+//		printf("Godzina powinna byc z zakresu 0-23.\n");
+//		printf("\nKoniec programu.\n\n");
+//		return 0;
+//	}
+//	if (getchar() != ':') {
+//		printf("Trzeci znak powinien byc dwukropkiem.\n");
+//		printf("\nKoniec programu.\n\n");
+//		return 0;
+//	}
+//	znak = getchar();
+//	if (znak < '0' || znak > '5')
+//	{
+//		printf("Czwarty znak powinien byc cyfra od 0 do 5.\n");
+//		printf("\nKoniec programu.\n\n");
+//		return 0;
+//	}
+//	min = znak - '0';
+//	znak = getchar();
+//	if (!isdigit(znak))
+//	{
+//		printf("Piaty znak powinien byc cyfra.\n");
+//		printf("\nKoniec programu.\n\n");
+//		return 0;
+//	}
+//	min = 10 * min + (znak - '0');
+//	if (min > 59) {
+//		printf("Minuty powinny byc z zakresu 0-59.\n");
+//		printf("\nKoniec programu.\n\n");
+//		return 0;
+//	}
+//	znak = getchar();
+//	if (znak != '\n')
+//	{
+//		printf("Szosty znak powinien byc enterem.\n");
+//		printf("\nKoniec programu.\n\n");
+//		return 0;
+//	}
+//	else
+//	{
+//		printf("\n\nOto podana godzina: \n");
+//		if (min == 1)
+//		{
+//			printf("Minuta po %d", godz);
+//		}else if (min >=2 && min <=4 || min >=22 && min <=34)
+//		{
+//			printf("%d minuty po %d", min, godz);
+//		}
+//		else
+//		{
+//			printf("%d minut po %d", min, godz);
+//		}
+//		printf("\nKoniec programu.\n\n");
+//	}
+//	return 0;
 //}
 
 
@@ -172,10 +248,69 @@
 
 
 //#include <stdio.h>
+//#include <ctype.h>
+//
+//enum {false, true};
 //
 //int main()
 //{
-//
+//	printf("Program prosi uzykownika o podanie swego imienia.\nAutor: Jakub Drozd\n");
+//	_Bool udalo_sie = false;
+//	while (!udalo_sie)
+//	{
+//		char znak;
+//		udalo_sie = true;
+//		printf("\nJak masz na imie?\n");
+//		znak = getchar();
+//		if (!isupper(znak))
+//		{
+//			if (!isalpha(znak))
+//			{
+//				printf("Imie sklada sie tylko z liter.\n");
+//			}
+//			else
+//			{
+//				printf("Imie nalezy pisac wielka litera.\n");
+//			}
+//			udalo_sie = false;
+//			while (znak != '\n')
+//			{
+//				znak = getchar();
+//			}
+//			continue;
+//		}
+//		printf("\nMasz na imie %c", znak);
+//		while ((znak = getchar())!='\n')
+//		{
+//			if (isupper(znak))
+//			{
+//				printf("...?\nPoza pierwsza litera wszystkie powinny byc male.");
+//				udalo_sie = false;
+//				while (znak != '\n')
+//				{
+//					znak = getchar();
+//				}
+//				continue;
+//			}
+//			else if (isdigit(znak))
+//			{
+//				printf("...?\nImie sklada sie tylko z liter.");
+//				udalo_sie = false;
+//				while (znak != '\n')
+//				{
+//					znak = getchar();
+//				}
+//				continue;
+//			}
+//			else
+//			{
+//				putchar(znak);
+//			}
+//		}
+//	}
+//	printf(".");
+//	printf("\nKoniec programu\n");
+//	return 0;
 //}
 
 
