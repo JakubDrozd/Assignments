@@ -512,11 +512,11 @@
 //				}
 //				else
 //				{
-//					if (aJeden + aDwa <= aTrzy || aJeden + aTrzy <= aDwa || aDwa + aTrzy <= aJeden) {
-//						printf("Nie mozna zbudowac trojkata z podanych bokow");
-//						printf("\nKoniec programu.\n");
-//						return 0;
-//					}
+					//if (aJeden + aDwa <= aTrzy || aJeden + aTrzy <= aDwa || aDwa + aTrzy <= aJeden) {
+					//	printf("Nie mozna zbudowac trojkata z podanych bokow");
+					//	printf("\nKoniec programu.\n");
+					//	return 0;
+					//}
 //					else
 //					{
 //						double pole = (aJeden + aDwa + aTrzy) / 2;
