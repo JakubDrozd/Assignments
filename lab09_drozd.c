@@ -169,6 +169,8 @@
 //			rysujGwiazdki(2 * i - 1);
 //
 //		}
+//		printf("\nKoniec programu.\n");
+//		return 0;
 //}
 
 
@@ -313,9 +315,38 @@
 /*===========================================================================*/
 
 
-//#include <stdio.h>
-//
-//int main()
-//{
-//
-//}
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+	printf("Program oblicza pewna sume.\nAutor: Jakub Drozd\n");
+	int n;
+	int sum = 0;
+	printf("Podaj dlugosc sumy (nie wiecej niz 9): ");
+	while (scanf_s("%d", &n)!=1 || n < 1 || getchar()!='\n')
+	{
+		printf("Bledne dane, podaj dlugosc sumy: ");
+		int c;
+		while ((c = getchar()) != '\n' && c != EOF)
+			;
+	}
+	for (int i = 1; i <= n; ++i)
+	{
+		int number = 0;
+		if (i == 1);
+		else
+		{
+			printf(" + ");
+		}
+		for (int j = 1; j <= i; ++j)
+		{
+			number = number * 10 + i;
+		}
+		printf("%d", number);
+		sum += number;
+	}
+	printf("\nSuma: %d\n", sum);
+	printf("\nKoniec programu.\n");
+	return 0;
+}
