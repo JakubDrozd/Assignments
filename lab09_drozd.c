@@ -333,7 +333,7 @@ int main()
 	}
 	for (int i = 1; i <= n; ++i)
 	{
-		int number = 0;
+		int liczba = 0;
 		if (i == 1);
 		else
 		{
@@ -341,10 +341,10 @@ int main()
 		}
 		for (int j = 1; j <= i; ++j)
 		{
-			number = number * 10 + i;
+			liczba = liczba * 10 + i;
 		}
-		printf("%d", number);
-		sum += number;
+		printf("%d", liczba);
+		sum += liczba;
 	}
 	printf("\nSuma: %d\n", sum);
 	printf("\nKoniec programu.\n");
