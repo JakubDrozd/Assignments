@@ -363,5 +363,3 @@
 //	printf("\nKoniec programu\n");
 //	return 0;
 //}
-
-
