@@ -103,7 +103,7 @@
 
 
 //#include <stdio.h>
-
+//
 //int main()
 //{
 //	printf("Program rysuje trojkat, o podstawie o dlugosci rownej liczbie podanej przez uzytkownika.\nAutor: Jakub Drozd\n");
@@ -163,10 +163,10 @@
 //		while ((c = getchar()) != '\n' && c != EOF)
 //			;
 //	}
-//		for (int j = 1; j < n; j++)
+//		for (int i = 1; i < n; i++)
 //		{
-//			rysujSpacje(n - j - 1);
-//			rysujGwiazdki(2 * j - 1);
+//			rysujSpacje(n - i - 1);
+//			rysujGwiazdki(2 * i - 1);
 //
 //		}
 //}
@@ -177,68 +177,68 @@
 /*===========================================================================*/
 
 
-#include <stdio.h>
-#include <math.h>
-
-
-int main()
-{
-	printf("Program wypisuje tabliczke mnozenia z zakresu podanego przez uzytkownika.\nAutor: Jakub Drozd\n");
-	int n;
-	printf("Podaj zakres: ");
-	while (scanf_s("%d", &n)!=1 || getchar()!='\n')
-	{
-		printf("Niepoprawne dane, podaj zakres: ");
-		int c;
-		while ((c = getchar()) != '\n' && c != EOF)
-			;
-	}
-	int iloscSpacji = (4 * n) + 3;
-	for (int i = 1; i <= n; i++)
-	{
-		if (i == 1)
-		{
-			printf("%7d", i);
-		}
-		else
-		{
-			printf("%4d", i);
-		}	
-	}
-	for (int i = 1; i <= iloscSpacji; i++)
-	{
-		if (i == 1)
-		{
-			printf("\n-");
-		}
-		else if (i == iloscSpacji)
-		{
-			printf("-\n");
-		}
-		else
-		{
-		printf("-");
-		}
-	}
-	for (int i = 1; i <= n; i++)
-	{
-		if (i > 9)
-		{
-			printf("%d|", i);
-		}
-		else
-		{
-			printf("%d |", i);
-		}
-		for (int j = 1; j <= n; j++)
-		{
-			printf("%4d", i*j);
-		}
-		printf("\n");
-	}
-	printf("\nKoniec programu.\n");
-	return 0;
-}
+//#include <stdio.h>
+//#include <math.h>
+//
+//
+//int main()
+//{
+//	printf("Program wypisuje tabliczke mnozenia z zakresu podanego przez uzytkownika.\nAutor: Jakub Drozd\n");
+//	int n;
+//	printf("Podaj zakres: ");
+//	while (scanf_s("%d", &n)!=1 || getchar()!='\n')
+//	{
+//		printf("Niepoprawne dane, podaj zakres: ");
+//		int c;
+//		while ((c = getchar()) != '\n' && c != EOF)
+//			;
+//	}
+//	int iloscSpacji = (4 * n) + 3;
+//	for (int i = 1; i <= n; i++)
+//	{
+//		if (i == 1)
+//		{
+//			printf("%7d", i);
+//		}
+//		else
+//		{
+//			printf("%4d", i);
+//		}	
+//	}
+//	for (int i = 1; i <= iloscSpacji; i++)
+//	{
+//		if (i == 1)
+//		{
+//			printf("\n-");
+//		}
+//		else if (i == iloscSpacji)
+//		{
+//			printf("-\n");
+//		}
+//		else
+//		{
+//		printf("-");
+//		}
+//	}
+//	for (int i = 1; i <= n; i++)
+//	{
+//		if (i > 9)
+//		{
+//			printf("%d|", i);
+//		}
+//		else
+//		{
+//			printf("%d |", i);
+//		}
+//		for (int j = 1; j <= n; j++)
+//		{
+//			printf("%4d", i*j);
+//		}
+//		printf("\n");
+//	}
+//	printf("\nKoniec programu.\n");
+//	return 0;
+//}
 
 
 /*===========================================================================*/
@@ -250,7 +250,61 @@ int main()
 //
 //int main()
 //{
-//
+//	printf("Program wypisuje tabele znakow odpowiadajacym kolejnym kodom ASCII.\Autor: Jakub Drozd\n");
+//	printf("kod skrot\n");
+//	for (int i = 0; i <= 255; i++)
+//	{
+//		if (i == 0)
+//		{
+//			printf("%3d nul\n", 0);
+//		}
+//		else if (i == 7)
+//		{
+//			printf("%3d bel\n", 7);
+//		}
+//		else if (i == 8)
+//		{
+//			printf("%3d bs\n", 8);
+//		}
+//		else if (i == 9)
+//		{
+//			printf("%3d ht\n", 9);
+//		}
+//		else if (i == 10)
+//		{
+//			printf("%3d nl\n", 10);
+//		}
+//		else if (i == 11)
+//		{
+//			printf("%3d vt\n", 11);
+//		}
+//		else if (i == 12)
+//		{
+//			printf("%3d np\n", 12);
+//		}
+//		else if (i == 13)
+//		{
+//			printf("%3d cr\n", 13);
+//		}
+//		else if (i == 26)
+//		{
+//			printf("%3d eof\n", 26);
+//		}
+//		else if (i == 27)
+//		{
+//			printf("%3d esc\n", 27);
+//		}
+//		else if (i == 127)
+//		{
+//			printf("%3d %3s\n", 127, "del");
+//		}
+//		else
+//		{
+//			printf("%3d %3c\n", i, i);
+//		}
+//	}
+//	printf("\nKoniec programu\n");
+//	return 0;
 //}
 
 
@@ -265,5 +319,3 @@ int main()
 //{
 //
 //}
-
-
