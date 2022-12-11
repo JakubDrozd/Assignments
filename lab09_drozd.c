@@ -177,32 +177,68 @@
 /*===========================================================================*/
 
 
-//#include <stdio.h>
-//
-//
-//int main()
-//{
-//	printf("Program wypisuje tabliczke mnozenia z zakresu podanego przez uzytkownika.\nAutor: Jakub Drozd\n");
-//	int n;
-//	printf("Podaj zakres: ");
-//	while (scanf_s("%d", &n)!=1 || getchar()!='\n')
-//	{
-//		printf("Niepoprawne dane, podaj zakres: ");
-//		int c;
-//		while ((c = getchar()) != '\n' && c != EOF)
-//			;
-//	}
-//	for (int i = 1; i <= n; i++)
-//	{
-//		for (int j = 1; j <= n; j++)
-//		{
-//			printf("%d | %d", j, i*j);
-//		}
-//		printf("\n");
-//	}
-//	printf("\nKoniec programu.\n");
-//	return 0;
-//}
+#include <stdio.h>
+#include <math.h>
+
+
+int main()
+{
+	printf("Program wypisuje tabliczke mnozenia z zakresu podanego przez uzytkownika.\nAutor: Jakub Drozd\n");
+	int n;
+	printf("Podaj zakres: ");
+	while (scanf_s("%d", &n)!=1 || getchar()!='\n')
+	{
+		printf("Niepoprawne dane, podaj zakres: ");
+		int c;
+		while ((c = getchar()) != '\n' && c != EOF)
+			;
+	}
+	int iloscSpacji = (4 * n) + 3;
+	for (int i = 1; i <= n; i++)
+	{
+		if (i == 1)
+		{
+			printf("%7d", i);
+		}
+		else
+		{
+			printf("%4d", i);
+		}	
+	}
+	for (int i = 1; i <= iloscSpacji; i++)
+	{
+		if (i == 1)
+		{
+			printf("\n-");
+		}
+		else if (i == iloscSpacji)
+		{
+			printf("-\n");
+		}
+		else
+		{
+		printf("-");
+		}
+	}
+	for (int i = 1; i <= n; i++)
+	{
+		if (i > 9)
+		{
+			printf("%d|", i);
+		}
+		else
+		{
+			printf("%d |", i);
+		}
+		for (int j = 1; j <= n; j++)
+		{
+			printf("%4d", i*j);
+		}
+		printf("\n");
+	}
+	printf("\nKoniec programu.\n");
+	return 0;
+}
 
 
 /*===========================================================================*/
