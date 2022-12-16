@@ -179,16 +179,16 @@
 /*===========================================================================*/
 
 
-#include <stdio.h>
-
-void info() {
-	printf("Program wypisuje trzycyfrowe liczby, ktore sa rownie sumie szescianow swoich cyfr.\nAutor: Jakub Drozd\n");
-}
-
-int main()
-{
-	info();
-}
+//#include <stdio.h>
+//
+//void info() {
+//	printf("Program wypisuje trzycyfrowe liczby, ktore sa rowne sumie szescianow swoich cyfr.\nAutor: Jakub Drozd\n");
+//}
+//
+//int main()
+//{
+//	info();
+//}
 
 
 /*===========================================================================*/
@@ -198,9 +198,82 @@ int main()
 
 //#include <stdio.h>
 //
+//void info() {
+//	printf("Program oblicza n wyrazow ciagu Fibbonacciego i wypisuje je od najwiekszej do najmniejszej, n podaje uzytkownik.\nAutor: Jakub Drozd\n");
+//}
+//
+//int wczytajLiczbe(void) {
+//	int liczba;
+//	while (scanf_s("%d", &liczba)!=1 || liczba < 0 || liczba > 20 || getchar()!='\n')
+//	{
+//		printf("Podaj liczbe calkowita z przedzialu [0,20]: ");
+//		int c;
+//		while ((c = getchar()) != '\n' && c != EOF)
+//			;
+//	}
+//	return liczba;
+//}
+//
+//int fibbonacci(int n) {
+//	if (n <= 1)
+//	{
+//		return n;
+//	}
+//	return fibbonacci(n - 1) + fibbonacci(n - 2);
+//}
+//
+//void wpiszDoTablicy(int tab[], int n) {
+//	for (int i = 0; i < n; i++)
+//	{
+//		tab[i] = fibbonacci(i);
+//	}
+//}
+//
+//void sortowanie(int tab[], int rozmiar) {
+//	for (int i = 0; i < rozmiar - 1; i++)
+//	{
+//		for (int j = 0; j < rozmiar - i - 1; j++)
+//		{
+//			if (tab[j] < tab[j+1])
+//			{
+//				int temp = tab[j];
+//				tab[j] = tab[j + 1];
+//				tab[j + 1] = temp;
+//			}
+//		}
+//	}
+//
+//
+//}
+//
+//
+//void wypiszTablice(int tab[], int n) {
+//	printf("[");
+//	for (int i = 0; i < n; i++)
+//	{
+//		if (i == n-1)
+//		{
+//			printf("%d", tab[i]);
+//		}
+//		else
+//		{
+//		printf("%d, ", tab[i]);
+//
+//		}
+//	}
+//	printf("]");
+//}
+//
+//#define MAX 20
+//
 //int main()
 //{
-//
+//	info();
+//	int tab[MAX];
+//	int n = wczytajLiczbe();
+//	wpiszDoTablicy(tab, n);
+//	sortowanie(tab, n);
+//	wypiszTablice(tab, n);
 //}
 
 
