@@ -284,9 +284,71 @@
 
 //#include <stdio.h>
 //
+//void info() {
+//	printf("Program wczytuje 10 liczb calkowitych i wypisuje je rosnaco.\nAutor: Jakub Drozd\n");
+//}
+//
+//void sortujTablice(int tab[], int rozmiar) {
+//	for (int i = 0; i < rozmiar - 1; i++)
+//	{
+//		for (int j = 0; j < rozmiar - i - 1; j++)
+//		{
+//			if (tab[j] > tab[j+1])
+//			{
+//				int temp = tab[j];
+//				tab[j] = tab[j+1];
+//				tab[j+1] = temp;
+//			}
+//		}
+//	}
+//}
+//
+//int wczytajLiczbe(void) {
+//	int liczba = 0;
+//	while (scanf_s("%d", &liczba)!=1 || getchar()!='\n')
+//	{
+//		printf("Bledne dane, podaj liczbe calkowita: ");
+//		int c;
+//		while ((c = getchar()) != '\n' && c != EOF)
+//			;
+//	}
+//	return liczba;
+//}
+//
+//void wczytajTablice(int tab[], int rozmiar){
+//	for (int i = 0; i < rozmiar; i++)
+//	{
+//		tab[i] = wczytajLiczbe();
+//	}
+//}
+//
+//void wypiszTablice(int tab[], int rozmiar) {
+//	printf("[");
+//	for (int i = 0; i < rozmiar; i++)
+//	{
+//		if (i == rozmiar - 1)
+//		{
+//			printf("%d", tab[i]);
+//		}
+//		else
+//		{
+//			printf("%d, ", tab[i]);
+//		}
+//	}
+//	printf("]");
+//}
+//
+//#define ILE 10
+//
 //int main()
 //{
-//
+//	info();
+//	int tab[ILE];
+//	wczytajTablice(tab, ILE);
+//	sortujTablice(tab, ILE);
+//	wypiszTablice(tab, ILE);
+//	printf("\n\nKoniec programu.\n\n");
+//	return 0;
 //}
 
 
