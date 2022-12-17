@@ -358,10 +358,53 @@
 
 
 //#include <stdio.h>
+//#include <stdlib.h>
+//#include <time.h>
+//
+//void info() {
+//	printf("Program losowo generuje 10 liczb calkowitych nieujemnych i wypisuje je od najmniejszej do najwiekszej.\nAutor:Jakub Drozd.\n\n");
+//}
+//
+//
+//void wczytajLiczbe(int tab[], int n) {
+//	srand((unsigned)time(NULL));
+//	for (int i = 0; i < n; i++)
+//	{
+//		tab[i] = rand();
+//	}
+//}
+//
+//void wypiszTab(int tab[], int n) {
+//	for (int i = 0; i < n; i++)
+//	{
+//		printf("[%d] = %d\n", i+1, tab[i]);
+//	}
+//}
+//
+//void sortowanie(int tab[], int n) {
+//	for (int i = 0; i < n -1; i++)
+//	{
+//		for (int j = 0; j < n - i - 1; j++)
+//		{
+//			if (tab[j] > tab[j+1])
+//			{
+//				int temp = tab[j];
+//				tab[j] = tab[j + 1];
+//				tab[j + 1] = temp;
+//			}
+//		}
+//	}
+//}
 //
 //int main()
 //{
-//
+//	info();
+//	int tab[10] = { 0 };
+//	wczytajLiczbe(tab, 10);
+//	sortowanie(tab, 10);
+//	wypiszTab(tab, 10);
+//	printf("\n\nKoniec programu.\n\n");
+//	return 0;
 //}
 
 
