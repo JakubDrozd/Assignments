@@ -414,10 +414,51 @@
 
 
 //#include <stdio.h>
+//#include <time.h>
+//#include <stdlib.h>
+//#include <limits.h>
+//
+//void info() {
+//	printf("Program wypisuje 10 liczby z przedzalu [1,2] i wypisuje je od najmniejszej do najwiekszej.\nAutor: Jakub Drozd\n");
+//}
+//
+//void wczytajLiczby(double tab[], int n) {
+//	srand((unsigned)time(NULL));
+//	for (int i = 0; i < n; i++)
+//	{
+//		tab[i] = rand() / (double)RAND_MAX + 1;
+//	}
+//}
+//
+//void wypiszLiczby(double tab[], int n) {
+//	for (int i = 0; i < n; i++)
+//	{
+//		printf("[%2d] = %f\n", i + 1, tab[i]);
+//	}
+//}
+//
+//void sortowanie(double tab[], int n) {
+//	for (int i = 0; i < n - 1; i++)
+//	{
+//		for (int j = 0; j < n - i - 1; j++)
+//		{
+//			if (tab[j] > tab[j+1])
+//			{
+//				double temp = tab[j];
+//				tab[j] = tab[j + 1];
+//				tab[j + 1] = temp;
+//			}
+//		}
+//	}
+//}
 //
 //int main()
 //{
-//
+//	info();
+//	double tab[10];
+//	wczytajLiczby(tab, 10);
+//	sortowanie(tab, 10);
+//	wypiszLiczby(tab, 10);
 //}
 
 
