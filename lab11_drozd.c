@@ -167,11 +167,50 @@
 /*===========================================================================*/
 
 
+
 //#include <stdio.h>
+//
+//void info() {
+//	printf("Program (lepiej) rysuje 35 wierszy trojkata Pascala.\nAutor: Jakub Drozd\n");
+//}
+//
+//int newton(int n, int k) {
+//	if (k == 0 || k == n)
+//	{
+//		return 1;
+//	}
+//	else
+//	{
+//		return newton(n - 1, k - 1) + newton(n - 1, k);
+//	}
+//}
+//
+//#define RZEDY 35
 //
 //int main()
 //{
-//
+//	info();
+//	int tab[RZEDY];
+//	for (int i = 0; i < RZEDY; i++)
+//	{
+//		tab[i] = 1;
+//		for (int j = i - 1; j > 0 ; --j)
+//		{
+//			tab[j] += tab[j - 1];
+//		}
+//		for (int j = 0; j <=i ; j++)
+//		{
+//			if (j == 0)
+//			{
+//				printf("%d", tab[j]);
+//			}
+//			else
+//			{
+//			printf("%10d ", tab[j]);
+//			}
+//		}
+//		printf("\n");
+//	}
 //}
 
 
