@@ -113,46 +113,47 @@
 /*===========================================================================*/
 
 
-#include <stdio.h>
-
-void info() {
-	printf("Program oblicza (n k), gdzie n i k sa podane przez uzytkownika.\nAutor: Jakub Drozd\n");
-}
-
-int wczytajLiczbe(void) {
-	int liczba;
-	while (scanf_s("%d", &liczba) != 1 || getchar() != '\n')
-	{
-		printf("Bledne dane, podaj liczbe: ");
-		int c;
-		while ((c = getchar()) != '\n' && c != EOF)
-			;
-	}
-	return liczba;
-}
-
-int newton(int n, int k) {
-	return factorial(n) / (factorial(k) * factorial(n - k));
-}
-
-int factorial(int n) {
-	int factorial = 1;
-	for (int i = 1; i <= n; i++)
-	{
-		factorial *= i;
-	}
-	return factorial;
-}
-
-
-int main()
-{
-	info();
-	int n = wczytajLiczbe();
-	int k = wczytajLiczbe();
-	printf("n = %d\nk = %d\n", n, k);
-	printf("Newton: %d\n\n", newton(n, k));
-}
+//#include <stdio.h>
+//
+//void info() {
+//	printf("Program oblicza (n k), gdzie n i k sa podane przez uzytkownika.\nAutor: Jakub Drozd\n");
+//}
+//
+//int wczytajLiczbe(void) {
+//	int liczba;
+//	while (scanf_s("%d", &liczba) != 1 || getchar() != '\n')
+//	{
+//		printf("Bledne dane, podaj liczbe: ");
+//		int c;
+//		while ((c = getchar()) != '\n' && c != EOF)
+//			;
+//	}
+//	return liczba;
+//}
+//
+//int newton(int n, int k) {
+//	if (k == 0 || k == n)
+//	{
+//		return 1;
+//	}
+//	else
+//	{
+//		return newton(n - 1, k - 1) + newton(n - 1, k);
+//	}
+//}
+//
+//
+//int main()
+//{
+//	info();
+//	printf("Podaj n: ");
+//	int n = wczytajLiczbe();
+//	printf("Podaj k: ");
+//	int k = wczytajLiczbe();
+//	printf("n = %d\nk = %d\n", n, k);
+//	printf("Newton: %d\n\n", newton(n, k));
+//	printf("\n\nKoniec programu.\n\n");
+//}
 
 
 /*===========================================================================*/
