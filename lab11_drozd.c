@@ -159,6 +159,7 @@
 //	info();
 //	trojkatPascala(13);
 //	printf("\n\nKoniec programu.\n\n");
+// return 0;
 //}
 
 
@@ -211,6 +212,8 @@
 //		}
 //		printf("\n");
 //	}
+//	printf("\n\nKoniec programu.\n\n");
+//	return 0;
 //}
 
 
