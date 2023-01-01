@@ -116,7 +116,7 @@
 //#include <stdio.h>
 //
 //void info() {
-//	printf("Program oblicza (n k), gdzie n i k sa podane przez uzytkownika.\nAutor: Jakub Drozd\n");
+//	printf("Program rysuje 35 wierszy trojkata Pascala.\nAutor: Jakub Drozd\n");
 //}
 //
 //int wczytajLiczbe(void) {
@@ -142,16 +142,22 @@
 //	}
 //}
 //
+//void trojkatPascala(int n) {
+//	for (int i = 0; i < n ; i++)
+//	{
+//		printf("1 ");
+//		for (int j = 1; j <= i ; j++)
+//		{
+//			printf("%3d ", newton(i,j));
+//		}
+//		printf("\n");
+//	}
+//}
 //
 //int main()
 //{
 //	info();
-//	printf("Podaj n: ");
-//	int n = wczytajLiczbe();
-//	printf("Podaj k: ");
-//	int k = wczytajLiczbe();
-//	printf("n = %d\nk = %d\n", n, k);
-//	printf("Newton: %d\n\n", newton(n, k));
+//	trojkatPascala(13);
 //	printf("\n\nKoniec programu.\n\n");
 //}
 
