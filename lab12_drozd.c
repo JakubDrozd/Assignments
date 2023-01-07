@@ -78,63 +78,63 @@
 /*===========================================================================*/
 
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-#define MAX 25
-
-void info() {
-	printf("Program tworzy losowa tablice dwuwymiarowa i zamienia jej wiersze z kolumnami.\nAutor: Jakub Drozd\n");
-}
-
-
-void wczytajDoTablicy(double tab[][MAX], int m, int n) {
-	srand((unsigned)time(NULL));
-	for (int i = 0; i < m; i++)
-	{
-		for (int j = 0; j < n; j++)
-		{
-			tab[i][j] = rand() % (8 + 1 + 8) - 8;
-		}
-	}
-}
-
-void wypiszTablice(double tab[][MAX], int m, int n) {
-	for (int i = 0; i < m; i++)
-	{
-		for (int j = 0; j < n; j++)
-		{
-			printf("%4.1lf ", tab[i][j]);
-		}
-		printf("\n");
-	}
-}
-
-void transponowanie(double tab[][MAX], int m, int n) {
-	for (int i = 0; i < n; i++)
-	{
-		for (int j = 0; j < m; j++)
-		{
-			printf("%4.1lf ", tab[j][i]);
-		}
-		printf("\n");
-	}
-}
-
-
-int main()
-{
-	info();
-	double tab[MAX][MAX];
-	printf("Wiersze: %d\nKolumny: %d\n", 3, 2);
-	wczytajDoTablicy(tab, 3, 2);
-	printf("Tablica:\n");
-	wypiszTablice(tab, 3, 2);
-	printf("Tablica (po transponowaniu):\n");
-	transponowanie(tab, 3, 2);
-	printf("\n\nKoniec programu.\n\n");
-	return 0;
-}
+//#include <stdio.h>
+//#include <stdlib.h>
+//#include <time.h>
+//#define MAX 25
+//
+//void info() {
+//	printf("Program tworzy losowa tablice dwuwymiarowa i zamienia jej wiersze z kolumnami.\nAutor: Jakub Drozd\n");
+//}
+//
+//
+//void wczytajDoTablicy(double tab[][MAX], int m, int n) {
+//	srand((unsigned)time(NULL));
+//	for (int i = 0; i < m; i++)
+//	{
+//		for (int j = 0; j < n; j++)
+//		{
+//			tab[i][j] = rand() % (8 + 1 + 8) - 8;
+//		}
+//	}
+//}
+//
+//void wypiszTablice(double tab[][MAX], int m, int n) {
+//	for (int i = 0; i < m; i++)
+//	{
+//		for (int j = 0; j < n; j++)
+//		{
+//			printf("%4.1lf ", tab[i][j]);
+//		}
+//		printf("\n");
+//	}
+//}
+//
+//void transponowanie(double tab[][MAX], int m, int n) {
+//	for (int i = 0; i < n; i++)
+//	{
+//		for (int j = 0; j < m; j++)
+//		{
+//			printf("%4.1lf ", tab[j][i]);
+//		}
+//		printf("\n");
+//	}
+//}
+//
+//
+//int main()
+//{
+//	info();
+//	double tab[MAX][MAX];
+//	printf("Wiersze: %d\nKolumny: %d\n", 3, 2);
+//	wczytajDoTablicy(tab, 3, 2);
+//	printf("Tablica:\n");
+//	wypiszTablice(tab, 3, 2);
+//	printf("Tablica (po transponowaniu):\n");
+//	transponowanie(tab, 3, 2);
+//	printf("\n\nKoniec programu.\n\n");
+//	return 0;
+//}
 
 
 /*===========================================================================*/
@@ -143,10 +143,81 @@ int main()
 
 
 //#include <stdio.h>
+//#include <stdlib.h>
+//#include <time.h>
+//#define MAX 25
+//
+//void info() {
+//	printf("Program znajduje maksymalny element w tablicy zdefiniowanej przez uzytkownika.\nAutor: Jakub Drozd\n");
+//}
+//
+//void wczytajDoTablicy(double tab[][MAX], int n, int m) {
+//	srand((unsigned)time(NULL));
+//	for (int i = 0; i < n; i++)
+//	{
+//		for (int j = 0; j < m; j++)
+//		{
+//			tab[i][j] = rand() % (8 + 1 + 8) - 8;
+//		}
+//	}
+//}
+//
+//int wczytajLiczbe() {
+//	int liczba;
+//	printf("Podaj liczbe: ");
+//	while (scanf_s("%d", &liczba)!=1 || getchar()!='\n')
+//	{
+//		printf("Bledne dane, podaj liczbe: ");
+//		int c;
+//		while ((c = getchar()) != '\n' && c != EOF)
+//			;
+//	}
+//	return liczba;
+//}
+//
+//void wypiszTablice(double tab[][MAX], int n, int m) {
+//	for (int i = 0; i < n; i++)
+//	{
+//		printf("[");
+//		for (int j = 0; j < m; j++)
+//		{
+//			printf("%4.1lf ", tab[i][j]);
+//		}
+//		printf("]");
+//		printf("\n");
+//	}
+//}
+//
+//
+//double znajdzNajwieksza(double tab[][MAX], int n, int m) {
+//	double najwieksza = tab[0][0];
+//	for (int i = 0; i < n; i++)
+//	{
+//		for (int j = 0; j < m; j++)
+//		{
+//			if (najwieksza < tab[i][j])
+//			{
+//				najwieksza = tab[i][j];
+//			}
+//		}
+//	}
+//	return najwieksza;
+//}
 //
 //int main()
 //{
-//
+//	info();
+//	double tab[MAX][MAX];
+//	int wiersze = 0;
+//	int kolumny = 0;
+//	printf("Podaj ilosc wierszy\n");
+//	wiersze = wczytajLiczbe();
+//	printf("Podaj ilosc kolumn\n");
+//	kolumny = wczytajLiczbe();
+//	wczytajDoTablicy(tab, wiersze, kolumny);
+//	wypiszTablice(tab, wiersze, kolumny);
+//	znajdzNajwieksza(tab, wiersze, kolumny);
+//	printf("Najwieksza liczba w tablicy jest: %.1lf", znajdzNajwieksza(tab, wiersze, kolumny));
 //}
 
 
