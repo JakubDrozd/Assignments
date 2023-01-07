@@ -218,6 +218,8 @@
 //	wypiszTablice(tab, wiersze, kolumny);
 //	znajdzNajwieksza(tab, wiersze, kolumny);
 //	printf("Najwieksza liczba w tablicy jest: %.1lf", znajdzNajwieksza(tab, wiersze, kolumny));
+// 	printf("\n\nKoniec programu\n\n");
+//	return 0;
 //}
 
 
@@ -297,6 +299,8 @@
 //	wczytajTablice(tab, wiersze, kolumny);
 //	wypiszTablice(tab, wiersze, kolumny);
 //	warunek(tab, wiersze, kolumny);
+//	printf("\n\nKoniec programu\n\n");
+//	return 0;
 //}
 
 
@@ -371,6 +375,8 @@
 //	wczytajTablice(tab, wiersze, kolumny);
 //	wypiszTablice(tab, wiersze, kolumny);
 //	printf("Suma elementow tablicy jest rowna: %.1lf", sumaZElementow(tab, wiersze, kolumny));
+//	printf("\n\nKoniec programu\n\n");
+//	return 0;
 //}
 
 
@@ -379,12 +385,76 @@
 /*===========================================================================*/
 
 
-//#include <stdio.h>
-//
-//int main()
-//{
-//
-//}
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#define MAX 25
+
+void info() {
+	printf("Program sumuje elementy lezace na przekatnej tablicy zdefiniowanej przez uzytkownika.\nAutor: Jakub Drozd\n");
+}
+
+void wczytajTablice(double tab[][MAX], int n, int m) {
+	srand((unsigned)time(NULL));
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < m; j++)
+		{
+			tab[i][j] = rand() % (8 + 1 + 8) - 8;
+		}
+	}
+}
+
+double sumaZElementow(double tab[][MAX], int n, int m) {
+	double suma = 0.0;
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < m; j++)
+		{
+			if (i == j)
+			{
+				suma += tab[i][j];
+			}
+		}
+	}
+	return suma;
+}
+
+void wypiszTablice(double tab[][MAX], int n, int m) {
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < m; j++)
+		{
+			printf("%4.1lf ", tab[i][j]);
+		}
+		printf("\n");
+	}
+}
+
+int wczytajLiczbe() {
+	int liczba;
+	while (scanf_s("%d", &liczba) != 1 || getchar() != '\n')
+	{
+		printf("Bledne dane, podaj liczbe: ");
+		int c;
+		while ((c = getchar()) != '\n' && c != EOF)
+			;
+	}
+	return liczba;
+}
+
+int main()
+{
+	info();
+	double tab[MAX][MAX];
+	printf("Podaj liczbe wierszy: ");
+	int wiersze = wczytajLiczbe();
+	printf("Podaj liczbe kolumn: ");
+	int kolumny = wczytajLiczbe();
+	wczytajTablice(tab, wiersze, kolumny);
+	wypiszTablice(tab, wiersze, kolumny);
+	printf("Suma elementow tablicy jest rowna: %.1lf", sumaZElementow(tab, wiersze, kolumny));
+}
 
 
 /*===========================================================================*/
