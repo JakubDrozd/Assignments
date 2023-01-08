@@ -454,6 +454,8 @@
 //	wczytajTablice(tab, wiersze, kolumny);
 //	wypiszTablice(tab, wiersze, kolumny);
 //	printf("Suma elementow tablicy jest rowna: %.1lf", sumaZElementow(tab, wiersze, kolumny));
+//	printf("\n\nKoniec programu\n\n");
+//	return 0;
 //}
 
 
@@ -463,10 +465,77 @@
 
 
 //#include <stdio.h>
+//#include <stdlib.h>
+//#include <time.h>
+//
+//#define MAX 25
+//
+//void info() {
+//	printf("Program oblicza sume elementow tablicy lezacyh nad przekatna.\nAutor: Jakub Drozd\n");
+//}
+//
+//int wczytajLiczbe() {
+//	int liczba;
+//	while (scanf_s("%d", &liczba)!=1 || liczba < 0 || getchar()!='\n')
+//	{
+//		printf("Bledne dane, podaj liczbe calkowita dodatnia: ");
+//		int c;
+//		while ((c = getchar()) != '\n' && c != EOF)
+//			;
+//	}
+//	return liczba;
+//}
+//
+//void wczytajDoTablicy(double tab[][MAX], int n, int m) {
+//	srand((unsigned)time(NULL));
+//	for (int i = 0; i < n; i++)
+//	{
+//		for (int j = 0; j < m; j++)
+//		{
+//			tab[i][j] = rand() % (8 + 1 + 8) - 8;
+//		}
+//	}
+//}
+//
+//void wypiszTablice(double tab[][MAX], int n, int m) {
+//	for (int i = 0; i < n; i++)
+//	{
+//		for (int j = 0; j < m; j++)
+//		{
+//			printf("%4.1lf ", tab[i][j]);
+//		}
+//		printf("\n");
+//	}
+//}
+//
+//double sumujNad(double tab[][MAX], int n, int m) {
+//	double suma = 0.0;
+//	for (int i = 0; i < n; i++)
+//	{
+//		for (int j = 0; j < m; j++)
+//		{
+//			if (i < j)
+//			{
+//				suma += tab[i][j];
+//			}
+//		}
+//	}
+//	return suma;
+//}
 //
 //int main()
 //{
-//
+//	info();
+//	double tab[MAX][MAX];
+//	printf("Podaj ilosc wierszy tablicy: ");
+//	int wiersze = wczytajLiczbe();
+//	printf("Podaj ilosc kolumn tablicy: ");
+//	int kolumny = wczytajLiczbe();
+//	wczytajDoTablicy(tab, wiersze, kolumny);
+//	wypiszTablice(tab, wiersze, kolumny);
+//	printf("Suma elementow nad przekatna wynosi: %.1lf", sumujNad(tab, wiersze, kolumny));
+//	printf("\n\nKoniec programu\n\n");
+//	return 0;
 //}
 
 
