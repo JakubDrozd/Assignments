@@ -296,10 +296,91 @@
 
 
 //#include <stdio.h>
+//#include <time.h>
+//#include <stdlib.h>
+//#define MAX 25
+//
+//void info() {
+//	printf("Program dodaje do siebie dwie tablice zdefiniowane przez uzytkownika.\nAutor: Jakub Drozd\n");
+//}
+//
+//void stworzTablice(double tab[][MAX], int n, int m) {
+//	for (int i = 0; i < n; i++)
+//	{
+//		for (int j = 0; j < m; j++)
+//		{
+//			tab[i][j] = rand() % (8 + 1 + 8) - 8;
+//		}
+//	}
+//}
+//
+//void wypiszTablice(double tab[][MAX], int n, int m) {
+//	for (int i = 0; i < n * 7 + 2; i++)
+//	{
+//		printf("-");
+//	}
+//	printf("\n");
+//	for (int i = 0; i < n; i++)
+//	{
+//		printf("[");
+//		for (int j = 0; j < m; j++)
+//		{
+//			printf("%6.1lf ",tab[i][j]);
+//		}
+//		printf("]\n");
+//	}
+//	for (int i = 0; i < n*7+2; i++)
+//	{
+//		printf("-");
+//	}
+//}
+//
+//void dodawanieTablic(double tab1[][MAX], double tab2[][MAX], double tab3[][MAX], int n, int m) {
+//	for (int i = 0; i < n; i++)
+//	{
+//		for (int j = 0; j < m; j++)
+//		{
+//			tab3[i][j] = tab1[i][j] + tab2[i][j];
+//		}
+//	}
+//}
+//
+//int podajLiczbe() {
+//	int liczba;
+//	while (scanf_s("%d", &liczba)!=1 || liczba < 0||  getchar()!='\n')
+//	{
+//		printf("Bledne dane, podaj liczbe calkowita dodatnia: ");
+//		int c;
+//		while ((c = getchar()) != '\n' && c != EOF)
+//			;
+//	}
+//	return liczba;
+//}
 //
 //int main()
 //{
-//
+//	srand((unsigned)time(NULL));
+//	info();
+//	double tab1[MAX][MAX];
+//	double tab2[MAX][MAX];
+//	double tab3[MAX][MAX];
+//	int wiersze;
+//	int kolumny;
+//	printf("Podaj ilosc wierszy: ");
+//	wiersze = podajLiczbe();
+//	printf("Podaj ilosc kolumn: ");
+//	kolumny = podajLiczbe();
+//	stworzTablice(tab1, wiersze, kolumny);
+//	stworzTablice(tab2, wiersze, kolumny);
+//	printf("\n\n --Tablica 1--\n\n");
+//	wypiszTablice(tab1, wiersze, kolumny);
+//	printf("\n\n --Tablica 2--\n\n");
+//	wypiszTablice(tab2, wiersze, kolumny);
+//	printf("\n\n --Tablica 3-- (tab1 + tab2)\n\n");
+//	dodawanieTablic(tab1, tab2, tab3, wiersze, kolumny);
+//	wypiszTablice(tab3, wiersze, kolumny);
+//	printf("\n\nKoniec programu\n\n");
+//	return 0;
 //}
 
 
