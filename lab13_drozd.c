@@ -390,36 +390,101 @@
 
 
 //#include <stdio.h>
+//#include <time.h>
+//#include <stdlib.h>
+//#define MAX 25
 //
-//int main()
-//{
-//
+//void info() {
+//	printf("Program oblicza sume od k dla zdefiniowanych przez uzytkownika tablic.\nAutor: Jakub Drozd\n");
 //}
-
-
-/*===========================================================================*/
-/*                               ZADANIE 99                                  */
-/*===========================================================================*/
-
-
-//#include <stdio.h>
 //
-//int main()
-//{
-//
+//void stworzTablice(double tab[][MAX], int n, int m) {
+//	for (int i = 0; i < n; i++)
+//	{
+//		for (int j = 0; j < m; j++)
+//		{
+//			tab[i][j] = rand() % (8 + 1 + 8) - 8;
+//		}
+//	}
 //}
-
-
-/*===========================================================================*/
-/*                               ZADANIE 100                                 */
-/*===========================================================================*/
-
-
-//#include <stdio.h>
+//
+//void wypiszTablice(double tab[][MAX], int n, int m) {
+//	for (int i = 0; i < n * 7 + 2; i++)
+//	{
+//		printf("-");
+//	}
+//	printf("\n");
+//	for (int i = 0; i < n; i++)
+//	{
+//		printf("[");
+//		for (int j = 0; j < m; j++)
+//		{
+//			printf("%6.1lf ", tab[i][j]);
+//		}
+//		printf("]\n");
+//	}
+//	for (int i = 0; i < n * 7 + 2; i++)
+//	{
+//		printf("-");
+//	}
+//}
+//
+//void sumaOd(double tab1[][MAX], double tab2[][MAX], double tab3[][MAX], int n, int m) {
+//	for (int i = 0; i < n; i++)
+//	{
+//		for (int j = 0; j < m; j++)
+//		{
+//			tab3[i][j] = 0;
+//			for (int s = 0; s < n; s++)
+//			{
+//				tab3[i][j] += tab1[i][j] * tab2[i][j];
+//			}
+//		}
+//	}
+//}
+//
+//int podajLiczbe() {
+//	int liczba;
+//	while (scanf_s("%d", &liczba) != 1 || liczba < 0 || getchar() != '\n')
+//	{
+//		printf("Bledne dane, podaj liczbe calkowita dodatnia: ");
+//		int c;
+//		while ((c = getchar()) != '\n' && c != EOF)
+//			;
+//	}
+//	return liczba;
+//}
 //
 //int main()
 //{
-//
+//	srand((unsigned)time(NULL));
+//	info();
+//	double tab1[MAX][MAX];
+//	double tab2[MAX][MAX];
+//	double tab3[MAX][MAX];
+//	int wiersze1;
+//	int kolumny1;
+//	int wiersze2;
+//	int kolumny2;
+//	printf("Podaj ilosc wierszy (pierwsza tablica): ");
+//	wiersze1 = podajLiczbe();
+//	printf("Podaj ilosc kolumn (pierwsza tablica): ");
+//	kolumny1 = podajLiczbe();
+//	printf("Podaj ilosc wierszy (druga tablica): ");
+//	wiersze2 = podajLiczbe();
+//	printf("Podaj ilosc kolumn (druga tablica): ");
+//	kolumny2 = podajLiczbe();
+//	stworzTablice(tab1, wiersze1, kolumny1);
+//	stworzTablice(tab2, wiersze2, kolumny2);
+//	printf("\n\n --Tablica 1--\n\n");
+//	wypiszTablice(tab1, wiersze1, kolumny1);
+//	printf("\n\n --Tablica 2--\n\n");
+//	wypiszTablice(tab2, wiersze2, kolumny2);
+//	printf("\n\n --Tablica 3-- (tab1 + tab2)\n\n");
+//	sumaOd(tab1, tab2, tab3, wiersze1, kolumny2);
+//	wypiszTablice(tab3, wiersze1, kolumny2);
+//	printf("\n\nKoniec programu\n\n");
+//	return 0;
 //}
 
 
