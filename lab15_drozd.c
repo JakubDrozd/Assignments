@@ -124,117 +124,117 @@
 // zadanie napisac z podzialem na funkcje
 
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-
-#define MAX 30
-#define MAX_KORD 300
-
-void info() {
-	printf("Program wypisuje ilosc mozliwosci rozmieszczenia figury w kwadracie zdefiniowanym przez uzytkownika.\nAutor: Jakub Drozd\n");
-}
-
-int wczytajRozmiar() {
-	int liczba;
-	while (scanf_s("%d", &liczba)!=1 || liczba < 4 || liczba > 30 || getchar()!='\n')
-	{
-		printf("Bledne dane, podaj rozmiar kwadratu od 4 do 30: ");
-		int c;
-		while ((c = getchar())!='\n' && c!=EOF)
-			;
-	}
-	return liczba;
-}
-
-void wczytajTablice(int tab[][MAX], int n, int m) {
-	for (int i = 0; i < n; i++)
-	{
-		for (int j = 0; j < m; j++)
-		{
-			if (i % 3 == 0)
-			{
-				tab[i][j] = rand() % (2 + 1 - 1) + 1;
-			}
-			else if (i % 3 == 1)
-			{
-				tab[i][j] = rand() % (3 + 1 - 2) + 2;
-			}
-			else
-			{
-				tab[i][j] = rand() % (3 + 1 - 1) + 1;
-			}
-		}
-	}
-}
-
-void wypiszTablice(int tab[][MAX], int n, int m) {
-	printf("%2s |", " ");
-	for (int j = 0; j < m; j++)
-	{
-		printf("%3d", j);
-	}
-	printf("\n");
-	for (int k = 0; k < 3 * n + 4; k++)
-	{
-		printf("-");
-	}
-	printf("\n");
-	for (int i = 0; i < n; i++)
-	{
-		printf("%2d |", i);
-		for (int j = 0; j < m; j++)
-		{
-			printf("%3d", tab[i][j]);
-		}
-		printf("\n");
-	}
-}
-
-
-void ileFigur(int tab[][MAX], int n, int m) {
-	int ilosc = 0;
-	int iloscZWarunkiem = 0;
-	int kordyX[MAX_KORD];
-	int kordyY[MAX_KORD];
-	int k = 0;
-	for (int i = 0; i < n; i++)
-	{
-		for (int j = 0; j < m; j++)
-		{
-			if (tab[i][j + 1] > 0 && tab[i + 1][j] > 0)
-			{
-				ilosc++;
-			}
-			if (tab[i][j+1] > 0 && tab[i][j+1]!=tab[i][j] && tab[i+1][j] > 0 && tab[i+1][j]!=tab[i][j] && tab[i+1][j]!=tab[i][j+1])
-			{
-				iloscZWarunkiem++;
-				kordyX[k] = i+1;
-				kordyY[k] = j;
-				k++;
-			}
-		}
-	}
-	printf("\nWspolrzedne lewego dolnego rogu figur spelniajacych warunek:\n");
-	for (int i = 0; i < k; i++)
-	{
-		printf("(%2d, %2d)\n", kordyX[i], kordyY[i]);
-	}
-	printf("ilosc wszystkich figur: %14d\n", ilosc);
-	printf("ilosc figur spelniajacych warunek: %3d\n", iloscZWarunkiem);
-}
-
-int main()
-{
-	srand((unsigned)time(NULL));
-	info();
-	printf("Podaj rozmiar kwadratu: ");
-	int tab[MAX][MAX];
-	int rozmiar = wczytajRozmiar();
-	wczytajTablice(tab, rozmiar, rozmiar);
-	wypiszTablice(tab, rozmiar, rozmiar);
-	ileFigur(tab, rozmiar, rozmiar);
-}
+//#include <stdio.h>
+//#include <stdlib.h>
+//#include <time.h>
+//
+//#define MAX 30
+//#define MAX_KORD 300
+//
+//void info() {
+//	printf("Program wypisuje ilosc mozliwosci rozmieszczenia figury w kwadracie zdefiniowanym przez uzytkownika.\nAutor: Jakub Drozd\n");
+//}
+//
+//int wczytajRozmiar() {
+//	int liczba;
+//	while (scanf_s("%d", &liczba)!=1 || liczba < 4 || liczba > 30 || getchar()!='\n')
+//	{
+//		printf("Bledne dane, podaj rozmiar kwadratu od 4 do 30: ");
+//		int c;
+//		while ((c = getchar())!='\n' && c!=EOF)
+//			;
+//	}
+//	return liczba;
+//}
+//
+//void wczytajTablice(int tab[][MAX], int n, int m) {
+//	for (int i = 0; i < n; i++)
+//	{
+//		for (int j = 0; j < m; j++)
+//		{
+//			if (i % 3 == 0)
+//			{
+//				tab[i][j] = rand() % (2 + 1 - 1) + 1;
+//			}
+//			else if (i % 3 == 1)
+//			{
+//				tab[i][j] = rand() % (3 + 1 - 2) + 2;
+//			}
+//			else
+//			{
+//				tab[i][j] = rand() % (3 + 1 - 1) + 1;
+//			}
+//		}
+//	}
+//}
+//
+//void wypiszTablice(int tab[][MAX], int n, int m) {
+//	printf("%2s |", " ");
+//	for (int j = 0; j < m; j++)
+//	{
+//		printf("%3d", j);
+//	}
+//	printf("\n");
+//	for (int k = 0; k < 3 * n + 4; k++)
+//	{
+//		printf("-");
+//	}
+//	printf("\n");
+//	for (int i = 0; i < n; i++)
+//	{
+//		printf("%2d |", i);
+//		for (int j = 0; j < m; j++)
+//		{
+//			printf("%3d", tab[i][j]);
+//		}
+//		printf("\n");
+//	}
+//}
+//
+//
+//void ileFigur(int tab[][MAX], int n, int m) {
+//	int ilosc = 0;
+//	int iloscZWarunkiem = 0;
+//	int kordyX[MAX_KORD];
+//	int kordyY[MAX_KORD];
+//	int k = 0;
+//	for (int i = 0; i < n; i++)
+//	{
+//		for (int j = 0; j < m; j++)
+//		{
+//			if (tab[i][j + 1] > 0 && tab[i + 1][j] > 0)
+//			{
+//				ilosc++;
+//			}
+//			if (tab[i][j+1] > 0 && tab[i][j+1]!=tab[i][j] && tab[i+1][j] > 0 && tab[i+1][j]!=tab[i][j] && tab[i+1][j]!=tab[i][j+1])
+//			{
+//				iloscZWarunkiem++;
+//				kordyX[k] = i+1;
+//				kordyY[k] = j;
+//				k++;
+//			}
+//		}
+//	}
+//	printf("\nWspolrzedne lewego dolnego rogu figur spelniajacych warunek:\n");
+//	for (int i = 0; i < k; i++)
+//	{
+//		printf("(%2d, %2d)\n", kordyX[i], kordyY[i]);
+//	}
+//	printf("ilosc wszystkich figur: %14d\n", ilosc);
+//	printf("ilosc figur spelniajacych warunek: %3d\n", iloscZWarunkiem);
+//}
+//
+//int main()
+//{
+//	srand((unsigned)time(NULL));
+//	info();
+//	printf("Podaj rozmiar kwadratu: ");
+//	int tab[MAX][MAX];
+//	int rozmiar = wczytajRozmiar();
+//	wczytajTablice(tab, rozmiar, rozmiar);
+//	wypiszTablice(tab, rozmiar, rozmiar);
+//	ileFigur(tab, rozmiar, rozmiar);
+//}
 
 
 /*===========================================================================*/
@@ -244,10 +244,139 @@ int main()
 // zadanie napisac z podzialem na funkcje
 
 //#include <stdio.h>
+//#include <stdlib.h>
+//#include <time.h>
+//
+//#define MAX 10
+//#define MAX_KORDOW 6
+//
+//void info() {
+//	printf("Program symuluje prosta gre w statki.\nAutor: Jakub Drozd\n");
+//}
+//
+//void rozmiescStatki(int plansza[][MAX], int n, int m) {
+//	int iloscStatkow = 0;
+//	int tabKordowX[MAX_KORDOW] = {0};
+//	int tabKordowY[MAX_KORDOW] = {0};
+//	int k = 0;
+//	printf("Pierwsza liczba w parze oznacza nr wiersza, a druga kolumny. Numeracja od 0.\n\n");
+//	printf("Ustawianie - proby losowan:\n\n");
+//	while (iloscStatkow < 6)
+//	{
+//		int kordX = rand() % (7 + 1 - 1) + 1;
+//		int kordY = rand() % (7 + 1 - 1) + 1;
+//		if (plansza[kordX][kordY] == 0 && plansza[kordX + 1][kordY + 1] == 0)
+//		{
+//			plansza[kordX][kordY] = 1;
+//			plansza[kordX + 1][kordY + 1] = 1;
+//			iloscStatkow++;
+//			tabKordowX[k] = kordX;
+//			tabKordowY[k] = kordY;
+//			printf("(%d, %d)ok ", kordX, kordY);
+//			k++;
+//		}
+//		else
+//		{
+//			printf("(%d, %d) ", kordX, kordY);
+//		}
+//	}
+//	printf("\nRozmieszczenie statkow\n(podano wspolrzedne lewego gornego pola):\n\n");
+//	for (int i = 0; i < k; i++)
+//	{
+//		printf("(%d, %d) ", tabKordowX[i], tabKordowY[i]);
+//	}
+//	printf("\n");
+//}
+//
+//void wypiszTablice(int plansza[][MAX], int n, int m) {
+//	for (int i = 0; i < n; i++)
+//	{
+//		for (int j = 0; j < m; j++)
+//		{
+//			printf("%2d", plansza[i][j]);
+//		}
+//		printf("\n");
+//	}
+//}
+//
+//void strzelaj(int plansza[][MAX], int n, int m) {
+//	int iloscTrafien = 0;
+//	int tabKordowX[MAX_KORDOW] = { 0 };
+//	int tabKordowY[MAX_KORDOW] = { 0 };
+//	int k = 0;
+//	printf("Strzaly:\n");
+//	for (int i = 0; i < 40; i++)
+//	{
+//		int kordX = rand() % (7 + 1 - 1) + 1;
+//		int kordY = rand() % (7 + 1 - 1) + 1;
+//		if (plansza[kordX][kordY] == 1 && (plansza[kordX + 1][kordY + 1] == 1 && (plansza[kordX - 1][kordY - 1])))
+//		{
+//			plansza[kordX][kordY] = 0;
+//			plansza[kordX - 1][kordY - 1] = 0;
+//			iloscTrafien++;
+//			printf("(%d, %d) trafiony(%d)\n", kordX, kordY, iloscTrafien);
+//		}
+//		else if (plansza[kordX][kordY] == 1 && (plansza[kordX + 1][kordY + 1] == 1))
+//		{
+//			plansza[kordX][kordY] = 0;
+//			plansza[kordX + 1][kordY + 1] = 0;
+//			iloscTrafien++;
+//			printf("(%d, %d) trafiony(%d)\n", kordX, kordY, iloscTrafien);
+//		}
+//		else if (plansza[kordX][kordY] == 1 && (plansza[kordX - 1][kordY - 1] == 1))
+//		{
+//			plansza[kordX][kordY] = 0;
+//			plansza[kordX - 1][kordY - 1] = 0;
+//			iloscTrafien++;
+//			printf("(%d, %d) trafiony(%d)\n", kordX, kordY, iloscTrafien);
+//		}
+//		else
+//		{
+//			printf("(%d, %d) pudlo\n", kordX, kordY);
+//		}
+//	}
+//	for (int i = 0; i < n; i++)
+//	{
+//		for (int j = 0; j < m; j++)
+//		{
+//			if (plansza[i][j] == 1 && plansza[i+1][j+1] == 1)
+//			{
+//				tabKordowX[k] = i;
+//				tabKordowY[k] = j;
+//				k++;
+//			}
+//		}
+//	}
+//	if (iloscTrafien == 6)
+//	{
+//		printf("Wygrales!.");
+//	}
+//	else
+//	{
+//		printf("\nRozmieszczenie pozostalych statkow\n(podano wspolrzedne lewego gornego pola):\n\n");
+//		for (int i = 0; i < k; i++)
+//		{
+//			printf("(%d, %d) ", tabKordowX[i], tabKordowY[i]);
+//		}
+//		printf("\n");
+//		printf("\nNiestety przegrales...\n");
+//	}
+//}
 //
 //int main()
 //{
-//
+//	info();
+//	srand((unsigned)time(NULL));
+//	int plansza[MAX][MAX] = { 0 };
+//	printf("\n");
+//	rozmiescStatki(plansza, MAX, MAX);
+//	printf("\n");
+//	wypiszTablice(plansza, MAX, MAX);
+//	printf("\n");
+//	strzelaj(plansza, MAX, MAX);
+//	wypiszTablice(plansza, MAX, MAX);
+//	printf("\n\nKoniec programu\n\n");
+//	return 0;
 //}
 
 
