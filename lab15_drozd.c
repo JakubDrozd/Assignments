@@ -387,133 +387,135 @@
 // zadanie napisac z podzialem na funkcje
 
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-#define MAX_ROWS 5203
-#define MAX_COLS 49
-#define MAX_NUMERKI 6
-
-
-void info() {
-	printf("Program symuluje gre w totolotka.\nAutor: Jakub Drozd\n");
-}
-
-
-
-
-void wypiszArray1D(int los[], int n) {
-	for (int i = 0; i < n; i++)
-	{
-		if (i == n-1)
-		{
-			printf("%d", los[i]);
-		}
-		else
-		{
-		printf("%d, ", los[i]);
-		}
-	}
-	printf("\n");
-}
-
-void zakreslanie(int tab[][MAX_COLS], int n, int m) {
-	for (int i = 0; i < n; i++)
-	{
-		for (int j = 0; j < MAX_NUMERKI; j++)
-		{
-			int random = rand() % (47 + 1 - 1) + 1;
-			tab[i][random] = 1;
-		}
-	}
-}
-
-void losujNumerki(int los[MAX_NUMERKI], int n) {
-	int coBylo[MAX_COLS] = {0};
-	for (int i = 0; i < n; i++)
-	{
-		int losowaLiczba = rand() % (49 + 1 - 1) + 1;
-		for (int j = 0; j < MAX_COLS; j++)
-		{
-			if (coBylo[j] == losowaLiczba);
-			else
-			{
-				los[i] = losowaLiczba;
-			}
-		}
-	}
-}
-
-void sprawdzanieWygranych(int kupony[][MAX_COLS], int los[MAX_NUMERKI], int n, int m) {
-	int iloscWin = 0;
-	for (int i = 0; i < n; i++)
-	{
-		int liczby[MAX_NUMERKI] = { 0 };
-		int k = 0;
-		for (int j = 0; j < m; j++)
-		{
-			if (kupony[i][j] == 1)
-			{
-				liczby[k] = j + 1;
-				k++;
-			}
-		}
-		if (k < MAX_NUMERKI)
-		{
-			for (int l = 0; l < k; l++)
-			{
-				printf("%6d ", liczby[l]);
-			}
-			printf("%6s - blednie wypelniony kupon\n", " ");
-		}
-		else
-		{
-			int iloscTrafien = 0;
-			for (int l = 0; l < k; l++)
-			{
-				printf("%6d ", liczby[l]);
-			}
-			for (int o = 0; o < MAX_NUMERKI; o++)
-			{
-				for (int p = 0;  p < MAX_NUMERKI;  p++)
-				{
-					if (liczby[o] == los[p])
-					{
-						iloscTrafien++;
-					}
-				}
-			}
-			if (iloscTrafien == 6)
-			{
-				printf(" - ilosc trafien: %d [Wygrana!]", iloscTrafien);
-				printf("\n");
-				iloscWin++;
-			}
-			else
-			{
-			printf(" - ilosc trafien: %d", iloscTrafien);
-			printf("\n");
-			}	
-		}
-	}
-	printf("\n\nIlosc zwyciezcow: %d/%d, szansa: %lf\n\n", iloscWin, MAX_ROWS, (double)1/MAX_ROWS);
-}
-
-int main()
-{
-	srand((unsigned)time(NULL));
-	info();
-	int kupony[MAX_ROWS][MAX_COLS] = { 0 };
-	int los[MAX_NUMERKI];
-	zakreslanie(kupony, MAX_ROWS, MAX_COLS);
-	losujNumerki(los, MAX_NUMERKI);
-	printf("\n\nMaszyna wylosowala nastepujace liczby:\n\n");
-	wypiszArray1D(los, MAX_NUMERKI);
-	printf("\n");
-	sprawdzanieWygranych(kupony, los, MAX_ROWS, MAX_COLS);
-	printf("\n\nKoniec programu.\n\n");
-	return 0;
-}
+//#include <stdio.h>
+//#include <stdlib.h>
+//#include <time.h>
+//#define MAX_ROWS 100
+//#define MAX_COLS 49
+//#define MAX_NUMERKI 6
+//
+//
+//void info() {
+//	printf("Program symuluje gre w totolotka.\nAutor: Jakub Drozd\n");
+//}
+//
+//
+//
+//
+//void wypiszArray1D(int los[], int n) {
+//	for (int i = 0; i < n; i++)
+//	{
+//		if (i == n-1)
+//		{
+//			printf("%d", los[i]);
+//		}
+//		else
+//		{
+//		printf("%d, ", los[i]);
+//		}
+//	}
+//	printf("\n");
+//}
+//
+//void zakreslanie(int tab[][MAX_COLS], int n, int m) {
+//	for (int i = 0; i < n; i++)
+//	{
+//		for (int j = 0; j < MAX_NUMERKI; j++)
+//		{
+//			int random = rand() % (47 + 1 - 1) + 1;
+//			tab[i][random] = 1;
+//		}
+//	}
+//}
+//
+//void losujNumerki(int los[MAX_NUMERKI], int n) {
+//	int coBylo[MAX_COLS] = {0};
+//	for (int i = 0; i < n; i++)
+//	{
+//		int losowaLiczba = rand() % (49 + 1 - 1) + 1;
+//		for (int j = 0; j < MAX_COLS; j++)
+//		{
+//			if (coBylo[j] == losowaLiczba);
+//			else
+//			{
+//				los[i] = losowaLiczba;
+//			}
+//		}
+//	}
+//}
+//
+//void sprawdzanieWygranych(int kupony[][MAX_COLS], int los[MAX_NUMERKI], int n, int m) {
+//	int iloscWin = 0;
+//	int iloscUczestnikow = MAX_ROWS;
+//	for (int i = 0; i < n; i++)
+//	{
+//		int liczby[MAX_NUMERKI] = { 0 };
+//		int k = 0;
+//		for (int j = 0; j < m; j++)
+//		{
+//			if (kupony[i][j] == 1)
+//			{
+//				liczby[k] = j + 1;
+//				k++;
+//			}
+//		}
+//		if (k < MAX_NUMERKI)
+//		{
+//			for (int l = 0; l < k; l++)
+//			{
+//				printf("%6d ", liczby[l]);
+//			}
+//			iloscUczestnikow--;
+//			printf("%6s - blednie wypelniony kupon\n", " ");
+//		}
+//		else
+//		{
+//			int iloscTrafien = 0;
+//			for (int l = 0; l < k; l++)
+//			{
+//				printf("%6d ", liczby[l]);
+//			}
+//			for (int o = 0; o < MAX_NUMERKI; o++)
+//			{
+//				for (int p = 0;  p < MAX_NUMERKI;  p++)
+//				{
+//					if (liczby[o] == los[p])
+//					{
+//						iloscTrafien++;
+//					}
+//				}
+//			}
+//			if (iloscTrafien == MAX_NUMERKI)
+//			{
+//				printf(" - ilosc trafien: %d [Wygrana!]", iloscTrafien);
+//				printf("\n");
+//				iloscWin++;
+//			}
+//			else
+//			{
+//			printf(" - ilosc trafien: %d", iloscTrafien);
+//			printf("\n");
+//			}	
+//		}
+//	}
+//	printf("\n\nIlosc zwyciezcow: %d/%d\n\n", iloscWin, iloscUczestnikow);
+//}
+//
+//int main()
+//{
+//	srand((unsigned)time(NULL));
+//	info();
+//	int kupony[MAX_ROWS][MAX_COLS] = { 0 };
+//	int los[MAX_NUMERKI];
+//	zakreslanie(kupony, MAX_ROWS, MAX_COLS);
+//	losujNumerki(los, MAX_NUMERKI);
+//	printf("\n\nMaszyna wylosowala nastepujace liczby:\n\n");
+//	wypiszArray1D(los, MAX_NUMERKI);
+//	printf("\n");
+//	sprawdzanieWygranych(kupony, los, MAX_ROWS, MAX_COLS);
+//	printf("\n\nKoniec programu.\n\n");
+//	return 0;
+//}
 
 
 /*===========================================================================*/
