@@ -524,170 +524,172 @@
 
 // zadanie napisac z podzialem na funkcje
 
-#include <stdio.h>
-#include <math.h>
-#include <stdlib.h>
-#include <time.h>
-#define MAX 15
-
-void info() {
-	printf("Program testuje pewien algorytm odszumiania obrazu.\nAutor: Jakub Drozd\n");
-}
-
-void wczytajObraz(int obraz[][MAX], int n, int m) {
-	int srodek = (int)(ceil(MAX / 2));
-	for (int i = 0; i < n; i++)
-	{
-		for (int j = 0; j < m; j++)
-		{
-			if (i == j || (i + j == m-1) || i == srodek || j == srodek)
-			{
-				obraz[i][j] = 7;
-			}
-		}
-	}
-}
-
-void narysujObraz(int obraz[][MAX], int n, int m) {
-	for (int i = 0; i < n; i++)
-	{
-		for (int j = 0; j < m; j++)
-		{
-			printf("%d ", obraz[i][j]);
-		}
-		printf("\n");
-	}
-}
-
-void wprowadzSzum(int obraz[][MAX], int n, int m) {
-	for (int i = 0; i < n; i++)
-	{
-		for (int j = 0; j < m; j++)
-		{
-			if (obraz[i][j] == 0)
-			{
-				obraz[i][j] = rand() % (1 + 1 - 0) + 0;
-			}
-			else if (obraz[i][j] > 0)
-			{
-				obraz[i][j] += rand() % (1 + 1 + 1) - 1;
-			}
-		}
-	}
-}
-
-
-
-
-void odszum(int obraz[][MAX], int n, int m) {
-	for (int i = 0; i < n; i++)
-	{
-		for (int j = 0; j < m; j++)
-		{
-			if (i == 0 || i == n-1 || j == 0 || j == m-1)
-			{
-				obraz[i][j] = 0;
-			}
-			else
-			{
-				int lewy = obraz[i][j - 1];
-				int gorny = obraz[i - 1][j];
-				int prawy = obraz[i][j + 1];
-				int dolny = obraz[i + 1][j];
-				int suma = obraz[i][j];
-				int ilosc = 1;
-				if (obraz[i][j] - lewy < 3 && obraz[i][j] - lewy > 0)
-				{
-					suma += lewy;
-					ilosc++;
-				}
-				else if (obraz[i][j] - gorny < 3 && obraz[i][j] - gorny > 0)
-				{
-					suma += gorny;
-					ilosc++;
-				}
-				else if (obraz[i][j] - prawy < 3 && obraz[i][j] - prawy > 0)
-				{
-					suma += prawy;
-					ilosc++;
-				}
-				else if (obraz[i][j] - dolny < 3 && obraz[i][j] - dolny > 0)
-				{
-					suma += dolny;
-					ilosc++;
-				}
-				int srednia = (int)(floor((double)(suma / ilosc)));
-				obraz[i][j] = srednia;
-			}
-			
-		}
-	}
-}
-
-void wypiszOdszumiony(int obraz[][MAX], int n, int m) {
-	for (int i = 0; i < n; i++)
-	{
-		for (int j = 0; j < m; j++)
-		{
-			if (obraz[i][j] == 0)
-			{
-				printf("%s", "  ");
-			}
-			else
-			{
-			printf("%d ", obraz[i][j]);
-			}
-		}
-		printf("\n");
-	}
-}
-
-void kopiujTablice(int orginal[][MAX], int kopia[][MAX], int n, int m) {
-	for (int i = 0; i < n; i++)
-	{
-		for (int j = 0; j < m; j++)
-		{
-			kopia[i][j] = orginal[i][j];
-
-		}
-	}
-}
-
-void oblicz_blad(int *blad_zaszumionego, int* blad_odszumionego, int n, int m, int orginal[][MAX], int zaszumiony[][MAX], int odszumiony[][MAX]) {
-	for (int i = 1; i < n; i++)
-	{
-		for (int j = 1; j < m; j++)
-		{
-			*blad_zaszumionego += abs(orginal[i][j] - zaszumiony[i][j]);
-			*blad_odszumionego += abs(orginal[i][j] - odszumiony[i][j]);
-		}
-	}
-}
-
-int main()
-{
-	srand((unsigned)time(NULL));
-	info();
-	int obraz[MAX][MAX] = {0};
-	int obrazSzum[MAX][MAX] = { 0 };
-	int obrazOdSzum[MAX][MAX] = { 0 };
-	int blad_zaszumionego = 0;
-	int blad_odszumionego = 0;
-	wczytajObraz(obraz, MAX, MAX);
-	wczytajObraz(obrazSzum, MAX, MAX);
-	wprowadzSzum(obrazSzum, MAX, MAX);
-	kopiujTablice(obrazSzum, obrazOdSzum, MAX, MAX);
-	odszum(obrazOdSzum, MAX, MAX);
-	narysujObraz(obraz, MAX, MAX);
-	printf("\n\n");
-	narysujObraz(obrazSzum, MAX, MAX);
-	printf("\n\n");
-	wypiszOdszumiony(obrazOdSzum, MAX, MAX);
-	oblicz_blad(&blad_zaszumionego, &blad_odszumionego, MAX, MAX, obraz, obrazSzum, obrazOdSzum);
-	printf("Blad zaszumionego: %d.\nBlad odszumionego: %d.", blad_zaszumionego, blad_odszumionego);
-	printf("\n\nKoniec programu\n\n");
-	return 0;
-}
+//#include <stdio.h>
+//#include <math.h>
+//#include <stdlib.h>
+//#include <time.h>
+//#define MAX 15
+//
+//void info() {
+//	printf("Program testuje pewien algorytm odszumiania obrazu.\nAutor: Jakub Drozd\n");
+//}
+//
+//void wczytajObraz(int obraz[][MAX], int n, int m) {
+//	int srodek = (int)(ceil(MAX / 2));
+//	for (int i = 0; i < n; i++)
+//	{
+//		for (int j = 0; j < m; j++)
+//		{
+//			if (i == j || (i + j == m-1) || i == srodek || j == srodek)
+//			{
+//				obraz[i][j] = 7;
+//			}
+//		}
+//	}
+//}
+//
+//void narysujObraz(int obraz[][MAX], int n, int m) {
+//	for (int i = 0; i < n; i++)
+//	{
+//		for (int j = 0; j < m; j++)
+//		{
+//			printf("%d ", obraz[i][j]);
+//		}
+//		printf("\n");
+//	}
+//}
+//
+//void wprowadzSzum(int obraz[][MAX], int n, int m) {
+//	for (int i = 0; i < n; i++)
+//	{
+//		for (int j = 0; j < m; j++)
+//		{
+//			if (obraz[i][j] == 0)
+//			{
+//				obraz[i][j] = rand() % (1 + 1 - 0) + 0;
+//			}
+//			else if (obraz[i][j] > 0)
+//			{
+//				obraz[i][j] += rand() % (1 + 1 + 1) - 1;
+//			}
+//		}
+//	}
+//}
+//
+//
+//
+//
+//void odszum(int obraz[][MAX], int n, int m) {
+//	for (int i = 0; i < n; i++)
+//	{
+//		for (int j = 0; j < m; j++)
+//		{
+//			if (i == 0 || i == n-1 || j == 0 || j == m-1)
+//			{
+//				obraz[i][j] = 0;
+//			}
+//			else
+//			{
+//				int lewy = obraz[i][j - 1];
+//				int gorny = obraz[i - 1][j];
+//				int prawy = obraz[i][j + 1];
+//				int dolny = obraz[i + 1][j];
+//				int suma = obraz[i][j];
+//				int ilosc = 1;
+//				if (obraz[i][j] - lewy < 3 && obraz[i][j] - lewy > 0)
+//				{
+//					suma += lewy;
+//					ilosc++;
+//				}
+//				else if (obraz[i][j] - gorny < 3 && obraz[i][j] - gorny > 0)
+//				{
+//					suma += gorny;
+//					ilosc++;
+//				}
+//				else if (obraz[i][j] - prawy < 3 && obraz[i][j] - prawy > 0)
+//				{
+//					suma += prawy;
+//					ilosc++;
+//				}
+//				else if (obraz[i][j] - dolny < 3 && obraz[i][j] - dolny > 0)
+//				{
+//					suma += dolny;
+//					ilosc++;
+//				}
+//				int srednia = (int)(floor((double)(suma / ilosc)));
+//				obraz[i][j] = srednia;
+//			}
+//			
+//		}
+//	}
+//}
+//
+//void wypiszOdszumiony(int obraz[][MAX], int n, int m) {
+//	for (int i = 0; i < n; i++)
+//	{
+//		for (int j = 0; j < m; j++)
+//		{
+//			if (obraz[i][j] == 0)
+//			{
+//				printf("%s", "  ");
+//			}
+//			else
+//			{
+//			printf("%d ", obraz[i][j]);
+//			}
+//		}
+//		printf("\n");
+//	}
+//}
+//
+//void kopiujTablice(int orginal[][MAX], int kopia[][MAX], int n, int m) {
+//	for (int i = 0; i < n; i++)
+//	{
+//		for (int j = 0; j < m; j++)
+//		{
+//			kopia[i][j] = orginal[i][j];
+//
+//		}
+//	}
+//}
+//
+//void oblicz_blad(int *blad_zaszumionego, int* blad_odszumionego, int n, int m, int orginal[][MAX], int zaszumiony[][MAX], int odszumiony[][MAX]) {
+//	for (int i = 1; i < n; i++)
+//	{
+//		for (int j = 1; j < m; j++)
+//		{
+//			*blad_zaszumionego += abs(orginal[i][j] - zaszumiony[i][j]);
+//			*blad_odszumionego += abs(orginal[i][j] - odszumiony[i][j]);
+//		}
+//	}
+//}
+//
+//int main()
+//{
+//	srand((unsigned)time(NULL));
+//	info();
+//	int obraz[MAX][MAX] = {0};
+//	int obrazSzum[MAX][MAX] = { 0 };
+//	int obrazOdSzum[MAX][MAX] = { 0 };
+//	int blad_zaszumionego = 0;
+//	int blad_odszumionego = 0;
+//	wczytajObraz(obraz, MAX, MAX);
+//	wczytajObraz(obrazSzum, MAX, MAX);
+//	wprowadzSzum(obrazSzum, MAX, MAX);
+//	kopiujTablice(obrazSzum, obrazOdSzum, MAX, MAX);
+//	odszum(obrazOdSzum, MAX, MAX);
+//	narysujObraz(obraz, MAX, MAX);
+//	printf("\n\n");
+//	narysujObraz(obrazSzum, MAX, MAX);
+//	printf("\n\n");
+//	wypiszOdszumiony(obrazOdSzum, MAX, MAX);
+//	oblicz_blad(&blad_zaszumionego, &blad_odszumionego, MAX, MAX, obraz, obrazSzum, obrazOdSzum);
+//	printf("Blad zaszumionego: %d.\nBlad odszumionego: %d.", blad_zaszumionego, blad_odszumionego);
+//	double pozbytoSie = (blad_zaszumionego - blad_odszumionego) / blad_zaszumionego;
+//	printf("\nPozbyto sie (%.1lf%c) szumu.", pozbytoSie, '%');
+//	printf("\n\nKoniec programu\n\n");
+//	return 0;
+//}
 
 
 /*===========================================================================*/
