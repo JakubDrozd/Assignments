@@ -1,7 +1,8 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <ctype.h>
-enum {a = 3, b = 5, c = 11};
+//#include <stdio.h>
+//#include <stdlib.h>
+//#include <ctype.h>
+//#include <time.h>
+//enum {a = 3, b = 5, c = 11};
 
 //int a;						/*1*/
 //main() {						/*2*/
@@ -65,42 +66,49 @@ enum {a = 3, b = 5, c = 11};
 //	/*5*/
 //}/*7*/
 
+//enum {D = 2, E, F =2 , G};
+//
+//#include <stdio.h>
+//#include <stdlib.h>
+//#include <time.h>
+//int main() {
+//	srand((unsigned)time(NULL));
+//	int** tab;
+//	int n = 3;
+//	int m = 10;
+//	tab = (int*)malloc(n * sizeof(int));
+//	if (tab == NULL)
+//	{
+//		printf("Brak pamieci");
+//		return 0;
+//	}
+//	tab[0] = (int*)malloc(n * m * sizeof(int));
+//	if (tab[0] == NULL)
+//	{
+//		printf("Brak pamieci");
+//		free(tab);
+//		return 0;
+//	}
+//	for (int i = 1; i < n; i++)
+//	{
+//		tab[i] = tab[0] + i * n;
+//	}
+//	for (int i = 0; i < n; i++)
+//	{
+//		for (int j = 0; j  < m; j ++)
+//		{
+//			tab[i][j] = rand() % (10 + 1 - 1) + 1;
+//			printf("%3d ", tab[i][j]);
+//		}
+//		printf("\n");
+//	}
+//	printf("%d ", (-3) / 2);
+//	printf("\n\nKoniec programu\n\n");
+//	return 0;
+//}
 
-int main() {
-	int **tab;
-	int n = 3;
-	int m = 4;
-	tab = (int*)malloc(n * sizeof(int));
-	if (tab == NULL)
-	{
-		printf("BRAK PAMIECI");
-		return 0;
-	}
-	for (int i = 0; i < n; i++)
-	{
-		tab[i] = (int*)malloc(m * sizeof(int));
-		if (tab[i] == NULL)
-		{
-			printf("BRAK PAMIECI");
-			for (int j = 0; j < i; j++)
-			{
-				free(tab[j]);
-			}
-			free(tab);
-			return 0;
-		}
-	}
-	int k = 0;
-	for (int i = 0; i < n; i++)
-	{
-		for (int j = 0; j < m; j++)
-		{
-			tab[i][j] = k;
-			printf("%2d ", tab[i][j]);
-			k++;
-		}
-		printf("\n");
-	}
-	printf("\n\nKoniec programu\n\n");
-	return 0;
-}
+//#include <stdio.h>
+//main (){
+//enum {x, y} a = -1, b = -2;
+//printf("%d %d", a, b);
+//}
