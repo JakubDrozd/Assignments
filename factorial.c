@@ -112,3 +112,30 @@
 //enum {x, y} a = -1, b = -2;
 //printf("%d %d", a, b);
 //}
+
+
+//#include <stdio.h>
+//
+//int main() {
+//	char dd = 'd';
+//	printf("%d", dd++ - 'c');
+//}
+
+#include <stdio.h>
+
+int main() {
+	static int a = 0;
+	static int b = 1;
+	switch (2 * a + 1) {
+	case 1:
+		b += 2;
+		break;
+	case 2:
+		b += 4;
+	case 3:
+		b += 3;
+		break;
+	}
+	printf("a = %d, b = %d\n", a, b);
+	return 0;
+}
