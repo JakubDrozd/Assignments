@@ -121,21 +121,83 @@
 //	printf("%d", dd++ - 'c');
 //}
 
+//#include <stdio.h>
+//
+//int main() {
+//	static int a = 0;
+//	static int b = 1;
+//	switch (2 * a + 1) {
+//	case 1:
+//		b += 2;
+//		break;
+//	case 2:
+//		b += 4;
+//	case 3:
+//		b += 3;
+//		break;
+//	}
+//	printf("a = %d, b = %d\n", a, b);
+//	return 0;
+//}
+
 #include <stdio.h>
+#define MAX 40
+
+void info() {
+	printf("Program pobiera od uzytkownika liczbe z przedzialu [2,20] i uklada tablie w okreslony sposob.\nAutor: Jakub Drozd");
+}
+
+int wczytajLiczbe() {
+	int liczba;
+	while (scanf_s("%d", &liczba) != 1 || liczba < 2 || liczba > 20 || getchar() != '\n') {
+		printf("Bledne dane, podaj liczbe calkowita z przedzialu [2,20]: ");
+		int c;
+		while ((c = getchar()) != '\n' && c != EOF)
+			;
+	}
+	return liczba;
+}
+
+void wczytajTab(int tab[][MAX], int m, int n) {
+	int polowa = n / 2;
+	for (int i = 0; i < m; i++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			if (j < polowa && i >=j)
+			{
+				tab[i][j] = i + 1;
+			}
+			else if (j >= polowa && i + j >= n - 1)
+			{
+				tab[i][j] = i + 1;
+			}
+			else
+			{
+				tab[i][j] = 0;
+			}
+		}
+	}
+}
+
+void wypiszTab(int tab[][MAX], int m, int n) {
+	for (int i = 0; i < m; i++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			printf("%2d ", tab[i][j]);
+		}
+		printf("\n");
+	}
+}
 
 int main() {
-	static int a = 0;
-	static int b = 1;
-	switch (2 * a + 1) {
-	case 1:
-		b += 2;
-		break;
-	case 2:
-		b += 4;
-	case 3:
-		b += 3;
-		break;
-	}
-	printf("a = %d, b = %d\n", a, b);
+	info();
+	printf("\nPodaj dowolna liczbe calkowita z przedzialu [2, 20]: ");
+	int tab[MAX][MAX];
+	int n = wczytajLiczbe();
+	wczytajTab(tab, n, n * 2);
+	wypiszTab(tab, n, n * 2);
+	printf("\n\nKoniec programu\n\n");
 	return 0;
 }
