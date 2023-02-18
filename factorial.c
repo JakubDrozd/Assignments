@@ -140,17 +140,80 @@
 //	return 0;
 //}
 
+//#include <stdio.h>
+//#define MAX 40
+//
+//void info() {
+//	printf("Program pobiera od uzytkownika liczbe z przedzialu [2,20] i uklada tablie w okreslony sposob.\nAutor: Jakub Drozd");
+//}
+//
+//int wczytajLiczbe() {
+//	int liczba;
+//	while (scanf_s("%d", &liczba) != 1 || liczba < 2 || liczba > 20 || getchar() != '\n') {
+//		printf("Bledne dane, podaj liczbe calkowita z przedzialu [2,20]: ");
+//		int c;
+//		while ((c = getchar()) != '\n' && c != EOF)
+//			;
+//	}
+//	return liczba;
+//}
+//
+//void wczytajTab(int tab[][MAX], int m, int n) {
+//	int polowa = n / 2;
+//	for (int i = 0; i < m; i++)
+//	{
+//		for (int j = 0; j < n; j++)
+//		{
+//			if (j < polowa && i >=j)
+//			{
+//				tab[i][j] = i + 1;
+//			}
+//			else if (j >= polowa && i + j >= n - 1)
+//			{
+//				tab[i][j] = i + 1;
+//			}
+//			else
+//			{
+//				tab[i][j] = 0;
+//			}
+//		}
+//	}
+//}
+//
+//void wypiszTab(int tab[][MAX], int m, int n) {
+//	for (int i = 0; i < m; i++)
+//	{
+//		for (int j = 0; j < n; j++)
+//		{
+//			printf("%2d ", tab[i][j]);
+//		}
+//		printf("\n");
+//	}
+//}
+//
+//int main() {
+//	info();
+//	printf("\nPodaj dowolna liczbe calkowita z przedzialu [2, 20]: ");
+//	int tab[MAX][MAX];
+//	int n = wczytajLiczbe();
+//	wczytajTab(tab, n, n * 2);
+//	wypiszTab(tab, n, n * 2);
+//	printf("\n\nKoniec programu\n\n");
+//	return 0;
+//}
+
 #include <stdio.h>
-#define MAX 40
+#define MAX 10
 
 void info() {
-	printf("Program pobiera od uzytkownika liczbe z przedzialu [2,20] i uklada tablie w okreslony sposob.\nAutor: Jakub Drozd");
+	printf("Program wczytuje ablice 10x10 i sprawdza, czy posiada ona okreslona wlasnosc.\nAutor: Jakub Drozd\n");
 }
 
 int wczytajLiczbe() {
 	int liczba;
-	while (scanf_s("%d", &liczba) != 1 || liczba < 2 || liczba > 20 || getchar() != '\n') {
-		printf("Bledne dane, podaj liczbe calkowita z przedzialu [2,20]: ");
+	while (scanf_s("%d", &liczba)!=1 || getchar()!='\n')
+	{
+		printf("Bledne dane, podaj dowolna liczbe calkowita: ");
 		int c;
 		while ((c = getchar()) != '\n' && c != EOF)
 			;
@@ -158,29 +221,27 @@ int wczytajLiczbe() {
 	return liczba;
 }
 
+void wypiszTab2D(int tab[][MAX], int m, int n);
+
 void wczytajTab(int tab[][MAX], int m, int n) {
-	int polowa = n / 2;
 	for (int i = 0; i < m; i++)
 	{
 		for (int j = 0; j < n; j++)
 		{
-			if (j < polowa && i >=j)
-			{
-				tab[i][j] = i + 1;
-			}
-			else if (j >= polowa && i + j >= n - 1)
-			{
-				tab[i][j] = i + 1;
-			}
-			else
-			{
-				tab[i][j] = 0;
-			}
+			printf("Podaj element tablicy: ");
+			tab[i][j] = wczytajLiczbe();
 		}
 	}
 }
 
-void wypiszTab(int tab[][MAX], int m, int n) {
+void wypiszTab1D(int tab[], int m) {
+	for (int i = 0; i < m; i++)
+	{
+		printf("%2d ", tab[i]);
+	}
+}
+
+void wypiszTab2D(int tab[][MAX], int m, int n) {
 	for (int i = 0; i < m; i++)
 	{
 		for (int j = 0; j < n; j++)
@@ -191,13 +252,47 @@ void wypiszTab(int tab[][MAX], int m, int n) {
 	}
 }
 
+void sprawdzWarunek(int tab[][MAX], int m, int n, int tab_failed[]) {
+	int k = 0;
+	for (int i = 0; i < m; i++)
+	{
+		int sumaWiersza = 0;
+		int liczbaNaPrzekatnej;
+		for (int j = 0; j < n; j++)
+		{
+			if (i == j)
+			{
+				liczbaNaPrzekatnej = tab[i][j];
+			}
+			if (tab[i][j] > 0 && i!=j)
+			{
+				sumaWiersza += tab[i][j];
+			}
+		}
+		if (!(liczbaNaPrzekatnej > sumaWiersza))
+		{
+			tab_failed[k] = i;
+			k++;
+		}
+	}
+}
+
 int main() {
 	info();
-	printf("\nPodaj dowolna liczbe calkowita z przedzialu [2, 20]: ");
-	int tab[MAX][MAX];
-	int n = wczytajLiczbe();
-	wczytajTab(tab, n, n * 2);
-	wypiszTab(tab, n, n * 2);
+	int tab[MAX][MAX] = { 0 };
+	int tab_failed[MAX] = { -1 };
+	wczytajTab(tab, MAX, MAX);
+	wypiszTab2D(tab, MAX, MAX);
+	sprawdzWarunek(tab, MAX, MAX, tab_failed);
+	if (tab_failed[0] < 0)
+	{
+		printf("Tablica spelnia wlanosc.");
+	}
+	else
+	{
+		printf("Numery wierszy, ktore nie spelnily warunku:\n");
+		wypiszTab1D(tab_failed, MAX);
+	}
 	printf("\n\nKoniec programu\n\n");
 	return 0;
 }
