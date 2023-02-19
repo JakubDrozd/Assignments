@@ -202,18 +202,115 @@
 //	return 0;
 //}
 
+//#include <stdio.h>
+//#define MAX 10
+//
+//void info() {
+//	printf("Program wczytuje ablice 10x10 i sprawdza, czy posiada ona okreslona wlasnosc.\nAutor: Jakub Drozd\n");
+//}
+//
+//int wczytajLiczbe() {
+//	int liczba;
+//	while (scanf_s("%d", &liczba)!=1 || getchar()!='\n')
+//	{
+//		printf("Bledne dane, podaj dowolna liczbe calkowita: ");
+//		int c;
+//		while ((c = getchar()) != '\n' && c != EOF)
+//			;
+//	}
+//	return liczba;
+//}
+//
+//void wypiszTab2D(int tab[][MAX], int m, int n);
+//
+//void wczytajTab(int tab[][MAX], int m, int n) {
+//	for (int i = 0; i < m; i++)
+//	{
+//		for (int j = 0; j < n; j++)
+//		{
+//			printf("Podaj element tablicy: ");
+//			tab[i][j] = wczytajLiczbe();
+//		}
+//	}
+//}
+//
+//void wypiszTab1D(int tab[], int m) {
+//	for (int i = 0; i < m; i++)
+//	{
+//		printf("%2d ", tab[i]);
+//	}
+//}
+//
+//void wypiszTab2D(int tab[][MAX], int m, int n) {
+//	for (int i = 0; i < m; i++)
+//	{
+//		for (int j = 0; j < n; j++)
+//		{
+//			printf("%2d ", tab[i][j]);
+//		}
+//		printf("\n");
+//	}
+//}
+//
+//void sprawdzWarunek(int tab[][MAX], int m, int n, int tab_failed[]) {
+//	int k = 0;
+//	for (int i = 0; i < m; i++)
+//	{
+//		int sumaWiersza = 0;
+//		int liczbaNaPrzekatnej;
+//		for (int j = 0; j < n; j++)
+//		{
+//			if (i == j)
+//			{
+//				liczbaNaPrzekatnej = tab[i][j];
+//			}
+//			if (tab[i][j] > 0 && i!=j)
+//			{
+//				sumaWiersza += tab[i][j];
+//			}
+//		}
+//		if (!(liczbaNaPrzekatnej > sumaWiersza))
+//		{
+//			tab_failed[k] = i;
+//			k++;
+//		}
+//	}
+//}
+//
+//int main() {
+//	info();
+//	int tab[MAX][MAX] = { 0 };
+//	int tab_failed[MAX] = { -1 };
+//	wczytajTab(tab, MAX, MAX);
+//	wypiszTab2D(tab, MAX, MAX);
+//	sprawdzWarunek(tab, MAX, MAX, tab_failed);
+//	if (tab_failed[0] < 0)
+//	{
+//		printf("Tablica spelnia wlanosc.");
+//	}
+//	else
+//	{
+//		printf("Numery wierszy, ktore nie spelnily warunku:\n");
+//		wypiszTab1D(tab_failed, MAX);
+//	}
+//	printf("\n\nKoniec programu\n\n");
+//	return 0;
+//}
+
+#include <limits.h>
 #include <stdio.h>
-#define MAX 10
+
+#define MAX 100
 
 void info() {
-	printf("Program wczytuje ablice 10x10 i sprawdza, czy posiada ona okreslona wlasnosc.\nAutor: Jakub Drozd\n");
+	printf("Program daje uzytkownikowi stworzyc tablie prostokatna, znajduje najwieksza wartosc w ostatniej kolumnie i wypisuje wiersze, ktorych wszystkie elementy sa mniejsze od tej wartosci.\nAutor: Jakub Drozd\n");
 }
 
-int wczytajLiczbe() {
+int wczytajRozmiar() {
 	int liczba;
-	while (scanf_s("%d", &liczba)!=1 || getchar()!='\n')
+	while (scanf_s("%d", &liczba)!=1 || liczba < 2 || liczba > 100 || getchar()!='\n')
 	{
-		printf("Bledne dane, podaj dowolna liczbe calkowita: ");
+		printf("Bledne dane, podaj rozmiar z przedzialu [2,100]: ");
 		int c;
 		while ((c = getchar()) != '\n' && c != EOF)
 			;
@@ -221,78 +318,93 @@ int wczytajLiczbe() {
 	return liczba;
 }
 
-void wypiszTab2D(int tab[][MAX], int m, int n);
+int wczytajLiczbe() {
+	int liczba;
+	while (scanf_s("%d", &liczba) != 1 || getchar() != '\n')
+	{
+		printf("Bledne dane, podaj rozmiar z przedzialu [2,100]: ");
+		int c;
+		while ((c = getchar()) != '\n' && c != EOF)
+			;
+	}
+	return liczba;
+}
 
 void wczytajTab(int tab[][MAX], int m, int n) {
 	for (int i = 0; i < m; i++)
 	{
 		for (int j = 0; j < n; j++)
 		{
-			printf("Podaj element tablicy: ");
+			printf("Podaj wartosc dla [%d][%d] elementu: ", i, j);
 			tab[i][j] = wczytajLiczbe();
 		}
 	}
 }
 
-void wypiszTab1D(int tab[], int m) {
-	for (int i = 0; i < m; i++)
+void wypiszTab1D(int tab[], int k) {
+	for (int i = 0; i < k; i++)
 	{
 		printf("%2d ", tab[i]);
 	}
 }
 
-void wypiszTab2D(int tab[][MAX], int m, int n) {
+void znajdzMaxa(int tab[][MAX], int m, int n, int* max) {
+	*max = tab[0][n - 1];
 	for (int i = 0; i < m; i++)
 	{
 		for (int j = 0; j < n; j++)
 		{
-			printf("%2d ", tab[i][j]);
+			if (j == (n-1))
+			{
+				if (tab[i][j] > *max)
+				{
+					*max = tab[i][j];
+				}
+			}
 		}
-		printf("\n");
 	}
 }
 
-void sprawdzWarunek(int tab[][MAX], int m, int n, int tab_failed[]) {
-	int k = 0;
+void sprawdzWiersze(int tab[][MAX], int m, int n, int* k, int max, int tab_wierszy[]) {
 	for (int i = 0; i < m; i++)
 	{
-		int sumaWiersza = 0;
-		int liczbaNaPrzekatnej;
+		int maxWiersza = INT_MIN;
 		for (int j = 0; j < n; j++)
 		{
-			if (i == j)
+			if (tab[i][j] > maxWiersza)
 			{
-				liczbaNaPrzekatnej = tab[i][j];
-			}
-			if (tab[i][j] > 0 && i!=j)
-			{
-				sumaWiersza += tab[i][j];
+				maxWiersza = tab[i][j];
 			}
 		}
-		if (!(liczbaNaPrzekatnej > sumaWiersza))
+		if (maxWiersza < max)
 		{
-			tab_failed[k] = i;
-			k++;
+			tab_wierszy[*k] = i;
+			(*k)++;
 		}
 	}
 }
+
+int tab[MAX][MAX];
+int tab_wierszy[MAX];
 
 int main() {
+	int max = 0;
+	int k = 0;
 	info();
-	int tab[MAX][MAX] = { 0 };
-	int tab_failed[MAX] = { -1 };
-	wczytajTab(tab, MAX, MAX);
-	wypiszTab2D(tab, MAX, MAX);
-	sprawdzWarunek(tab, MAX, MAX, tab_failed);
-	if (tab_failed[0] < 0)
+	printf("Podaj ilosc wierszy: ");
+	int m = wczytajRozmiar();
+	printf("Podaj ilosc kolumn: ");
+	int n = wczytajRozmiar();
+	while (n == m)
 	{
-		printf("Tablica spelnia wlanosc.");
+		printf("\nTablica musi byc prostokatna, podaj inna ilosc kolumn:\n");
+		n = wczytajRozmiar();
 	}
-	else
-	{
-		printf("Numery wierszy, ktore nie spelnily warunku:\n");
-		wypiszTab1D(tab_failed, MAX);
-	}
-	printf("\n\nKoniec programu\n\n");
+	wczytajTab(tab, m, n);
+	znajdzMaxa(tab, m, n, &max);
+	sprawdzWiersze(tab, m, n, &k, max, tab_wierszy);
+	printf("\nWiersze, ktore spelnily warunek:\n");
+	wypiszTab1D(tab_wierszy, k);
+	printf("\nKoniec programu\n");
 	return 0;
 }
