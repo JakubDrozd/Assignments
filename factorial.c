@@ -297,32 +297,131 @@
 //	return 0;
 //}
 
-#include <limits.h>
-#include <stdio.h>
+//#include <limits.h>
+//#include <stdio.h>
+//
+//#define MAX 100
+//
+//void info() {
+//	printf("Program daje uzytkownikowi stworzyc tablie prostokatna, znajduje najwieksza wartosc w ostatniej kolumnie i wypisuje wiersze, ktorych wszystkie elementy sa mniejsze od tej wartosci.\nAutor: Jakub Drozd\n");
+//}
+//
+//int wczytajRozmiar() {
+//	int liczba;
+//	while (scanf_s("%d", &liczba)!=1 || liczba < 2 || liczba > 100 || getchar()!='\n')
+//	{
+//		printf("Bledne dane, podaj rozmiar z przedzialu [2,100]: ");
+//		int c;
+//		while ((c = getchar()) != '\n' && c != EOF)
+//			;
+//	}
+//	return liczba;
+//}
+//
+//int wczytajLiczbe() {
+//	int liczba;
+//	while (scanf_s("%d", &liczba) != 1 || getchar() != '\n')
+//	{
+//		printf("Bledne dane, podaj rozmiar z przedzialu [2,100]: ");
+//		int c;
+//		while ((c = getchar()) != '\n' && c != EOF)
+//			;
+//	}
+//	return liczba;
+//}
+//
+//void wczytajTab(int tab[][MAX], int m, int n) {
+//	for (int i = 0; i < m; i++)
+//	{
+//		for (int j = 0; j < n; j++)
+//		{
+//			printf("Podaj wartosc dla [%d][%d] elementu: ", i, j);
+//			tab[i][j] = wczytajLiczbe();
+//		}
+//	}
+//}
+//
+//void wypiszTab1D(int tab[], int k) {
+//	for (int i = 0; i < k; i++)
+//	{
+//		printf("%2d ", tab[i]);
+//	}
+//}
+//
+//void znajdzMaxa(int tab[][MAX], int m, int n, int* max) {
+//	*max = tab[0][n - 1];
+//	for (int i = 0; i < m; i++)
+//	{
+//		for (int j = 0; j < n; j++)
+//		{
+//			if (j == (n-1))
+//			{
+//				if (tab[i][j] > *max)
+//				{
+//					*max = tab[i][j];
+//				}
+//			}
+//		}
+//	}
+//}
+//
+//void sprawdzWiersze(int tab[][MAX], int m, int n, int* k, int max, int tab_wierszy[]) {
+//	for (int i = 0; i < m; i++)
+//	{
+//		int maxWiersza = INT_MIN;
+//		for (int j = 0; j < n; j++)
+//		{
+//			if (tab[i][j] > maxWiersza)
+//			{
+//				maxWiersza = tab[i][j];
+//			}
+//		}
+//		if (maxWiersza < max)
+//		{
+//			tab_wierszy[*k] = i;
+//			(*k)++;
+//		}
+//	}
+//}
+//
+//int tab[MAX][MAX];
+//int tab_wierszy[MAX];
+//
+//int main() {
+//	int max = 0;
+//	int k = 0;
+//	info();
+//	printf("Podaj ilosc wierszy: ");
+//	int m = wczytajRozmiar();
+//	printf("Podaj ilosc kolumn: ");
+//	int n = wczytajRozmiar();
+//	while (n == m)
+//	{
+//		printf("\nTablica musi byc prostokatna, podaj inna ilosc kolumn:\n");
+//		n = wczytajRozmiar();
+//	}
+//	wczytajTab(tab, m, n);
+//	znajdzMaxa(tab, m, n, &max);
+//	sprawdzWiersze(tab, m, n, &k, max, tab_wierszy);
+//	printf("\nWiersze, ktore spelnily warunek:\n");
+//	wypiszTab1D(tab_wierszy, k);
+//	printf("\nKoniec programu\n");
+//	return 0;
+//}
 
-#define MAX 100
+
+#include <stdio.h>
+#define MAX 30
 
 void info() {
-	printf("Program daje uzytkownikowi stworzyc tablie prostokatna, znajduje najwieksza wartosc w ostatniej kolumnie i wypisuje wiersze, ktorych wszystkie elementy sa mniejsze od tej wartosci.\nAutor: Jakub Drozd\n");
-}
-
-int wczytajRozmiar() {
-	int liczba;
-	while (scanf_s("%d", &liczba)!=1 || liczba < 2 || liczba > 100 || getchar()!='\n')
-	{
-		printf("Bledne dane, podaj rozmiar z przedzialu [2,100]: ");
-		int c;
-		while ((c = getchar()) != '\n' && c != EOF)
-			;
-	}
-	return liczba;
+	printf("Program tworzy tablice 30x30, czesciowo zdefiniowana przez uzytknownika i sprawdza czy zachodzi okreslona wlasnosc.\nAutor: Jakub Drozd\n");
 }
 
 int wczytajLiczbe() {
 	int liczba;
-	while (scanf_s("%d", &liczba) != 1 || getchar() != '\n')
+	while (scanf_s("%d", &liczba)!=1 || getchar()!='\n')
 	{
-		printf("Bledne dane, podaj rozmiar z przedzialu [2,100]: ");
+		printf("Bledne dane, podaj dowolna liczbe calkowita: ");
 		int c;
 		while ((c = getchar()) != '\n' && c != EOF)
 			;
@@ -331,80 +430,64 @@ int wczytajLiczbe() {
 }
 
 void wczytajTab(int tab[][MAX], int m, int n) {
+	int l = 1;
 	for (int i = 0; i < m; i++)
 	{
 		for (int j = 0; j < n; j++)
 		{
-			printf("Podaj wartosc dla [%d][%d] elementu: ", i, j);
-			tab[i][j] = wczytajLiczbe();
-		}
-	}
-}
-
-void wypiszTab1D(int tab[], int k) {
-	for (int i = 0; i < k; i++)
-	{
-		printf("%2d ", tab[i]);
-	}
-}
-
-void znajdzMaxa(int tab[][MAX], int m, int n, int* max) {
-	*max = tab[0][n - 1];
-	for (int i = 0; i < m; i++)
-	{
-		for (int j = 0; j < n; j++)
-		{
-			if (j == (n-1))
+			if (j % 2 == 0)
 			{
-				if (tab[i][j] > *max)
-				{
-					*max = tab[i][j];
-				}
+				tab[i][j] = l;
+				l++;
+			}
+			else
+			{
+				printf("Podaj [%d][%d] element tab: ", i, j);
+				tab[i][j] = wczytajLiczbe();
 			}
 		}
 	}
 }
 
-void sprawdzWiersze(int tab[][MAX], int m, int n, int* k, int max, int tab_wierszy[]) {
+void sprawdzWlasnosc(int tab[][MAX], int m, int n, int tabWarunkow[]) {
+	int k = 0;
 	for (int i = 0; i < m; i++)
 	{
-		int maxWiersza = INT_MIN;
+		int sumaWiersza = 0;
 		for (int j = 0; j < n; j++)
 		{
-			if (tab[i][j] > maxWiersza)
-			{
-				maxWiersza = tab[i][j];
-			}
+			sumaWiersza += tab[i][j];
 		}
-		if (maxWiersza < max)
+		tabWarunkow[k] = sumaWiersza;
+		k++;
+	}
+	int licznik = 0;
+	for (int i = 1; i < m; i++)
+	{
+		printf("\n%d | %d\n", tabWarunkow[i-1], tabWarunkow[i]);
+		if (!(tabWarunkow[i-1] < tabWarunkow[i]))
 		{
-			tab_wierszy[*k] = i;
-			(*k)++;
+			printf("\nWlasnosc nie zachodzi.\n");
+			break;
+		}
+		else
+		{
+			licznik++;
 		}
 	}
+	if (licznik == m - 1)
+	{
+		printf("\nWlasnosc zachodzi.\n");
+	}
 }
-
-int tab[MAX][MAX];
-int tab_wierszy[MAX];
 
 int main() {
-	int max = 0;
-	int k = 0;
 	info();
-	printf("Podaj ilosc wierszy: ");
-	int m = wczytajRozmiar();
-	printf("Podaj ilosc kolumn: ");
-	int n = wczytajRozmiar();
-	while (n == m)
-	{
-		printf("\nTablica musi byc prostokatna, podaj inna ilosc kolumn:\n");
-		n = wczytajRozmiar();
-	}
-	wczytajTab(tab, m, n);
-	znajdzMaxa(tab, m, n, &max);
-	sprawdzWiersze(tab, m, n, &k, max, tab_wierszy);
-	printf("\nWiersze, ktore spelnily warunek:\n");
-	wypiszTab1D(tab_wierszy, k);
-	printf("\nKoniec programu\n");
+	int tab[MAX][MAX];
+	printf("Wypelnij elementy tablicy:\n");
+	wczytajTab(tab, MAX, MAX);
+	int tabWarunkow[MAX];
+	sprawdzWlasnosc(tab, MAX, MAX, tabWarunkow);
+	printf("\n\nKoniec programu\n\n");
 	return 0;
 }
