@@ -410,18 +410,103 @@
 //}
 
 
+//#include <stdio.h>
+//#define MAX 30
+//
+//void info() {
+//	printf("Program tworzy tablice 30x30, czesciowo zdefiniowana przez uzytknownika i sprawdza czy zachodzi okreslona wlasnosc.\nAutor: Jakub Drozd\n");
+//}
+//
+//int wczytajLiczbe() {
+//	int liczba;
+//	while (scanf_s("%d", &liczba)!=1 || getchar()!='\n')
+//	{
+//		printf("Bledne dane, podaj dowolna liczbe calkowita: ");
+//		int c;
+//		while ((c = getchar()) != '\n' && c != EOF)
+//			;
+//	}
+//	return liczba;
+//}
+//
+//void wczytajTab(int tab[][MAX], int m, int n) {
+//	int l = 1;
+//	for (int i = 0; i < m; i++)
+//	{
+//		for (int j = 0; j < n; j++)
+//		{
+//			if (j % 2 == 0)
+//			{
+//				tab[i][j] = l;
+//				l++;
+//			}
+//			else
+//			{
+//				printf("Podaj [%d][%d] element tab: ", i, j);
+//				tab[i][j] = wczytajLiczbe();
+//			}
+//		}
+//	}
+//}
+//
+//void sprawdzWlasnosc(int tab[][MAX], int m, int n, int tabWarunkow[]) {
+//	int k = 0;
+//	for (int i = 0; i < m; i++)
+//	{
+//		int sumaWiersza = 0;
+//		for (int j = 0; j < n; j++)
+//		{
+//			sumaWiersza += tab[i][j];
+//		}
+//		tabWarunkow[k] = sumaWiersza;
+//		k++;
+//	}
+//	int licznik = 0;
+//	for (int i = 1; i < m; i++)
+//	{
+//		printf("\n%d | %d\n", tabWarunkow[i-1], tabWarunkow[i]);
+//		if (!(tabWarunkow[i-1] < tabWarunkow[i]))
+//		{
+//			printf("\nWlasnosc nie zachodzi.\n");
+//			break;
+//		}
+//		else
+//		{
+//			licznik++;
+//		}
+//	}
+//	if (licznik == m - 1)
+//	{
+//		printf("\nWlasnosc zachodzi.\n");
+//	}
+//}
+//
+//int main() {
+//	info();
+//	int tab[MAX][MAX];
+//	printf("Wypelnij elementy tablicy:\n");
+//	wczytajTab(tab, MAX, MAX);
+//	int tabWarunkow[MAX];
+//	sprawdzWlasnosc(tab, MAX, MAX, tabWarunkow);
+//	printf("\n\nKoniec programu\n\n");
+//	return 0;
+//}
+
 #include <stdio.h>
-#define MAX 30
+#include <stdlib.h>
+#include <time.h>
+
+#define MAX 40
 
 void info() {
-	printf("Program tworzy tablice 30x30, czesciowo zdefiniowana przez uzytknownika i sprawdza czy zachodzi okreslona wlasnosc.\nAutor: Jakub Drozd\n");
+	printf("Program wypisuje numery kolumn tablicy zdefiniowanej przez uzytkownika, w ktorych znajduje sie element maksymalny.\nAutor: Jakub Drozd\n");
 }
 
 int wczytajLiczbe() {
 	int liczba;
-	while (scanf_s("%d", &liczba)!=1 || getchar()!='\n')
+	while (scanf_s("%d", &liczba) != 1 || liczba < 1 || liczba > 20 || getchar() != '\n')
 	{
-		printf("Bledne dane, podaj dowolna liczbe calkowita: ");
+		printf("Bledne dane, podaj liczbe calkowita z przedzialu [1, 20]: ");
 		int c;
 		while ((c = getchar()) != '\n' && c != EOF)
 			;
@@ -430,64 +515,65 @@ int wczytajLiczbe() {
 }
 
 void wczytajTab(int tab[][MAX], int m, int n) {
-	int l = 1;
 	for (int i = 0; i < m; i++)
 	{
 		for (int j = 0; j < n; j++)
 		{
-			if (j % 2 == 0)
-			{
-				tab[i][j] = l;
-				l++;
-			}
-			else
-			{
-				printf("Podaj [%d][%d] element tab: ", i, j);
-				tab[i][j] = wczytajLiczbe();
-			}
+			tab[i][j] = rand() % (10 + 1 + 10) - 10;
 		}
 	}
 }
 
-void sprawdzWlasnosc(int tab[][MAX], int m, int n, int tabWarunkow[]) {
-	int k = 0;
+void wypiszKolumny(int const tab[], int k) {
+	for (int i = 0; i < k; i++)
+	{
+		printf("%d ", tab[i]);
+	}
+}
+
+int wyznaczMax(int tab[][MAX], int m, int n) {
+	int max = -20;
 	for (int i = 0; i < m; i++)
 	{
-		int sumaWiersza = 0;
 		for (int j = 0; j < n; j++)
 		{
-			sumaWiersza += tab[i][j];
-		}
-		tabWarunkow[k] = sumaWiersza;
-		k++;
-	}
-	int licznik = 0;
-	for (int i = 1; i < m; i++)
-	{
-		printf("\n%d | %d\n", tabWarunkow[i-1], tabWarunkow[i]);
-		if (!(tabWarunkow[i-1] < tabWarunkow[i]))
-		{
-			printf("\nWlasnosc nie zachodzi.\n");
-			break;
-		}
-		else
-		{
-			licznik++;
+			if ((j > i) && (tab[i][j] > max))
+			{
+				max = tab[i][j];
+			}
 		}
 	}
-	if (licznik == m - 1)
+	return max;
+}
+
+void wyznaczKolumny(int tab[][MAX], int m, int n, int max, int* k, int kolumny[]) {
+	for (int j = 0; j < n; j++)
 	{
-		printf("\nWlasnosc zachodzi.\n");
+		for (int i = 0; i < m; i++)
+		{
+			if (tab[i][j] == max)
+			{
+				kolumny[*k] = j;
+				(*k)++;
+				break;
+			}
+		}
 	}
 }
 
 int main() {
-	info();
+	srand((unsigned)time(NULL));
+	printf("Podaj liczbe kolumn: ");
+	int n = wczytajLiczbe();
+	int m = 2 * n;
 	int tab[MAX][MAX];
-	printf("Wypelnij elementy tablicy:\n");
-	wczytajTab(tab, MAX, MAX);
-	int tabWarunkow[MAX];
-	sprawdzWlasnosc(tab, MAX, MAX, tabWarunkow);
-	printf("\n\nKoniec programu\n\n");
+	wczytajTab(tab, m, n);
+	int max = wyznaczMax(tab, m, n);
+	int k = 0;
+	int kolumny[MAX];
+	wyznaczKolumny(tab, m, n, max, &k, kolumny);
+	wypiszKolumny(kolumny, k);
+	printf("\nKoniec programu\n");
 	return 0;
+
 }
