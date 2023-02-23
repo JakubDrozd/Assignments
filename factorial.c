@@ -492,88 +492,124 @@
 //	return 0;
 //}
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
+//#include <stdio.h>
+//#include <stdlib.h>
+//#include <time.h>
+//
+//#define MAX 40
+//
+//void info() {
+//	printf("Program wypisuje numery kolumn tablicy zdefiniowanej przez uzytkownika, w ktorych znajduje sie element maksymalny.\nAutor: Jakub Drozd\n");
+//}
+//
+//int wczytajLiczbe() {
+//	int liczba;
+//	while (scanf_s("%d", &liczba) != 1 || liczba < 1 || liczba > 20 || getchar() != '\n')
+//	{
+//		printf("Bledne dane, podaj liczbe calkowita z przedzialu [1, 20]: ");
+//		int c;
+//		while ((c = getchar()) != '\n' && c != EOF)
+//			;
+//	}
+//	return liczba;
+//}
+//
+//void wczytajTab(int tab[][MAX], int m, int n) {
+//	for (int i = 0; i < m; i++)
+//	{
+//		for (int j = 0; j < n; j++)
+//		{
+//			tab[i][j] = rand() % (10 + 1 + 10) - 10;
+//		}
+//	}
+//}
+//
+//void wypiszKolumny(int const tab[], int k) {
+//	for (int i = 0; i < k; i++)
+//	{
+//		printf("%d ", tab[i]);
+//	}
+//}
+//
+//int wyznaczMax(int tab[][MAX], int m, int n) {
+//	int max = -20;
+//	for (int i = 0; i < m; i++)
+//	{
+//		for (int j = 0; j < n; j++)
+//		{
+//			if ((j > i) && (tab[i][j] > max))
+//			{
+//				max = tab[i][j];
+//			}
+//		}
+//	}
+//	return max;
+//}
+//
+//void wyznaczKolumny(int tab[][MAX], int m, int n, int max, int* k, int kolumny[]) {
+//	for (int j = 0; j < n; j++)
+//	{
+//		for (int i = 0; i < m; i++)
+//		{
+//			if (tab[i][j] == max)
+//			{
+//				kolumny[*k] = j;
+//				(*k)++;
+//				break;
+//			}
+//		}
+//	}
+//}
+//
+//int main() {
+//	srand((unsigned)time(NULL));
+//	printf("Podaj liczbe kolumn: ");
+//	int n = wczytajLiczbe();
+//	int m = 2 * n;
+//	int tab[MAX][MAX];
+//	wczytajTab(tab, m, n);
+//	int max = wyznaczMax(tab, m, n);
+//	int k = 0;
+//	int kolumny[MAX];
+//	wyznaczKolumny(tab, m, n, max, &k, kolumny);
+//	wypiszKolumny(kolumny, k);
+//	printf("\nKoniec programu\n");
+//	return 0;
+//
+//}
 
-#define MAX 40
 
-void info() {
-	printf("Program wypisuje numery kolumn tablicy zdefiniowanej przez uzytkownika, w ktorych znajduje sie element maksymalny.\nAutor: Jakub Drozd\n");
-}
-
-int wczytajLiczbe() {
-	int liczba;
-	while (scanf_s("%d", &liczba) != 1 || liczba < 1 || liczba > 20 || getchar() != '\n')
-	{
-		printf("Bledne dane, podaj liczbe calkowita z przedzialu [1, 20]: ");
-		int c;
-		while ((c = getchar()) != '\n' && c != EOF)
-			;
-	}
-	return liczba;
-}
-
-void wczytajTab(int tab[][MAX], int m, int n) {
-	for (int i = 0; i < m; i++)
-	{
-		for (int j = 0; j < n; j++)
-		{
-			tab[i][j] = rand() % (10 + 1 + 10) - 10;
-		}
-	}
-}
-
-void wypiszKolumny(int const tab[], int k) {
-	for (int i = 0; i < k; i++)
-	{
-		printf("%d ", tab[i]);
-	}
-}
-
-int wyznaczMax(int tab[][MAX], int m, int n) {
-	int max = -20;
-	for (int i = 0; i < m; i++)
-	{
-		for (int j = 0; j < n; j++)
-		{
-			if ((j > i) && (tab[i][j] > max))
-			{
-				max = tab[i][j];
-			}
-		}
-	}
-	return max;
-}
-
-void wyznaczKolumny(int tab[][MAX], int m, int n, int max, int* k, int kolumny[]) {
-	for (int j = 0; j < n; j++)
-	{
-		for (int i = 0; i < m; i++)
-		{
-			if (tab[i][j] == max)
-			{
-				kolumny[*k] = j;
-				(*k)++;
-				break;
-			}
-		}
-	}
-}
-
-int main() {
-	srand((unsigned)time(NULL));
-	printf("Podaj liczbe kolumn: ");
-	int n = wczytajLiczbe();
-	int m = 2 * n;
-	int tab[MAX][MAX];
-	wczytajTab(tab, m, n);
-	int max = wyznaczMax(tab, m, n);
-	int k = 0;
-	int kolumny[MAX];
-	wyznaczKolumny(tab, m, n, max, &k, kolumny);
-	wypiszKolumny(kolumny, k);
-	printf("\nKoniec programu\n");
-	return 0;
-
-}
+//#include <stdio.h>
+//#include <stdlib.h>
+//
+//void zwolnij_int_2D(int** tab, int m)
+//{
+//	for (int i = 0; i < m; i++) {
+//		free(tab[i]);
+//	}
+//	free(tab);
+//}
+//
+//int** alokuj_int_2D(int m, int n)
+//{
+//	int** tab; // adres poczatku tablicy
+//	tab = (int**)malloc(m * sizeof(int*));
+//	if (tab == NULL) {
+//		return NULL;
+//	}
+//	for (int i = 0; i < m; i++) {
+//		tab[i] = (int*)malloc(n * sizeof(int));
+//		if (tab[i] == NULL) {
+//			zwolnij_int_2D(tab, i);
+//			return NULL;
+//		}
+//	}
+//	return tab;
+//}
+//
+//int main() {
+//	int** tab = alokuj_int_2D(1, 2);
+//	tab[0][0] = 1;
+//	printf("%d", tab[0][0]);
+//	free(tab);
+//}
