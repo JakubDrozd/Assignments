@@ -613,3 +613,86 @@
 //	printf("%d", tab[0][0]);
 //	free(tab);
 //}
+
+
+#include <stdio.h>
+#define MAX 20
+
+void info() {
+	printf("Program tworzy tablice czesciowo zdefiniowana przez uzytkownika i wykonuje na niej okreslone operacje.\nAutor: Jakub Drozd\n");
+}
+
+int wczytajLiczbe() {
+	int liczba;
+	while (scanf_s("%d", &liczba)!=1 || getchar()!='\n')
+	{
+		printf("Bledne dane\n");
+		int c;
+		while ((c = getchar()) != '\n' && c != EOF)
+			;
+	}
+	return liczba;
+}
+
+void wczytajTab(int tab[][MAX], int m) {
+	for (int i = 0; i < m; i++)
+	{
+		for (int j = 0; j < m; j++)
+		{
+			if (i == j)
+			{
+				tab[i][j] = 1;
+			}
+			if (j > i)
+			{
+				tab[i][j] = tab[i][j - 1] + 1;
+			}
+			if (i > j)
+			{
+				printf("Podaj [%d][%d] element: ", i, j);
+				tab[i][j] = wczytajLiczbe();
+			}
+		}
+	}
+}
+
+void dodajKolumny(int tab[][MAX], int m) {
+	for (int i = 0; i < m; i++)
+	{
+		int pierwsza = tab[i][0];
+		for (int j = 1; j < m; j++)
+		{
+			tab[i][j] += pierwsza;
+		}
+	}
+}
+
+void wypisz2D(int tab[][MAX], int m) {
+	for (int i = 0; i < m; i++)
+	{
+		for (int j = 0; j < m; j++)
+		{
+			printf("%4d ", tab[i][j]);
+		}
+		printf("\n");
+	}
+}
+
+int main() {
+	info();
+	int tab[MAX][MAX];
+	printf("Podaj ilosc wierszy: ");
+	int m = wczytajLiczbe();
+	while (m < 2 || m > 20)
+	{
+		printf("Liczba wierszy musi byc z zakresu [2, 20]: ");
+		m = wczytajLiczbe();
+	}
+	wczytajTab(tab, m);
+	wypisz2D(tab, m);
+	dodajKolumny(tab, m);
+	printf("\n");
+	wypisz2D(tab, m);
+	printf("\n\nKoniec programu\n\n");
+	return 0;
+}
