@@ -615,84 +615,211 @@
 //}
 
 
+//#include <stdio.h>
+//#define MAX 20
+//
+//void info() {
+//	printf("Program tworzy tablice czesciowo zdefiniowana przez uzytkownika i wykonuje na niej okreslone operacje.\nAutor: Jakub Drozd\n");
+//}
+//
+//int wczytajLiczbe() {
+//	int liczba;
+//	while (scanf_s("%d", &liczba)!=1 || getchar()!='\n')
+//	{
+//		printf("Bledne dane\n");
+//		int c;
+//		while ((c = getchar()) != '\n' && c != EOF)
+//			;
+//	}
+//	return liczba;
+//}
+//
+//void wczytajTab(int tab[][MAX], int m) {
+//	for (int i = 0; i < m; i++)
+//	{
+//		for (int j = 0; j < m; j++)
+//		{
+//			if (i == j)
+//			{
+//				tab[i][j] = 1;
+//			}
+//			if (j > i)
+//			{
+//				tab[i][j] = tab[i][j - 1] + 1;
+//			}
+//			if (i > j)
+//			{
+//				printf("Podaj [%d][%d] element: ", i, j);
+//				tab[i][j] = wczytajLiczbe();
+//			}
+//		}
+//	}
+//}
+//
+//void dodajKolumny(int tab[][MAX], int m) {
+//	for (int i = 0; i < m; i++)
+//	{
+//		int pierwsza = tab[i][0];
+//		for (int j = 1; j < m; j++)
+//		{
+//			tab[i][j] += pierwsza;
+//		}
+//	}
+//}
+//
+//void wypisz2D(int tab[][MAX], int m) {
+//	for (int i = 0; i < m; i++)
+//	{
+//		for (int j = 0; j < m; j++)
+//		{
+//			printf("%4d ", tab[i][j]);
+//		}
+//		printf("\n");
+//	}
+//}
+//
+//int main() {
+//	info();
+//	int tab[MAX][MAX];
+//	printf("Podaj ilosc wierszy: ");
+//	int m = wczytajLiczbe();
+//	while (m < 2 || m > 20)
+//	{
+//		printf("Liczba wierszy musi byc z zakresu [2, 20]: ");
+//		m = wczytajLiczbe();
+//	}
+//	wczytajTab(tab, m);
+//	wypisz2D(tab, m);
+//	dodajKolumny(tab, m);
+//	printf("\n");
+//	wypisz2D(tab, m);
+//	printf("\n\nKoniec programu\n\n");
+//	return 0;
+//}
+
 #include <stdio.h>
-#define MAX 20
+#include <stdlib.h>
+#include <time.h>
+
+#define MAX 90
 
 void info() {
-	printf("Program tworzy tablice czesciowo zdefiniowana przez uzytkownika i wykonuje na niej okreslone operacje.\nAutor: Jakub Drozd\n");
+	printf("Program sporzadza histogram par losowych liczb, oblicza maksymalna wartosc w histogramie i zeruje okreslone pary.\nAutor: Jakub Drozd\n");
 }
 
-int wczytajLiczbe() {
-	int liczba;
-	while (scanf_s("%d", &liczba)!=1 || getchar()!='\n')
-	{
-		printf("Bledne dane\n");
-		int c;
-		while ((c = getchar()) != '\n' && c != EOF)
-			;
-	}
-	return liczba;
+void red() {
+	printf("\033[1;31m");
 }
 
-void wczytajTab(int tab[][MAX], int m) {
+void reset() {
+	printf("\033[0m");
+}
+
+void wczytajPary(int tabX[], int tabY[], int m) {
 	for (int i = 0; i < m; i++)
 	{
-		for (int j = 0; j < m; j++)
+		tabX[i] = rand() % (5 + 1 - 1) + 1;
+	}
+	for (int i = 0; i < m; i++)
+	{
+		tabY[i] = rand() % (7 + 1 - 2) + 2;
+	}
+}
+
+void wypiszPary(int tabX[], int tabY[], int m) {
+	for (int i = 0; i < m; i++)
+	{
+		if ((i + 1 ) % 5 == 0)
 		{
-			if (i == j)
-			{
-				tab[i][j] = 1;
-			}
-			if (j > i)
-			{
-				tab[i][j] = tab[i][j - 1] + 1;
-			}
-			if (i > j)
-			{
-				printf("Podaj [%d][%d] element: ", i, j);
-				tab[i][j] = wczytajLiczbe();
-			}
+				printf("(%d, %d)\n", tabX[i], tabY[i]);
+		}
+		else
+		{
+			printf("(%d, %d) ", tabX[i], tabY[i]);
 		}
 	}
 }
 
-void dodajKolumny(int tab[][MAX], int m) {
+void obliczHistogram(int tabX[], int tabY[], int histogram[][6], int m) {
 	for (int i = 0; i < m; i++)
 	{
-		int pierwsza = tab[i][0];
-		for (int j = 1; j < m; j++)
-		{
-			tab[i][j] += pierwsza;
-		}
+		(histogram[tabX[i] - 1][tabY[i] - 2])++;
 	}
 }
-
-void wypisz2D(int tab[][MAX], int m) {
+void wypiszHistogram(int histogram[][6], int m, int n) {
+	printf("%4s", " ");
+	for (int i = 2; i < 8; i++)
+	{
+		printf("%3d", i);
+	}
+	printf("\n");
+	for (int i = 0; i < 7 ; i++)
+	{
+		printf("---");
+	}
+	printf("\n");
 	for (int i = 0; i < m; i++)
 	{
-		for (int j = 0; j < m; j++)
+		printf("%2d |", i + 1);
+		for (int j = 0; j < n; j++)
 		{
-			printf("%4d ", tab[i][j]);
+			printf("%3d", histogram[i][j]);
 		}
 		printf("\n");
 	}
 }
 
+void znajdzMax(int histogram[][6], int m, int n, int para[]) {
+	int max = histogram[0][0];
+	for (int i = 0; i < m; i++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			if (histogram[i][j] > max)
+			{
+				max = histogram[i][j];
+				para[0] = i + 1;
+				para[1] = j + 2;
+			}
+		}
+	}
+	printf("Wartosc max wynosi %d, para (%d, %d).", max, para[0], para[1]);
+}
+
+
+void wyzeruj(int tabX[], int tabY[], int para[], int m) {
+	int indeksy[90];
+	int k = 0;
+	for (int i = 0; i < m; i++)
+	{
+		if (tabX[i] == para[0] && tabY[i] == para[1])
+		{
+			tabX[i] = 0;
+			tabY[i] = 0;
+			indeksy[k] = i;
+			k++;
+		}
+	}
+	printf("\nIndeksy w w tablicach z danymi,\ndla ktorych wartosci wyzerowano:\n\n");
+	for (int i = 0; i < k; i++)
+	{
+		printf("%d ", indeksy[i]);
+	}
+}
+
 int main() {
 	info();
-	int tab[MAX][MAX];
-	printf("Podaj ilosc wierszy: ");
-	int m = wczytajLiczbe();
-	while (m < 2 || m > 20)
-	{
-		printf("Liczba wierszy musi byc z zakresu [2, 20]: ");
-		m = wczytajLiczbe();
-	}
-	wczytajTab(tab, m);
-	wypisz2D(tab, m);
-	dodajKolumny(tab, m);
+	int tabX[MAX];
+	int tabY[MAX];
+	srand((unsigned)time(NULL));
+	wczytajPary(tabX, tabY, MAX);
+	wypiszPary(tabX, tabY, MAX);
 	printf("\n");
-	wypisz2D(tab, m);
-	printf("\n\nKoniec programu\n\n");
+	int histogram[5][6] = { 0 };
+	obliczHistogram(tabX, tabY, histogram, MAX);
+	wypiszHistogram(histogram, 5, 6);
+	int para[2] = { 0 };
+	znajdzMax(histogram, 5, 6, para);
+	wyzeruj(tabX, tabY, para, MAX);
 	return 0;
 }
