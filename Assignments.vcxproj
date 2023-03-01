@@ -104,6 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <DisableLanguageExtensions>false</DisableLanguageExtensions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -134,6 +135,18 @@
     <ClCompile Include="lab04_drozd.c" />
     <ClCompile Include="lab05_drozd.c" />
     <ClCompile Include="lab06_drozd.c" />
+    <ClCompile Include="lab07_drozd.c" />
+    <ClCompile Include="lab08_drozd.c" />
+    <ClCompile Include="lab09_drozd.c" />
+    <ClCompile Include="lab10_drozd.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Default</CompileAs>
+      <DisableLanguageExtensions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DisableLanguageExtensions>
+    </ClCompile>
+    <ClCompile Include="lab11_drozd.c" />
+    <ClCompile Include="lab12_drozd.c" />
+    <ClCompile Include="lab13_drozd.c" />
+    <ClCompile Include="lab15_drozd.c" />
+    <ClCompile Include="wejsciowka02_jakub_drozd.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

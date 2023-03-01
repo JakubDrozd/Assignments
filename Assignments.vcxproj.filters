@@ -36,5 +36,32 @@
     <ClCompile Include="lab06_drozd.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="lab07_drozd.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lab08_drozd.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lab09_drozd.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lab10_drozd.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lab11_drozd.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lab12_drozd.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lab13_drozd.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lab15_drozd.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="wejsciowka02_jakub_drozd.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
