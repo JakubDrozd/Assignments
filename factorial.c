@@ -824,118 +824,119 @@
 //	return 0;
 //}
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
+//#include <stdio.h>
+//#include <stdlib.h>
+//#include <time.h>
+//
+//#define MAX 15
+//
+//void uzupelnijObraz(int tab[][MAX], int m) {
+//	for (int i = 0; i < m; i++)
+//	{
+//		for (int j = 0; j < m; j++)
+//		{
+//			tab[i][j] = rand() % (255 + 1 - 0) + 0;
+//		}
+//	}
+//}
+//
+//void uzupelnijMaske(int obraz[][MAX], int maska[][15], int m) {
+//	for (int i = 0; i < m; i++)
+//	{
+//		for (int j = 0; j < m; j++)
+//		{
+//			if (obraz[i][j] > 200)
+//			{
+//				maska[i][j] = 1;
+//			}
+//		}
+//	}
+//}
+//
+//void uzupelnijKordy(int maska[][MAX], int m, int tabI[], int tabJ[], int* k) {
+//	int ktora = 0;
+//	for (int i = 0; i < m; i++)
+//	{
+//		for (int j = 0; j < m; j++)
+//		{
+//			if (maska[i][j] == 1 && ktora % 3 == 0)
+//			{
+//				tabI[*k] = i;
+//				tabJ[*k] = j;
+//				ktora++;
+//				(*k)++;
+//			}
+//			else if (maska[i][j] == 1 && ktora % 3 !=0)
+//			{
+//				ktora++;
+//			}
+//		}
+//	}
+//}
+//
+//void wypiszKordy(int tabI[], int tabJ[], int k) {
+//	for (int i = 0; i < k; i++)
+//	{
+//		printf("(%d, %d)\n", tabI[i], tabJ[i]);
+//	}
+//}
+//void info(void) {
+//	printf("Program. . .Autor: Jakub Drozd\n");
+//}
+//
+//int wczytaj_int(int lewy, int prawy) {
+//	int liczba;
+//	while (scanf_s("%d", &liczba)!=1 || liczba < lewy || liczba > prawy || getchar()!='\n')
+//	{
+//		printf("Bledne dane, podaj liczbe z zakresu [%d,%d]: ", lewy, prawy);
+//		int c;
+//		while ((c = getchar()) != '\n' && c != EOF)
+//			;
+//	}
+//	return liczba;
+//}
+//
+//void wypisz_tab_2W(int tab[][MAX], int m) {
+//	printf("%3s", "");
+//	for (int j = 0; j < m; j++)
+//	{
+//		printf("%4d", j);
+//	}
+//	printf("\n");
+//	for (int j = 0; j < m; j++)
+//	{
+//		printf("-----");
+//	}
+//	printf("\n");
+//	for (int i = 0; i < m; i++)
+//	{
+//		printf("%2d|", i);
+//		for (int j = 0; j < m; j++)
+//		{
+//			printf("%4d", tab[i][j]);
+//		}
+//		printf("\n");
+//	}
+//}
+//
+//int main() {
+//	srand((unsigned)time(NULL));
+//	info();
+//	int tabI[MAX]; int tabJ[MAX];
+//	printf("Podaj rozmiar obrazu (nie wiekszy niz 15): ");
+//	int m = wczytaj_int(2, 15);
+//	int obraz[MAX][MAX];
+//	int maska[MAX][MAX] = { 0 };
+//	uzupelnijObraz(obraz, m);
+//	uzupelnijMaske(obraz, maska, m);
+//	printf("OBRAZ:\n");
+//	wypisz_tab_2W(obraz, m);
+//	printf("MASKA:\n");
+//	wypisz_tab_2W(maska, m);
+//	printf("Wybrano jedynki o ponizszych wspolrzednych:\n\n");
+//	int k = 0;
+//	uzupelnijKordy(maska, m, tabI, tabJ, &k);
+//	wypiszKordy(tabI, tabJ, k);
+//	return 0;
+//}
 
-#define MAX 15
-
-void uzupelnijObraz(int tab[][MAX], int m) {
-	for (int i = 0; i < m; i++)
-	{
-		for (int j = 0; j < m; j++)
-		{
-			tab[i][j] = rand() % (255 + 1 - 0) + 0;
-		}
-	}
-}
-
-void uzupelnijMaske(int obraz[][MAX], int maska[][15], int m) {
-	for (int i = 0; i < m; i++)
-	{
-		for (int j = 0; j < m; j++)
-		{
-			if (obraz[i][j] > 200)
-			{
-				maska[i][j] = 1;
-			}
-		}
-	}
-}
-
-void uzupelnijKordy(int maska[][MAX], int m, int tabI[], int tabJ[], int* k) {
-	int ktora = 0;
-	for (int i = 0; i < m; i++)
-	{
-		for (int j = 0; j < m; j++)
-		{
-			if (maska[i][j] == 1 && ktora % 3 == 0)
-			{
-				tabI[*k] = i;
-				tabJ[*k] = j;
-				ktora++;
-				(*k)++;
-			}
-			else if (maska[i][j] == 1 && ktora % 3 !=0)
-			{
-				ktora++;
-			}
-		}
-	}
-}
-
-void wypiszKordy(int tabI[], int tabJ[], int k) {
-	for (int i = 0; i < k; i++)
-	{
-		printf("(%d, %d)\n", tabI[i], tabJ[i]);
-	}
-}
-void info(void) {
-	printf("Program. . .Autor: Jakub Drozd\n");
-}
-
-int wczytaj_int(int lewy, int prawy) {
-	int liczba;
-	while (scanf_s("%d", &liczba)!=1 || liczba < lewy || liczba > prawy || getchar()!='\n')
-	{
-		printf("Bledne dane, podaj liczbe z zakresu [%d,%d]: ", lewy, prawy);
-		int c;
-		while ((c = getchar()) != '\n' && c != EOF)
-			;
-	}
-	return liczba;
-}
-
-void wypisz_tab_2W(int tab[][MAX], int m) {
-	printf("%3s", "");
-	for (int j = 0; j < m; j++)
-	{
-		printf("%4d", j);
-	}
-	printf("\n");
-	for (int j = 0; j < m; j++)
-	{
-		printf("-----");
-	}
-	printf("\n");
-	for (int i = 0; i < m; i++)
-	{
-		printf("%2d|", i);
-		for (int j = 0; j < m; j++)
-		{
-			printf("%4d", tab[i][j]);
-		}
-		printf("\n");
-	}
-}
-
-int main() {
-	srand((unsigned)time(NULL));
-	info();
-	int tabI[MAX]; int tabJ[MAX];
-	printf("Podaj rozmiar obrazu (nie wiekszy niz 15): ");
-	int m = wczytaj_int(2, 15);
-	int obraz[MAX][MAX];
-	int maska[MAX][MAX] = { 0 };
-	uzupelnijObraz(obraz, m);
-	uzupelnijMaske(obraz, maska, m);
-	printf("OBRAZ:\n");
-	wypisz_tab_2W(obraz, m);
-	printf("MASKA:\n");
-	wypisz_tab_2W(maska, m);
-	printf("Wybrano jedynki o ponizszych wspolrzednych:\n\n");
-	int k = 0;
-	uzupelnijKordy(maska, m, tabI, tabJ, &k);
-	wypiszKordy(tabI, tabJ, k);
-	return 0;
-}
