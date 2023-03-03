@@ -16,14 +16,14 @@ int funkcja(struct nowy_typ_t tab[], int m) {
 	int liczbaSkrocen = 0;
 	for (int i = 0; i < m; i++)
 	{
-		int dl_napisu = strlen(tab[i].napis);
+		int dl_napisu = (int)strlen(tab[i].napis);
 		int liczba = tab[i].liczba;
 		if (liczba > 0 &&  liczba < dl_napisu)
 		{
 			liczbaSkrocen++;
 			for (int j = liczba; j < dl_napisu; j++)
 			{
-				tab[i].napis[j] = NULL;
+				tab[i].napis[j] = '\0';
 			}
 		}
 	}
@@ -64,7 +64,7 @@ void wczytaj_dane_tab_1W(struct nowy_typ_t tab[], int m) {
 }
 
 int main() {
-	struct nowy_typ_t tab[MAX_ROZMIAR] = {NULL};
+	struct nowy_typ_t tab[MAX_ROZMIAR];
 	wczytaj_dane_tab_1W(tab, MAX_ROZMIAR);
 	int liczbaSkrocen = funkcja(tab, MAX_ROZMIAR);
 	wypisz_tab_1W(tab, MAX_ROZMIAR);
