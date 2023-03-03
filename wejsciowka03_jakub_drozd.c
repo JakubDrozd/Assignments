@@ -31,9 +31,10 @@ int funkcja(struct nowy_typ_t tab[], int m) {
 }
 
 void wypisz_tab_1W(struct nowy_typ_t tab[], int m) {
+	printf("\n");
 	for (int i = 0; i < m; i++)
 	{
-		printf("%s", tab[i].napis);
+		printf("[%d] %s", i+1, tab[i].napis);
 		printf("%2d\n", tab[i].liczba);
 	}
 }
@@ -69,5 +70,6 @@ int main() {
 	int liczbaSkrocen = funkcja(tab, MAX_ROZMIAR);
 	wypisz_tab_1W(tab, MAX_ROZMIAR);
 	printf("\n\nLiczba skrocen: %d\n\n", liczbaSkrocen);
+	printf("\n\nKoniec programu\n\n");
 	return 0;
 }
