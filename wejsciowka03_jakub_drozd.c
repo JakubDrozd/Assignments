@@ -2,12 +2,12 @@
 #include <stdio.h>
 #include <string.h>
 
-#define MAX_ZNAKOW 25								//maks. dl. napisu
+#define MAX_ZNAKOW 25								//maks. dl. string'a
 #define MAX_ROZMIAR 5								//maks. rozm. tablicy
 
 struct nowy_typ_t
 {
-	char napis[25];
+	char napis[MAX_ZNAKOW];
 	int liczba;
 };
 
@@ -67,7 +67,7 @@ int main() {
 	struct nowy_typ_t tab[MAX_ROZMIAR] = {NULL};
 	wczytaj_dane_tab_1W(tab, MAX_ROZMIAR);
 	int liczbaSkrocen = funkcja(tab, MAX_ROZMIAR);
-	wypisz_tab_1W(tab, MAX_ROZMIAR, MAX_ZNAKOW);
+	wypisz_tab_1W(tab, MAX_ROZMIAR);
 	printf("\n\nLiczba skrocen: %d\n\n", liczbaSkrocen);
 	return 0;
 }
