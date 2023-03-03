@@ -147,6 +147,7 @@
     <ClCompile Include="lab13_drozd.c" />
     <ClCompile Include="lab15_drozd.c" />
     <ClCompile Include="wejsciowka02_jakub_drozd.c" />
+    <ClCompile Include="wejsciowka03_jakub_drozd.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

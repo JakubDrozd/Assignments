@@ -63,5 +63,8 @@
     <ClCompile Include="wejsciowka02_jakub_drozd.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="wejsciowka03_jakub_drozd.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
