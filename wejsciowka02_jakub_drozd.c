@@ -96,3 +96,33 @@
 //	printf("\n\nKoniec programu.\n\n");
 //	return 0;
 //}
+//
+////#include <stdio.h>
+////#include <string.h>
+////
+////int main() {
+////	struct student_t
+////	{
+////		char imie[25];
+////		int wiek;
+////		double srednia;
+////	};
+////	struct student_t uczniowie[17];
+////	struct student_t j_drozd;
+////	strcpy_s(j_drozd.imie, strlen("Jakub Drozd") + 1, "Jakub Drozd");
+////	j_drozd.wiek = 20;
+////	j_drozd.srednia = 4.1;
+////	struct student_t m_jastrzebski;
+////	strcpy_s(m_jastrzebski.imie, strlen("Michal Jastrzebski") + 1, "Michal Jastrzebski");
+////	m_jastrzebski.wiek = 21;
+////	m_jastrzebski.srednia = 0;
+////	uczniowie[0] = j_drozd;
+////	uczniowie[1] = m_jastrzebski;
+////	for (int i = 0; i < 2; i++)
+////	{
+////		printf("Imie: %15s\n", uczniowie[i].imie);
+////		printf("Wiek: %9d\n", uczniowie[i].wiek);
+////		printf("Srednia: %8.2lf\n", uczniowie[i].srednia);
+////		printf("\n\n");
+////	}
+////}
