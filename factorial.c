@@ -940,3 +940,107 @@
 //	return 0;
 //}
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <string.h>
+#include <limits.h>
+#include <time.h>
+
+#define MAX 5
+
+struct dane {
+	char czyBudowa;
+	int nrFigury;
+	double poleFigury;
+};
+
+double znajdz_min_1W(double tab[], int m) {
+	int min = tab[0];
+	for (int i = 0; i < m; i++)
+	{
+		if (tab[i] > 0 && tab[i] < min)
+		{
+			min = tab[i];
+		}
+	}
+	return min;
+}
+
+int znajdz_index_1W(double tab[], int m, double wartosc) {
+	int indeks = -1;
+	for (int i = 0; i < m; i++)
+	{
+		if (tab[i] == wartosc)
+		{
+			indeks = i;
+		}
+	}
+	return indeks;
+}
+
+void wypisz_tab_1W(int tab[][3], int m, int n) {
+	for (int i = 0; i < m; i++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			printf("%4d", tab[i][j]);
+		}
+		printf("\n");
+	}
+}
+
+void wczytaj_tab_1W(int tab[][3], int m, int n) {
+	for (int i = 0; i < m; i++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			tab[i][j] = rand() % (10 + 1 - 1) + 1;
+		}
+	}
+}
+
+struct dane sprawdzanie(int tab[][3], int m, int n) {
+	struct dane dane = {'n', -1, -1};
+	double tabZPolami[5];
+	int k = 0;
+	for (int i = 0; i < m; i++)
+	{
+		double pole;
+		double a = (double)tab[i][0];
+		double b = (double)tab[i][1];
+		double c = (double)tab[i][2];
+		if (a > 0 && b > 0 && c > 0)
+		{
+			if (a + b > c || b + c > a || c + a > b)
+			{
+				if (abs((pow(a, 2) + pow(b, 2)) - pow(c, 2)) < 0.00001)
+				{
+					pole = (a * b) / 2;
+					dane.czyBudowa = 't';
+					tabZPolami[k] = pole;
+					k++;
+				}
+			}
+		}
+	}
+	double min = znajdz_min_1W(tabZPolami, MAX);
+	double index = znajdz_index_1W(tabZPolami, MAX, min);
+	dane.nrFigury = index;
+	dane.poleFigury = min;
+	return dane;
+}
+
+
+
+int main() {
+	srand((unsigned)time(NULL));
+	int tab[MAX][3];
+	wczytaj_tab_1W(tab, MAX, 3);
+	wypisz_tab_1W(tab, MAX, 3);
+	struct dane dane = sprawdzanie(tab, MAX, 3);
+	printf("\nCzy mozna zbudowac? %c\n", dane.czyBudowa);
+	printf("Indeks figury o najmniejszym polu: %d\n", dane.nrFigury);
+	printf("Najmniejsze pole to: %.2lf", dane.poleFigury);
+	return 0;
+}
