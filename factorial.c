@@ -940,107 +940,80 @@
 //	return 0;
 //}
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
-#include <string.h>
 #include <limits.h>
-#include <time.h>
-
+#include <math.h>
+#include <stdio.h>
 #define MAX 5
 
-struct dane {
-	char czyBudowa;
-	int nrFigury;
-	double poleFigury;
-};
+typedef struct {
+    char czyBudowa;
+    double poleFigury;
+    int nrFigury;
+} Dane;
 
-double znajdz_min_1W(double tab[], int m) {
-	int min = tab[0];
-	for (int i = 0; i < m; i++)
-	{
-		if (tab[i] > 0 && tab[i] < min)
-		{
-			min = tab[i];
-		}
-	}
-	return min;
+void wypisz_tab_1W_double(double tab[], int m) {
+    for (int i = 0; i < m; i++) {
+        printf("[%d] %.2lf\n", i, tab[i]);
+    }
 }
 
-int znajdz_index_1W(double tab[], int m, double wartosc) {
-	int indeks = -1;
-	for (int i = 0; i < m; i++)
-	{
-		if (tab[i] == wartosc)
-		{
-			indeks = i;
-		}
-	}
-	return indeks;
+double znajdz_min_tab_1W_double(double tab[], int m) {
+    double min = INT_MAX;
+    for (int i = 0; i < m; i++) {
+        if (tab[i] < min && tab[i] != -1) {
+            min = tab[i];
+        }
+    }
+    return min;
 }
 
-void wypisz_tab_1W(int tab[][3], int m, int n) {
-	for (int i = 0; i < m; i++)
-	{
-		for (int j = 0; j < n; j++)
-		{
-			printf("%4d", tab[i][j]);
-		}
-		printf("\n");
-	}
+int znajdz_index_o_wartosci_1W(double tab[], int m, double wartosc) {
+    int index = -1;
+    for (int i = 0; i < m; i++) {
+        if (fabs(tab[i] - wartosc) < 0.00001) {
+            index = i;
+        }
+    }
+    return index;
 }
 
-void wczytaj_tab_1W(int tab[][3], int m, int n) {
-	for (int i = 0; i < m; i++)
-	{
-		for (int j = 0; j < n; j++)
-		{
-			tab[i][j] = rand() % (10 + 1 - 1) + 1;
-		}
-	}
+Dane sprawdzanie(int tab[][3], int m) {
+    Dane dane_trojkatow = { 'n', -1, -1 };
+    double tablica_pol[MAX];
+    int k = 0;
+    for (int i = 0; i < m; i++) {
+        double a = (double)tab[i][0];
+        double b = (double)tab[i][1];
+        double c = (double)tab[i][2];
+        if (a < 1 || b < 1 || c < 1) {
+            tablica_pol[k] = -1;
+            k++;
+        }
+        else if (a + b > c || a + c > b || b + c > a) {
+            if (fabs((pow(a, 2) + pow(b, 2)) - pow(c, 2)) < 0.00001) {
+                dane_trojkatow.czyBudowa = 't';
+                tablica_pol[k] = (a * b) / 2;
+                k++;
+            }
+        }
+    }
+    wypisz_tab_1W_double(tablica_pol, k);
+    double min = znajdz_min_tab_1W_double(tablica_pol, k);
+    int szukany_index = znajdz_index_o_wartosci_1W(tablica_pol, k, min);
+    dane_trojkatow.nrFigury = szukany_index;
+    dane_trojkatow.poleFigury = min;
+    return dane_trojkatow;
 }
 
-struct dane sprawdzanie(int tab[][3], int m, int n) {
-	struct dane dane = {'n', -1, -1};
-	double tabZPolami[5];
-	int k = 0;
-	for (int i = 0; i < m; i++)
-	{
-		double pole;
-		double a = (double)tab[i][0];
-		double b = (double)tab[i][1];
-		double c = (double)tab[i][2];
-		if (a > 0 && b > 0 && c > 0)
-		{
-			if (a + b > c || b + c > a || c + a > b)
-			{
-				if (abs((pow(a, 2) + pow(b, 2)) - pow(c, 2)) < 0.00001)
-				{
-					pole = (a * b) / 2;
-					dane.czyBudowa = 't';
-					tabZPolami[k] = pole;
-					k++;
-				}
-			}
-		}
-	}
-	double min = znajdz_min_1W(tabZPolami, MAX);
-	double index = znajdz_index_1W(tabZPolami, MAX, min);
-	dane.nrFigury = index;
-	dane.poleFigury = min;
-	return dane;
-}
-
-
-
-int main() {
-	srand((unsigned)time(NULL));
-	int tab[MAX][3];
-	wczytaj_tab_1W(tab, MAX, 3);
-	wypisz_tab_1W(tab, MAX, 3);
-	struct dane dane = sprawdzanie(tab, MAX, 3);
-	printf("\nCzy mozna zbudowac? %c\n", dane.czyBudowa);
-	printf("Indeks figury o najmniejszym polu: %d\n", dane.nrFigury);
-	printf("Najmniejsze pole to: %.2lf", dane.poleFigury);
-	return 0;
+int main(void) {
+    int tab[MAX][3] = { {1, 4, 9}, {1, 2, 3}, {5, 12, 13}, {-2, 1, 2}, {3, 4, 5} };
+    Dane dane_trojkatow = sprawdzanie(tab, MAX);
+    printf("\nCzy z podanych bokow da sie ulozyc chociaz jeden trojkat "
+        "prostokatny? [%c]",
+        dane_trojkatow.czyBudowa);
+    printf("\nJakie jest najmniejsze pole z podanych trojkatow? [%.2lf]",
+        dane_trojkatow.poleFigury);
+    printf("\nJaki jest indeks figury o tym polu? [%d] (od 0)",
+        dane_trojkatow.nrFigury);
+    return 0;
 }
