@@ -951,13 +951,13 @@ typedef struct {
     int nrFigury;
 } Dane;
 
-void wypisz_tab_1W_double(double tab[], int m) {
+void wypisz_tab_1W_double(double const tab[], int m) {
     for (int i = 0; i < m; i++) {
         printf("[%d] %.2lf\n", i, tab[i]);
     }
 }
 
-double znajdz_min_tab_1W_double(double tab[], int m) {
+double znajdz_min_tab_1W_double(double const tab[], int m) {
     double min = INT_MAX;
     for (int i = 0; i < m; i++) {
         if (tab[i] < min && tab[i] != -1) {
@@ -967,7 +967,7 @@ double znajdz_min_tab_1W_double(double tab[], int m) {
     return min;
 }
 
-int znajdz_index_o_wartosci_1W(double tab[], int m, double wartosc) {
+int znajdz_index_o_wartosci_1W(double const tab[], int m, double wartosc) {
     int index = -1;
     for (int i = 0; i < m; i++) {
         if (fabs(tab[i] - wartosc) < 0.00001) {
@@ -989,12 +989,10 @@ Dane sprawdzanie(int tab[][3], int m) {
             tablica_pol[k] = -1;
             k++;
         }
-        else if (a + b > c || a + c > b || b + c > a) {
-            if (fabs((pow(a, 2) + pow(b, 2)) - pow(c, 2)) < 0.00001) {
+        else if ((a + b > c || a + c > b || b + c > a) && (fabs((pow(a, 2) + pow(b, 2)) - pow(c, 2)) < 0.00001)) {
                 dane_trojkatow.czyBudowa = 't';
                 tablica_pol[k] = (a * b) / 2;
                 k++;
-            }
         }
     }
     wypisz_tab_1W_double(tablica_pol, k);
@@ -1015,5 +1013,6 @@ int main(void) {
         dane_trojkatow.poleFigury);
     printf("\nJaki jest indeks figury o tym polu? [%d] (od 0)",
         dane_trojkatow.nrFigury);
+    printf("\n\nKoniec programu\n\n");
     return 0;
 }
