@@ -2,44 +2,55 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
+#define MAX 5 // max array size
 //C:\\Users\\PATOX\\Desktop\\uczniowie.txt
-
-typedef struct 
+typedef struct
 {
-	int indeks;
-	char napis[80];
-	int ocena;
+    char name[80];
+    int grade;
 }para;
 
-void wiersz( FILE *plik,  para tab[]) {
-	char sciezka[80];
-	printf("Podaj sciezke pliku zrodlowego: ");
-	scanf_s("%s", sciezka, 80);
-	plik = fopen(sciezka, "r");
+void read(FILE* file, para tab[], int m) {
+    char path[80];
+    printf("Enter the file path: ");
+    scanf_s("%s", path, 80);
+    file = fopen(path, "r");
 
-	if (plik == NULL)
-	{
-		printf("Nie udalo sie otworzyc pliku\n");
-	}
-	else
-	{
-		int indeks;
-		char napis[80];
-		int ocena;
-		fscanf(plik, "%d %80s %d", &indeks, napis, &ocena);
-		strcpy(tab[0].napis, napis);
-	}
-	if (plik !=NULL)
-	{
-		fclose(plik);
-	}
+    if (file == NULL)
+    {
+        printf("Error\n");
+    }
+    else
+    {
+        for (int i = 0; i < m; i++)
+        {
+            int index;
+            char name[80];
+            int grade;
+            fscanf(file, "%d %80s %d", &index, name, &grade);
+            strcpy(tab[i].name, name);
+            tab[i].grade = grade;
+        }
+    }
+    if (file != NULL)
+    {
+        fclose(file);
+    }
+}
+
+void print_array(para tab[], int m) {
+    for (int i = 0; i < m; i++)
+    {
+        printf("%s %d\n", tab[i].name, tab[i].grade);
+    }
+
 }
 
 
 int main() {
-	FILE* plik;
-	para tab[5];
-	wiersz(&plik, tab);
-	printf("%s", tab[0].napis);
-	return 0;
+    FILE* file;
+    para tab[5];
+    read(&file, tab, MAX);
+    print_array(tab, MAX);
+    return 0;
 }
