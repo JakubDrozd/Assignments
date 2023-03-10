@@ -42,7 +42,7 @@ int read(FILE* file, struct para tab[], int m,  int *k) {
                 fscanf(file, "%d %s %d", &index, name, &grade);
                 strcpy(tab[i].name, name);
                 tab[i].grade = grade;
-                fwrite(&(tab[i]), sizeof(struct para), 1, output);
+                fprintf(output, "%s %d\n", name, grade);
                 (*k)++;
             }
         }
@@ -64,9 +64,9 @@ void print_array(struct para tab[], int m) {
 
 
 int main() {
-    int k = 0;                  //Licznik danych
+    int k = 0;                  //data counter
     FILE* file;
-    struct para tab[5];
+    struct para tab[MAX];
     read(&file, tab, MAX, &k);
     print_array(tab, k);
     return 0;
