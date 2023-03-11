@@ -10,11 +10,23 @@
     int grade;
 };
 
+ void switch_vowels(char string[]) {
+     size_t strlen = sizeof(string) / sizeof(char);
+     for (int i = 0; i < strlen; i++)
+     {
+         if (string[i] == 'a' || string[i] == 'e' || string[i] == 'i' || string[i] == 'o' || string[i] == 'u')
+         {
+             string[i] = '*';
+         }
+     }
+ }
+
 int read(FILE* file, struct para tab[], int m,  int *k) {
     FILE* output;
     char path[80];
     printf("Enter input file path: ");
     scanf_s("%s", path, 80);
+    path[79] = '\0';
     file = fopen(path, "r");
     if (file == NULL)
     {
@@ -23,7 +35,6 @@ int read(FILE* file, struct para tab[], int m,  int *k) {
     }
     else
     {
-        char path[80];
         printf("Enter output file path: ");
         scanf_s("%s", path, 80);
         output = fopen(path, "w");
@@ -39,11 +50,20 @@ int read(FILE* file, struct para tab[], int m,  int *k) {
                 int index;
                 char name[15];
                 int grade;
-                fscanf(file, "%d %s %d", &index, name, &grade);
-                strcpy(tab[i].name, name);
-                tab[i].grade = grade;
-                fprintf(output, "%s %d\n", name, grade);
-                (*k)++;
+                if (fscanf(file, "%d %s %d", &index, name, &grade)!=3)
+                {
+                    printf("\nError reading input\n");
+                    fclose(file);
+                }
+                else
+                {
+                    name[14] = '\0';
+                    strcpy(tab[i].name, name);
+                    tab[i].grade = grade;
+                    switch_vowels(name);
+                    fprintf(output, "%s %d\n", name, grade);
+                    (*k)++;
+                }         
             }
         }
     }
@@ -65,9 +85,9 @@ void print_array(struct para tab[], int m) {
 
 int main() {
     int k = 0;                  //data counter
-    FILE* file;
+    FILE* file = NULL;
     struct para tab[MAX];
-    read(&file, tab, MAX, &k);
+    read(file, tab, MAX, &k);
     print_array(tab, k);
     return 0;
 }
