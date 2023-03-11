@@ -940,7 +940,7 @@
 //	return 0;
 //}
 
-#include <limits.h>
+/*#include <limits.h>
 #include <math.h>
 #include <stdio.h>
 #define MAX 5
@@ -1015,4 +1015,97 @@ int main(void) {
         dane_trojkatow.nrFigury);
     printf("\n\nKoniec programu\n\n");
     return 0;
-}
+}*/
+
+//#include <stdio.h>
+//#include <string.h>
+//#include <ctype.h>
+//#define MAX_STRING_SIZE 100
+//#define MAX_ARR_SIZE 50
+////C:\\Users\\PATOX\\Desktop\\uczniowie.txt
+//
+//struct data {
+//    int index;
+//    char string[25];
+//    int grade;
+//};
+//
+//void encrypt(char string[MAX_STRING_SIZE], int key) {
+//    char c;
+//    int i = 0;
+//    while (string[i])
+//    {
+//        c = string[i];
+//        if (isalpha(c))
+//        {
+//            c = toupper(c);
+//            c = 'A' + (c - 'A' + key) % 26;
+//        }
+//        string[i] = c;
+//        i++;
+//    }
+//}
+//
+//int verse(FILE* input, FILE* output, struct data tab[]) {
+//    int length = strlen(tab);
+//    for (int i = 0; i < length; i++)
+//    {
+//        char name[MAX_STRING_SIZE];
+//        int index;
+//        int grade;
+//        name[99] = '\0';
+//        if (fscanf_s(input,"%d %100s %d", &index, name, (unsigned)sizeof(name), &grade)!=3)
+//        {
+//            if (!feof(input))
+//            {
+//                printf("\nError loading input data\n");
+//                fclose(input);
+//                fclose(output);
+//                return 1;
+//            }
+//            break;
+//        }
+//        encrypt(name, 17);
+//        strcpy_s(tab[i].string, sizeof(tab[i].string), name);
+//        tab[i].index = index;
+//        tab[i].grade = grade;
+//        fprintf(output, "%d %s %d\n", tab[i].index, tab[i].string, tab[i].grade);
+//    }
+//    fclose(input);
+//    fclose(output);
+//}
+//
+//int main() {
+//    FILE* input = NULL;
+//    FILE* output = NULL;
+//    char path[80];
+//    struct data tab[MAX_ARR_SIZE];
+//    printf("Enter reading input file path: ");
+//    if (scanf_s("%80s", path, 80) != 1 || getchar() != '\n')
+//    {
+//        printf("Error reading input file path");
+//        return 0;
+//    }
+//    path[79] = '\0';
+//    if (fopen_s(&input, path, "r")!=0)
+//    {
+//        printf("Error reading input file");
+//        return 0;
+//    }
+//    printf("Enter output input file path: ");
+//    if (scanf_s("%80s", path, 80) != 1 || getchar() != '\n')
+//    {
+//        printf("Error reading output file path");
+//        fclose(input);
+//        return 0;
+//    }
+//    path[79] = '\0';
+//    if (fopen_s(&output, path, "w")!=0)
+//    {
+//        printf("Error reading output file");
+//        fclose(input);
+//        return 0;
+//    }
+//    verse(input, output, tab);
+//    return 0;
+//}
