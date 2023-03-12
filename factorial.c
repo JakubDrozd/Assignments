@@ -1208,10 +1208,8 @@ int main() {
 	path[79] = '\0';
 	if (scanf_s("%79s", path, 80) != 1 || getchar() != '\n')
 	{
-		printf("Error reading input file path\nPlease enter correct input file path: ");
-		int c;
-		while ((c = getchar()) != '\n' && c != EOF)
-			;
+		printf("Error reading input file path\n");
+		return 0;
 	}
 	if (fopen_s(&input, path, "r") != 0)
 	{
@@ -1220,14 +1218,14 @@ int main() {
 	}
 	if (scanf_s("%80s", path, 80) != 1 || getchar() != '\n')
 	{
-		printf("Error reading output file path\nPlease enter correct input file path: ");
-		int c;
-		while ((c = getchar()) != '\n' && c != EOF)
-			;
+		printf("Error reading output file path\n");
+		fclose(input);
+		return 0;
 	}
 	if (fopen_s(&output, path, "w") != 0)
 	{
 		printf("\nError reading output file\n");
+		fclose(input);
 		return 0;
 	}
 	verse(input, output, tab);
