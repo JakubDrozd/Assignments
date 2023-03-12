@@ -1109,3 +1109,127 @@ int main(void) {
 //    verse(input, output, tab);
 //    return 0;
 //}
+
+
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+#include <stdlib.h>
+#include <time.h>
+#define MAX_STR_SIZE 25
+#define MAX_ARR_SIZE 50
+//C:\\Users\\PATOX\\Desktop\\uczniowie.txt
+
+struct data {
+	int index;
+	char string[MAX_STR_SIZE];
+	int grade;
+};
+
+void sort(struct data tab[], int m) {
+	struct data temp;
+	for (int i = 0; i < m - 1; i++)
+	{
+		for (int j = 0; j < m - i - 1; j++)
+		{
+			if (strcmp(tab[j].string, tab[j + 1].string) > 0)
+			{
+				temp.index = tab[j].index;
+				tab[j].index = tab[j + 1].index;
+				tab[j + 1].index = temp.index;
+				temp.grade = tab[j].grade;
+				tab[j].grade = tab[j + 1].grade;
+				tab[j + 1].grade = temp.grade;
+				strcpy_s(temp.string, sizeof(tab[j].string), tab[j].string);
+				strcpy_s(tab[j].string, sizeof(tab[j + 1].string), tab[j + 1].string);
+				strcpy_s(tab[j + 1].string, sizeof(temp.string), temp.string);
+			}
+		}
+	}
+}
+
+void encrypt(char string[], int key) {
+	int i = 0;
+	char c = string[i];
+	while (string[i])
+	{
+		if (isalpha(c))
+		{
+			c = toupper(c);
+			c = 'A' + (c - 'A' + key) % 26;
+		}
+		string[i] = c;
+		i++;
+	}
+}
+
+void verse(FILE* input, FILE* output, struct data tab[]) {
+	int k = 0;
+	size_t length = strlen(tab);
+	int index;
+	char name[MAX_STR_SIZE];
+	int grade;
+	name[24] = '\0';
+	for (int i = 0; i < length; i++)
+	{
+		if (fscanf_s(input, "%d %s %d", &index, name, (unsigned)sizeof(name), &grade) != 3)
+		{
+			if (!feof(input))
+			{
+				printf("\nError reading file content\n");
+				fclose(input);
+				fclose(output);
+			}
+			break;
+		}
+		strcpy_s(tab[i].string, sizeof(name), name);
+		tab[i].index = index;
+		tab[i].grade = grade;
+		k++;
+	}
+	sort(tab, k);
+	for (int i = 0; i < k; i++)
+	{
+		int key = rand() % (48 + 1 - 1) + 1;
+		encrypt(tab[i].string, key);
+		fprintf(output, "[%d] %d %s %d\n", i + 1, tab[i].index, tab[i].string, tab[i].grade);
+	}
+	printf("\nSuccessfully copied formatted data to the output file\n");
+	fclose(input);
+	fclose(output);
+}
+
+int main() {
+	srand((unsigned)time(NULL));
+	FILE* input;
+	FILE* output;
+	struct data tab[MAX_ARR_SIZE];
+	char path[80];
+	path[79] = '\0';
+	if (scanf_s("%79s", path, 80) != 1 || getchar() != '\n')
+	{
+		printf("Error reading input file path\nPlease enter correct input file path: ");
+		int c;
+		while ((c = getchar()) != '\n' && c != EOF)
+			;
+	}
+	if (fopen_s(&input, path, "r") != 0)
+	{
+		printf("\nError reading input file\n");
+		return 0;
+	}
+	if (scanf_s("%80s", path, 80) != 1 || getchar() != '\n')
+	{
+		printf("Error reading output file path\nPlease enter correct input file path: ");
+		int c;
+		while ((c = getchar()) != '\n' && c != EOF)
+			;
+	}
+	if (fopen_s(&output, path, "w") != 0)
+	{
+		printf("\nError reading output file\n");
+		return 0;
+	}
+	verse(input, output, tab);
+	return 0;
+}
