@@ -1232,6 +1232,55 @@ int main(void) {
 //	return 0;
 //}
 
+//#include <ctype.h>
+//#include <stdio.h>
+//#include <string.h>
+//
+//#define MAX_STR_SIZE 25
+//
+////C:\\Users\\PATOX\\Desktop\\dane.txt
+//
+//
+//void konwersja(char napis[]){
+//    size_t dlugosc = strlen(napis);
+//   
+//    for (int i = 0; i < dlugosc; i++)
+//    {
+//        char c = napis[i];
+//        if (isalpha(c) && islower(c))
+//        {
+//            c = '_';
+//        }
+//        else if (isalpha(c) && isupper(c))
+//        {
+//            c = tolower(c);
+//        }
+//        napis[i] = c;
+//    }
+//}
+//
+//int main() {
+//    FILE* wejscie;
+//    FILE* wyjscie;
+//    char sciezka[80];
+//    sciezka[79] = '\0';
+//    scanf_s("%79s", sciezka, 80);
+//    fopen_s(&wejscie, sciezka, "r");
+//    scanf_s("%79s", sciezka, 80);
+//    fopen_s(&wyjscie, sciezka, "w");
+//    char napis[MAX_STR_SIZE];
+//    if (wejscie!=0 && wyjscie !=0)
+//    {
+//        while (!feof(wejscie))
+//        {
+//            fgets(napis, MAX_STR_SIZE, wejscie);
+//            konwersja(napis);
+//            fprintf_s(wyjscie, "%s", napis);
+//        }
+//    }
+//    return 0;
+//}
+
 #include <ctype.h>
 #include <stdio.h>
 #include <string.h>
@@ -1256,23 +1305,7 @@ void szyfruj(char napis[], int key) {
     }
 }
 
-void konwersja(char napis[]){
-    size_t dlugosc = strlen(napis);
-   
-    for (int i = 0; i < dlugosc; i++)
-    {
-        char c = napis[i];
-        if (isalpha(c) && islower(c))
-        {
-            c = '_';
-        }
-        else if (isalpha(c) && isupper(c))
-        {
-            c = tolower(c);
-        }
-        napis[i] = c;
-    }
-}
+
 
 int main() {
     FILE* wejscie;
@@ -1284,12 +1317,21 @@ int main() {
     scanf_s("%79s", sciezka, 80);
     fopen_s(&wyjscie, sciezka, "w");
     char napis[MAX_STR_SIZE];
-    if (wejscie!=0 && wyjscie !=0)
+    printf("Podaj klucz do szyfrowania: ");
+    int klucz;
+    while (scanf_s("%d", &klucz) != 1 || getchar()!='\n')
+    {
+        printf("Bledne dane, podaj klucz: ");
+        int c;
+        while ((c = getchar()) != '\n' && c != EOF)
+            ;
+    }
+    if (wejscie != 0 && wyjscie != 0)
     {
         while (!feof(wejscie))
         {
             fgets(napis, MAX_STR_SIZE, wejscie);
-            konwersja(napis);
+            szyfruj(napis, klucz);
             fprintf_s(wyjscie, "%s", napis);
         }
     }
