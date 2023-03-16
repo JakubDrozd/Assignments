@@ -1337,3 +1337,103 @@ int main(void) {
 //    }
 //    return 0;
 //}
+
+#include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#define MAX 25
+
+int bin2int(char* napis) {
+    int liczba = 0;
+    int dlugosc = strlen(napis);
+    int potega = dlugosc - 1;
+    for (int i = 0; i < dlugosc; i++) {
+        if (napis[i] == '1') {
+            int temp = (int)pow(2, potega);
+            liczba += temp;
+            potega--;
+        }
+        else {
+            potega--;
+        }
+    }
+    return liczba;
+}
+
+void zamiana(char** a, char** b) {
+    char* temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+void sortowanie(char** tab, int m, int n) {
+    int max_index = 0;
+    for (int i = 0; i < m - 1; i++) {
+        max_index = 0;
+        for (int j = i + 1; j < m; j++) {
+            if (bin2int(tab[j]) > bin2int(tab[max_index])) {
+                max_index = j;
+            }
+        }
+        if (max_index != i) {
+            zamiana(&tab[max_index], &tab[i]);
+        }
+    }
+}
+
+int wczytaj_int() {
+    int liczba;
+    while (scanf_s("%d", &liczba) != 1 || getchar() != '\n') {
+        int c;
+        while ((c = getchar()) != '\n' && c != EOF)
+            ;
+    }
+    return liczba;
+}
+
+void wypisz_tab_2W(char** tab, int m, int n) {
+    int ilosc_danych = 0;
+    for (int i = 0; i < m; i++) {
+        if (tab[i] != '\0') {
+            printf("%s\n", tab[i]);
+        }
+    }
+}
+
+int main() {
+    int m, n;
+    printf("Podaj wymiary tablicy:");
+    m = wczytaj_int();
+    n = wczytaj_int();
+    FILE* input;
+    if (fopen_s(&input, "C:\\Users\\PATOX\\Desktop\\dane.txt", "r") != 0) {
+        printf("Error wczytywania pliku");
+        return 1;
+    }
+    char** tab = malloc(m * sizeof(char**));
+    for (int i = 0; i < m; i++) {
+        tab[i] = malloc(n * sizeof(char));
+    }
+    for (int i = 0; i < m; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            tab[i][j] = '\0';
+        }
+    }
+    char napis[MAX];
+    int i = 0;
+    while (!feof(input)) {
+        fscanf_s(input, "%s", napis, (unsigned)sizeof(napis));
+        strcpy_s(tab[i], sizeof(napis), napis);
+        i++;
+    }
+    sortowanie(tab, m, n);
+    for (int i = 0; i < m; i++) {
+        if (tab[i] != '\0') {
+            printf("%d\t[%s]\n", bin2int(tab[i]), tab[i]);
+        }
+    }
+    return 0;
+}
