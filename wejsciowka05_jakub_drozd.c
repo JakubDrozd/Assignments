@@ -101,6 +101,7 @@ int main() {
     if (fopen_s(&input, "C:\\Users\\PATOX\\Desktop\\dane.txt", "r") != 0)
     {
         printf("Bledne odczytywanie pliku input");
+        return 1;
     }
     int i = 0;
     char* napis = malloc(n * sizeof(char));                 //Tymczasowa zmienna do przypisywania ciągów
