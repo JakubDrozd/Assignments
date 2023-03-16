@@ -43,16 +43,16 @@ void zamien(char** a, char** b) {
     *b = temp;
 }
 
-void sortowanie(char** arr, int n) {                                //Algorytm sortujacy przez wybor (malejaco)
-    for (int i = 0; i < n - 1; i++) {
+void sortowanie(char** tab, int m) {                                //Algorytm sortujacy przez wybor (malejaco)
+    for (int i = 0; i < m - 1; i++) {
         int max_index = i;
-        for (int j = i + 1; j < n; j++) {
-            if (bin2int(arr[j]) > bin2int(arr[max_index])) {
+        for (int j = i + 1; j < m; j++) {
+            if (bin2int(tab[j]) > bin2int(tab[max_index])) {
                 max_index = j;
             }
         }
         if (max_index != i) {
-            zamien(&arr[i], &arr[max_index]);
+            zamien(&tab[i], &tab[max_index]);
         }
     }
 }
