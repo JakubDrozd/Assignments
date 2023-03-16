@@ -1422,19 +1422,18 @@ int main() {
     {
         printf("Bledne odczytywanie pliku output");
     }
-    int i = 0;                                         
-    char* napis = malloc(n * sizeof(char));                 //Tymczasowa zmienna do przchowywania ciągów
-    if (input != 0 && output != 0)
-    {
-        while (!feof(input) && i < m) {
-            fgets(napis, n, input);
-            napis[strlen(napis) - 1] = '\0';                //Zamiana znaku '\n' na koniec linii
-            for (int j = 0; j < strlen(napis); j++)
+    int i = 0;
+    char* napis = malloc(n * sizeof(char));           //Tymczasowa zmienna do przypisywania ciągów
+    while (!feof(input) && i < m) {
+        fgets(napis, n, input);
+        for (int j = 0; j < strlen(napis); j++)
+        {
+            if (napis[j]!='\n')                             //Ignorowanie znaku nowej linii
             {
                 tab[i][j] = napis[j];
             }
-            i++;
         }
+        i++;
     }
     free(napis);                                            //Zwolnienie tymczasowej zmiennej z pamięci 
     wypisz_tab_2W(tab, m, n);
