@@ -1382,6 +1382,24 @@ void wypisz_tab_2W(char **tab, int m, int n) {
     }
 }
 
+void sortowanie_przez_wybor(int tab[]) {
+    int min_index = 0;
+    for (int i = 0; i < 4; i++)
+    {
+        min_index = i;
+        for (int j = i + 1; j < 4; j++)
+        {
+            if (tab[j] < tab[min_index])
+            {
+                min_index = j;
+            }
+        }
+        int temp = tab[i];
+        tab[i] = tab[min_index];
+        tab[min_index] = temp;
+    }
+}
+
 int wczytaj_int() {
     static int liczba_wywolan = 0;
     int liczba;
