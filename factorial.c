@@ -1342,29 +1342,96 @@ int main(void) {
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 
-#define MAX_STR_SIZE 25
+#define MAX_ARR_SIZE 50
 
-struct student {
-    double ocena;
-    struct student* nastepny;
-};
 
-void wypisz_studentow(struct student* pierwszy) {
-    struct student* aktualny = pierwszy;
-    while (aktualny!=NULL)
+int bin2int(char* napis) {
+    int liczba = 0;
+    int dlugosc = (int)strlen(napis);
+    int potega = dlugosc - 1;
+    for (int i = 0; i < dlugosc; i++)
     {
-        printf("%.2lf\n", aktualny->ocena);
-        aktualny = aktualny->nastepny;
+        if (napis[i] == '1')
+        {
+            int temp = (int)pow(2, potega);
+            liczba += temp;
+            potega--;
+        }
+        else
+        {
+            potega--;
+        }
+    }
+    return liczba;
+}
+
+
+void wypisz_tab_2W(char **tab, int m, int n) {
+    for (int i = 0; i < m; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            if (tab[i][j]!=NULL)
+            {
+                printf("%c", tab[i][j]);
+            }
+        }
     }
 }
 
+int wczytaj_int() {
+    static int liczba_wywolan = 0;
+    int liczba;
+    printf("Podaj liczbe %s: ", (liczba_wywolan > 0) ? "kolumn" : "wierszy");
+    while (scanf_s("%d", &liczba)!=1 || getchar()!='\n')
+    {
+        printf("Bledne dane, podaj liczbe %s: ", (liczba_wywolan > 0) ? "kolumn" : "wierszy");
+        int c;
+        while ((c = getchar()) != '\n' && c != EOF)
+            ;
+    }
+    liczba_wywolan++;
+    return liczba;
+}
+
 int main() {
-    struct student* glowa = (struct student*)malloc(sizeof(struct student));
-    struct student* mj = (struct student*)malloc(sizeof(struct student));
-    struct student* pg = (struct student*)malloc(sizeof(struct student));
-    glowa->ocena = 1;
-    mj->ocena = 2;
-    pg->ocena = 3;
-    wypisz_studentow(glowa);
+    int m = wczytaj_int();
+    int n = wczytaj_int();
+    char** tab = malloc(m * sizeof(char*));
+    for (int i = 0; i < m; i++)
+    {
+        tab[i] = malloc(n * sizeof(char));
+    }
+    for (int i = 0; i < m; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            tab[i][j] = NULL;
+        }
+    }
+    FILE* input;
+    FILE* output;
+    if (fopen_s(&input, "C:\\Users\\PATOX\\Desktop\\dane.txt", "r") != 0)
+    {
+        printf("Bledne odczytywanie pliku input");
+    }
+    if (fopen_s(&output, "C:\\Users\\PATOX\\Desktop\\dane2.txt", "w") != 0)
+    {
+        printf("Bledne odczytywanie pliku output");
+    }
+    int i = 0;
+    int dlugosc_stringa = n - 1;
+    char* napis = malloc(dlugosc_stringa * sizeof(char));
+    while (!feof(input) && i < m) {
+        fgets(napis, dlugosc_stringa, input);
+        for (int j = 0; j < strlen(napis); j++)
+        {
+            tab[i][j] = napis[j];
+        }
+        i++;
+    }
+    wypisz_tab_2W(tab, m, n);
+    return 0;
 }
