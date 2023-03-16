@@ -72,6 +72,14 @@ int wczytaj_int() {                                                        //Fun
     return liczba;
 }
 
+void zwolnij_tab_2W(char** tab, int m) {
+    for (int i = 0; i < m; i++)
+    {
+        free(tab[i]);
+    }
+    free(tab);
+}
+
 int main() {
     //Tworzenie tablicy dynamicznej
     int m = wczytaj_int();
@@ -97,15 +105,17 @@ int main() {
     int i = 0;
     char* napis = malloc(n * sizeof(char));                 //Tymczasowa zmienna do przypisywania ciągów
     while (!feof(input) && i < m) {                         //Odczytywanie danych z pliku
-        fgets(napis, n, input);
-        for (int j = 0; j < strlen(napis); j++)
+        if (fgets(napis, n, input) != NULL)
         {
-            if (napis[j] != '\n')                             //Ignorowanie znaku nowej linii
+            for (int j = 0; j < strlen(napis); j++)
             {
-                tab[i][j] = napis[j];
+                if (napis[j] != '\n')                             //Ignorowanie znaku nowej linii
+                {
+                    tab[i][j] = napis[j];
+                }
             }
+            i++;
         }
-        i++;
     }
     free(napis);                                            //Zwolnienie tymczasowej zmiennej z pamięci 
     printf("\nPrzed sortowaniem:\n");
@@ -113,6 +123,7 @@ int main() {
     sortowanie(tab, m);
     printf("\nPo sortowaniu:\n");
     wypisz_tab_2W(tab, m);
+    zwolnij_tab_2W(tab, m);                                 //Zwolnienie tablicy dynamicznej 
     fclose(input);
     return 0;
 }
