@@ -104,17 +104,20 @@ int main() {
     }
     int i = 0;
     char* napis = malloc(n * sizeof(char));                 //Tymczasowa zmienna do przypisywania ciągów
-    while (!feof(input) && i < m) {                         //Odczytywanie danych z pliku
-        if (fgets(napis, n, input) != NULL)
-        {
-            for (int j = 0; j < strlen(napis); j++)
+    if (input!=0)
+    {
+        while (!feof(input) && i < m) {                         //Odczytywanie danych z pliku
+            if (fgets(napis, n, input) != NULL)
             {
-                if (napis[j] != '\n')                             //Ignorowanie znaku nowej linii
+                for (int j = 0; j < strlen(napis); j++)
                 {
-                    tab[i][j] = napis[j];
+                    if (napis[j] != '\n')                             //Ignorowanie znaku nowej linii
+                    {
+                        tab[i][j] = napis[j];
+                    }
                 }
+                i++;
             }
-            i++;
         }
     }
     free(napis);                                            //Zwolnienie tymczasowej zmiennej z pamięci 
