@@ -1,4 +1,4 @@
-//#include <stdio.h>
+﻿//#include <stdio.h>
 //#include <stdlib.h>
 //#include <ctype.h>
 //#include <time.h>
@@ -1350,7 +1350,7 @@ int main(void) {
 int bin2int(char* napis) {
     int liczba = 0;
     int dlugosc = (int)strlen(napis);
-    int potega = dlugosc - 1;
+    int potega = dlugosc-1;
     for (int i = 0; i < dlugosc; i++)
     {
         if (napis[i] == '1')
@@ -1373,11 +1373,12 @@ void wypisz_tab_2W(char **tab, int m, int n) {
     {
         for (int j = 0; j < n; j++)
         {
-            if (tab[i][j]!=NULL)
+            if (tab[i][j] != '\0')
             {
-                printf("%c", tab[i][j]);
+                printf("[%c]", tab[i][j]);
             }
         }
+        printf("\n");
     }
 }
 
@@ -1408,7 +1409,7 @@ int main() {
     {
         for (int j = 0; j < n; j++)
         {
-            tab[i][j] = NULL;
+            tab[i][j] = '\0';
         }
     }
     FILE* input;
@@ -1421,17 +1422,28 @@ int main() {
     {
         printf("Bledne odczytywanie pliku output");
     }
-    int i = 0;
-    int dlugosc_stringa = n - 1;
-    char* napis = malloc(dlugosc_stringa * sizeof(char));
-    while (!feof(input) && i < m) {
-        fgets(napis, dlugosc_stringa, input);
-        for (int j = 0; j < strlen(napis); j++)
-        {
-            tab[i][j] = napis[j];
+    int i = 0;                                         
+    char* napis = malloc(n * sizeof(char));                 //Tymczasowa zmienna do przchowywania ciągów
+    if (input != 0 && output != 0)
+    {
+        while (!feof(input) && i < m) {
+            fgets(napis, n, input);
+            napis[strlen(napis) - 1] = '\0';                //Zamiana znaku '\n' na koniec linii
+            for (int j = 0; j < strlen(napis); j++)
+            {
+                tab[i][j] = napis[j];
+            }
+            i++;
         }
-        i++;
     }
+    free(napis);                                            //Zwolnienie tymczasowej zmiennej z pamięci 
     wypisz_tab_2W(tab, m, n);
+    for (int i = 0; i < m; i++)
+    {
+        if (*tab[i]!='\0')                                  //Ignorowanie pustych wierszy tablicy dynamicznej
+        {
+            printf("%d\n", bin2int(tab[i]));
+        }
+    }
     return 0;
 }
