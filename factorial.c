@@ -1431,7 +1431,7 @@ int main() {
     }
     sortowanie(tab, m, n);
     for (int i = 0; i < m; i++) {
-        if (tab[i] != '\0') {
+        if (tab[i] != '\0' && bin2int(tab[i])!=0) {
             printf("%d\t[%s]\n", bin2int(tab[i]), tab[i]);
         }
     }
