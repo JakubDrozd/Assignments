@@ -1455,7 +1455,7 @@ struct student* dodajStudenta(int indeks, char imie[], int ocena) {
     if (nowyStudent != NULL)
     {
         nowyStudent->indeks = indeks;
-        strcpy_s(nowyStudent->imie, sizeof(imie), imie);
+        strcpy_s(nowyStudent->imie, sizeof(nowyStudent->imie), imie);
         nowyStudent->ocena = ocena;
         nowyStudent->nastepny = NULL;
         printf("\nDodano studenta pod adresem %p\n", nowyStudent);
@@ -1492,8 +1492,95 @@ struct student* dodajStudenta(int indeks, char imie[], int ocena) {
          }
 }
 
+ void dodajNaKoniec(struct student* pierwszy, int indeks, char imie[], int ocena, int *i) {
+     struct student* nowyStudent = dodajStudenta(indeks, imie, ocena);
+     if (nowyStudent != NULL)
+     {
+         if (pierwszy == NULL)
+         {
+             pierwszy = nowyStudent;
+         }
+         else
+         {
+             struct student* aktualny = pierwszy;
+             while (aktualny->nastepny != NULL)
+             {
+                 aktualny = aktualny->nastepny;
+             }
+             aktualny->nastepny = nowyStudent;
+         }
+     }
+     (*i)++;
+ }
+
+ void dodajNaPoczatek(struct student** pierwszy, int indeks, char imie[], int ocena, int *i) {          //** bo modifikujemy zmienna pierwszy zadeklarowana w main
+     struct student* nowyStudent = dodajStudenta(indeks, imie, ocena);
+     if (nowyStudent!=NULL)
+     {
+         if (pierwszy == NULL)
+         {
+             pierwszy = nowyStudent;
+         }
+         else
+         {
+             nowyStudent->nastepny = *pierwszy;
+             *pierwszy = nowyStudent;
+         }
+     }
+     (*i)++;
+ }
+
+ void dodajPo(struct student* pierwszy, int id, int indeks, char imie[], int ocena, int *i) {
+     struct student* nowyStudent = dodajStudenta(indeks, imie, ocena);
+     struct student* aktualny = pierwszy;
+     while (aktualny->nastepny != NULL)
+     {
+         if (aktualny->indeks == id)
+         {
+             nowyStudent->nastepny = aktualny->nastepny;
+             aktualny->nastepny = nowyStudent;
+             (*i)++;
+             break;
+         }
+         else
+         {
+             aktualny = aktualny->nastepny;
+         }
+     }
+ }
+
+ void usunPoId(struct student* pierwszy, int id, int* i) {
+     struct student* aktualny = pierwszy;
+     while (aktualny->nastepny != NULL)
+     {
+         if (aktualny->nastepny->indeks == id)
+         {
+             struct student* doUsuniecia = aktualny->nastepny;
+             aktualny->nastepny = aktualny->nastepny->nastepny;
+             free(doUsuniecia);
+             (*i)--;
+             break;
+         }
+         else
+         {
+             aktualny = aktualny->nastepny;
+         }
+     }
+ }
+
+ void dealokacjaStudentow(struct student* pierwszy) {
+     struct student* aktualny = pierwszy;
+     while (aktualny != NULL)
+     {
+         struct student* aux = aktualny;
+         aktualny = aktualny->nastepny;
+         free(aux);
+     }
+ }
+
 int main(void) {
     FILE* input;
+    int i = 0;
     struct student* pierwszy = NULL;    //Wskazuje na pierwszy element z listy
     struct student* aktualny = NULL;    //Wskazuje na ostatnio dodany element z listy
     if (fopen_s(&input, "C:\\Users\\PATOX\\Desktop\\dane.txt", "r")!=0)
@@ -1512,6 +1599,7 @@ int main(void) {
             if (pierwszy!=NULL)                                                           
             {
                 aktualny = pierwszy;                                                        //Jeżeli alokacja w pamięci się udała, ustaw dodaną daną jako dodaną
+                i++;
             }
         }
         else
@@ -1519,14 +1607,20 @@ int main(void) {
             aktualny->nastepny = dodajStudenta(indeks, imie, ocena);                        //Jeżeli lista zawiera już pierwszy element, dodaje kolejny
             if (aktualny->nastepny!=NULL)
             {
-                aktualny = aktualny->nastepny;                                              //Jeżeli alokacja w pamieci sie udala, to ustawiamy wskaznik aktualny                                                                            na nastepny element, ktory kiedys dodamy
+                aktualny = aktualny->nastepny;                                          
+                i++;
             }
         }
     }
+    dodajNaKoniec(pierwszy, 123477, "Sebastian", 3, &i);
+    dodajNaPoczatek(&pierwszy, 123466, "Mateusz", 4, &i);           //Modyfikujemy zmienna w main, wiec podajemy adres zmiennej pierwszy
+    dodajPo(pierwszy, 123466, 123444, "Kacper", 2, &i);
+    usunPoId(pierwszy, 123479, &i);
     wypiszStudentow(pierwszy);
-    free(pierwszy);
-    free(aktualny);
+    printf("\n[Ilosc studentow]: %d\n", i);
+    dealokacjaStudentow(pierwszy);
     pierwszy = NULL;
     aktualny = NULL;
     return 0;
 }
+
