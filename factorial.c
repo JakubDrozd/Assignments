@@ -1778,6 +1778,7 @@ int main(void) {
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <string.h>
 
 struct pojazd {
 	char marka[40];
@@ -1834,7 +1835,7 @@ struct pojazd* czwarta(int rozmiar, struct pojazd* tab) {
 		struct pojazd* tab2 = malloc((rozmiar + 1) * sizeof(struct pojazd));
 		memmove(tab2, tab, sizeof(tab) + 1);
 		free(tab);
-		scanf_s("%s %s %d %f", tab2[rozmiar].marka, tab2[rozmiar].model, &tab2[rozmiar].rok_produkcji, &tab2[rozmiar].silnik);
+		scanf_s("%s %s %d %f", tab2[rozmiar].marka, 40, tab2[rozmiar].model, 40, &tab2[rozmiar].rok_produkcji, &tab2[rozmiar].silnik);
 		return tab2;
 	}
 	else {
@@ -1861,4 +1862,6 @@ int main() {
 		fprintf(wyjscie, "%s %s %d %lg\n", b.wskaznik[i].marka, b.wskaznik[i].model, b.wskaznik[i].rok_produkcji, b.wskaznik[i].silnik);
 	}
 	free(b.wskaznik);
+	fclose(wejscie);
+	fclose(wyjscie);
 }
