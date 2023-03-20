@@ -1438,189 +1438,414 @@ int main(void) {
 //    return 0;
 //}
 
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
+//#include <stdio.h>
+//#include <string.h>
+//#include <stdlib.h>
+//
+//struct student {
+//    int indeks;
+//    char imie[25];
+//    int ocena;
+//    struct student* nastepny;
+//};
+//
+//struct student* dodajStudenta(int indeks, char imie[], int ocena) {
+//    struct student* nowyStudent = NULL;
+//    nowyStudent = malloc(sizeof(struct student));
+//    if (nowyStudent != NULL)
+//    {
+//        nowyStudent->indeks = indeks;
+//        strcpy_s(nowyStudent->imie, sizeof(nowyStudent->imie), imie);
+//        nowyStudent->ocena = ocena;
+//        nowyStudent->nastepny = NULL;
+//        printf("\nDodano studenta pod adresem %p\n", nowyStudent);
+//    }
+//    else
+//    {
+//        printf("Blad alokowania pamieci");
+//    }
+//    return nowyStudent;
+//}
+//
+// void wypiszStudenta(struct student *student) {
+//     if (student == NULL)
+//     {
+//         printf("Student nie istnieje");
+//     }
+//     else
+//     {
+//         printf("\n[Indeks]: %d\n[Imie]: %s\n[Ocena]: %d\n[Nastepny]: %p\n",
+//             student->indeks,
+//             student->imie,
+//             student->ocena,
+//             student->nastepny
+//             );
+//     }
+// }
+//
+// void wypiszStudentow(struct student* pierwszy) {
+//     struct student* aktualny = pierwszy;
+//         while (aktualny != NULL)
+//         {
+//             wypiszStudenta(aktualny);
+//             aktualny = aktualny->nastepny;
+//         }
+//}
+//
+// void dodajNaKoniec(struct student* pierwszy, int indeks, char imie[], int ocena, int *i) {
+//     struct student* nowyStudent = dodajStudenta(indeks, imie, ocena);
+//     if (nowyStudent != NULL)
+//     {
+//         if (pierwszy == NULL)
+//         {
+//             pierwszy = nowyStudent;
+//         }
+//         else
+//         {
+//             struct student* aktualny = pierwszy;
+//             while (aktualny->nastepny != NULL)
+//             {
+//                 aktualny = aktualny->nastepny;
+//             }
+//             aktualny->nastepny = nowyStudent;
+//         }
+//     }
+//     (*i)++;
+// }
+//
+// void dodajNaPoczatek(struct student** pierwszy, int indeks, char imie[], int ocena, int *i) {          //** bo modifikujemy zmienna pierwszy zadeklarowana w main
+//     struct student* nowyStudent = dodajStudenta(indeks, imie, ocena);
+//     if (nowyStudent!=NULL)
+//     {
+//         if (pierwszy == NULL)
+//         {
+//             pierwszy = nowyStudent;
+//         }
+//         else
+//         {
+//             nowyStudent->nastepny = *pierwszy;
+//             *pierwszy = nowyStudent;
+//         }
+//     }
+//     (*i)++;
+// }
+//
+// void dodajPo(struct student* pierwszy, int id, int indeks, char imie[], int ocena, int *i) {
+//     struct student* nowyStudent = dodajStudenta(indeks, imie, ocena);
+//     struct student* aktualny = pierwszy;
+//     while (aktualny->nastepny != NULL)
+//     {
+//         if (aktualny->indeks == id)
+//         {
+//             nowyStudent->nastepny = aktualny->nastepny;
+//             aktualny->nastepny = nowyStudent;
+//             (*i)++;
+//             break;
+//         }
+//         else
+//         {
+//             aktualny = aktualny->nastepny;
+//         }
+//     }
+// }
+//
+// void usunPoId(struct student* pierwszy, int id, int* i) {
+//     struct student* aktualny = pierwszy;
+//     while (aktualny->nastepny != NULL)
+//     {
+//         if (aktualny->nastepny->indeks == id)
+//         {
+//             struct student* doUsuniecia = aktualny->nastepny;
+//             aktualny->nastepny = aktualny->nastepny->nastepny;
+//             free(doUsuniecia);
+//             (*i)--;
+//             break;
+//         }
+//         else
+//         {
+//             aktualny = aktualny->nastepny;
+//         }
+//     }
+// }
+//
+// void dealokacjaStudentow(struct student* pierwszy) {
+//     struct student* aktualny = pierwszy;
+//     while (aktualny != NULL)
+//     {
+//         struct student* aux = aktualny;
+//         aktualny = aktualny->nastepny;
+//         free(aux);
+//     }
+// }
+//
+//int main(void) {
+//    FILE* input;
+//    int i = 0;
+//    struct student* pierwszy = NULL;    //Wskazuje na pierwszy element z listy
+//    struct student* aktualny = NULL;    //Wskazuje na ostatnio dodany element z listy
+//    if (fopen_s(&input, "C:\\Users\\PATOX\\Desktop\\dane.txt", "r")!=0)
+//    {
+//        printf("Blad wczytywania pliku");
+//        return 1;
+//    }
+//    int indeks = 0;
+//    char imie[25];
+//    int ocena = 0;
+//    while (fscanf_s(input,"%d %s %d", &indeks, imie, (unsigned)sizeof(imie), &ocena)==3)  //Dopóki jest w w stanie odczytać dane w formacie, pętla się wykonuje
+//    {
+//        if (pierwszy == NULL)                                                             
+//        {
+//            pierwszy = dodajStudenta(indeks, imie, ocena);                                //Jeżeli lista nie posiada jeszcze pierwszego elementu, tworzy go
+//            if (pierwszy!=NULL)                                                           
+//            {
+//                aktualny = pierwszy;                                                        //Jeżeli alokacja w pamięci się udała, ustaw dodaną daną jako dodaną
+//                i++;
+//            }
+//        }
+//        else
+//        {
+//            aktualny->nastepny = dodajStudenta(indeks, imie, ocena);                        //Jeżeli lista zawiera już pierwszy element, dodaje kolejny
+//            if (aktualny->nastepny!=NULL)
+//            {
+//                aktualny = aktualny->nastepny;                                          
+//                i++;
+//            }
+//        }
+//    }
+//    dodajNaKoniec(pierwszy, 123477, "Sebastian", 3, &i);
+//    dodajNaPoczatek(&pierwszy, 123466, "Mateusz", 4, &i);           //Modyfikujemy zmienna w main, wiec podajemy adres zmiennej pierwszy
+//    dodajPo(pierwszy, 123466, 123444, "Kacper", 2, &i);
+//    usunPoId(pierwszy, 123479, &i);
+//    wypiszStudentow(pierwszy);
+//    printf("\n[Ilosc studentow]: %d\n", i);
+//    dealokacjaStudentow(pierwszy);
+//    pierwszy = NULL;
+//    aktualny = NULL;
+//    return 0;
+//}
 
-struct student {
-    int indeks;
-    char imie[25];
-    int ocena;
-    struct student* nastepny;
+//#include <stdio.h>
+//#include <stdlib.h>
+//#include <string.h>
+//
+//#define NAZWA_MAX 50
+//#define OPIS_MAX 200
+//#define MAX_KSIAZEK 300
+//
+//struct ksiazka {
+//    int id;
+//    char nazwa[NAZWA_MAX];
+//    char opis[OPIS_MAX];
+//    int rok;
+//    struct ksiazka *nastepny;
+//};
+//
+//struct ksiazka *dodaj_ksiazke(int id, char nazwa[], char opis[], int rok) {
+//    struct ksiazka *nowa_ksiazka = NULL;
+//    nowa_ksiazka = malloc(sizeof(struct ksiazka));
+//    if (nowa_ksiazka != NULL)
+//    {
+//        nowa_ksiazka->id = id;
+//        strcpy_s(nowa_ksiazka->nazwa, sizeof(nowa_ksiazka->nazwa), nazwa);
+//        strcpy_s(nowa_ksiazka->opis, sizeof(nowa_ksiazka->opis), opis);
+//        nowa_ksiazka->rok = rok;
+//        nowa_ksiazka->nastepny = NULL;
+//        printf("\nDodano nowa ksiazke\n");
+//    }
+//    else
+//    {
+//        printf("Blad alokowania w pamieci");
+//        exit(1);
+//    }
+//    return nowa_ksiazka;
+//}
+//
+//void wypisz_ksiazki(struct ksiazka *pierwsza) {
+//    struct ksiazka *aktualna = pierwsza;
+//    while (aktualna != NULL)
+//    {
+//        printf("\n[ID]: %d\n[NAZWA]: %s\n[OPIS]: %s\n[ROK]: %d\n[NASTEPNA]: %p\n",
+//            aktualna->id,
+//            aktualna->nazwa,
+//            aktualna->opis,
+//            aktualna->rok,
+//            aktualna->nastepny
+//            );
+//        aktualna = aktualna->nastepny;
+//    }
+//}
+//
+//void dealokacja_ksiazek(struct ksiazka* pierwsza) {
+//    struct ksiazka* aktualna = pierwsza;
+//    while (aktualna != NULL)
+//    {
+//        struct ksiazka *do_usuniecia = aktualna;
+//        aktualna = aktualna->nastepny;
+//        free(do_usuniecia);
+//    }
+//}
+//
+//void dodaj_na_poczatek(struct ksiazka** pierwsza, int id, char nazwa[], char opis[], int rok) {
+//    struct ksiazka* nowa_ksiazka = dodaj_ksiazke(id, nazwa, opis, rok);
+//    if (pierwsza == NULL)
+//    {
+//        if (nowa_ksiazka != NULL)
+//        {
+//            *pierwsza = nowa_ksiazka;
+//        }
+//    }
+//    else
+//    {
+//        if (nowa_ksiazka != NULL)
+//        {
+//            nowa_ksiazka->nastepny = *pierwsza;
+//            *pierwsza = nowa_ksiazka;
+//        }
+//    }
+//}
+//
+//void dodaj_po_danym_id(struct ksiazka* pierwsza, int szukane_id, int id, char nazwa[], char opis[], int rok) {
+//    struct ksiazka* nowa_ksiazka = dodaj_ksiazke(id, nazwa, opis, rok);
+//    struct ksiazka *aktualna = pierwsza;
+//    while (aktualna != NULL)
+//    {
+//        if (aktualna->id == szukane_id)
+//        {
+//            nowa_ksiazka->nastepny = aktualna->nastepny;
+//            aktualna->nastepny = nowa_ksiazka;
+//            break;
+//        }
+//        else
+//        {
+//            aktualna = aktualna->nastepny;
+//        }
+//    }
+//}
+//
+//void dodaj_na_koniec(struct ksiazka* pierwsza, int id, char nazwa[], char opis[], int rok) {
+//    struct ksiazka* nowa_ksiazka = dodaj_ksiazke(id, nazwa, opis, rok);
+//    struct ksiazka* aktualna = pierwsza;
+//    while (aktualna->nastepny != NULL)
+//    {
+//        aktualna = aktualna->nastepny;
+//    }
+//    aktualna->nastepny = nowa_ksiazka;
+//}
+//
+//
+//int main() {
+//    FILE* input;
+//    struct ksiazka *pierwsza = NULL;
+//    struct ksiazka *aktualna = NULL;
+//    fopen_s(&input,"C:\\Users\\PATOX\\Desktop\\dane.txt", "r");
+//    if (input == NULL)
+//    {
+//        printf("Blad przy otwieraniu pliku");
+//        return 1;
+//    }
+//    int id;
+//    char nazwa[NAZWA_MAX];
+//    char opis[OPIS_MAX];
+//    int rok;
+//    while (fscanf_s(input, "%d %s %s %d", &id, nazwa, (unsigned)sizeof(nazwa), opis, (unsigned)sizeof(opis), &rok) == 4)
+//    {
+//        if (pierwsza == NULL)
+//        {
+//            pierwsza = dodaj_ksiazke(id, nazwa, opis, rok);
+//            if (pierwsza != NULL)
+//            {
+//                aktualna = pierwsza;
+//            }
+//        }
+//        else
+//        {
+//            aktualna->nastepny = dodaj_ksiazke(id, nazwa, opis, rok);
+//            if (aktualna->nastepny != NULL)
+//            {
+//                aktualna = aktualna->nastepny;
+//            }
+//        }
+//    }
+//    dodaj_na_poczatek(&pierwsza, 2, "Wladca_Pierscieni", "Ksiazka_o_pierscieniu", 1947);
+//    dodaj_na_koniec(pierwsza, 3, "Gra_o_Tron", "Ksiazka_o_walce_rodow", 1987);
+//    dodaj_po_danym_id(pierwsza, 3, 4, "Narnia", "Ksiazka_o_szafie", 1876);
+//    wypisz_ksiazki(pierwsza);
+//    dealokacja_ksiazek(pierwsza);
+//    fclose(input);
+//    return 0;
+//}
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct pojazd {
+    char marka[40];
+    char model[40];
+    int rok_produkcji;
+    float pojemnosc_silnika;
 };
 
-struct student* dodajStudenta(int indeks, char imie[], int ocena) {
-    struct student* nowyStudent = NULL;
-    nowyStudent = malloc(sizeof(struct student));
-    if (nowyStudent != NULL)
-    {
-        nowyStudent->indeks = indeks;
-        strcpy_s(nowyStudent->imie, sizeof(nowyStudent->imie), imie);
-        nowyStudent->ocena = ocena;
-        nowyStudent->nastepny = NULL;
-        printf("\nDodano studenta pod adresem %p\n", nowyStudent);
+int ile_wierszy(FILE *plik) {
+    int ilosc = 0;
+    while (!feof(plik)) {
+        char napis[100];
+        fgets(napis, sizeof(napis), plik);
+        ilosc++;
     }
-    else
-    {
-        printf("Blad alokowania pamieci");
-    }
-    return nowyStudent;
+    rewind(plik);
+    return ilosc;
 }
 
- void wypiszStudenta(struct student *student) {
-     if (student == NULL)
-     {
-         printf("Student nie istnieje");
-     }
-     else
-     {
-         printf("\n[Indeks]: %d\n[Imie]: %s\n[Ocena]: %d\n[Nastepny]: %p\n",
-             student->indeks,
-             student->imie,
-             student->ocena,
-             student->nastepny
-             );
-     }
- }
+struct dane {
+    int rozmiar;
+    struct pojazd* wskaznik;
+};
 
- void wypiszStudentow(struct student* pierwszy) {
-     struct student* aktualny = pierwszy;
-         while (aktualny != NULL)
-         {
-             wypiszStudenta(aktualny);
-             aktualny = aktualny->nastepny;
-         }
+struct dane druga(FILE* plik) {
+    if (plik == NULL)
+    {
+        printf("Blad");
+        exit(0);
+    }
+    struct dane a;
+    int ilosc = ile_wierszy(plik);
+    struct pojazd* tab = malloc(ilosc * sizeof(struct pojazd));
+    for (int i = 0; i < ilosc; i++)
+    {
+        if (fscanf_s(plik, "%s %s %d %f", tab[i].marka, (unsigned)sizeof(tab[i].marka), tab[i].model, (unsigned)sizeof(tab[i].marka), &tab[i].rok_produkcji, &tab[i].pojemnosc_silnika) != 4)
+        {
+            printf("Blad odczytu");
+            exit(0);
+        }
+    }
+    a.rozmiar = ilosc;
+    a.wskaznik = tab;
+    return a;
 }
 
- void dodajNaKoniec(struct student* pierwszy, int indeks, char imie[], int ocena, int *i) {
-     struct student* nowyStudent = dodajStudenta(indeks, imie, ocena);
-     if (nowyStudent != NULL)
-     {
-         if (pierwszy == NULL)
-         {
-             pierwszy = nowyStudent;
-         }
-         else
-         {
-             struct student* aktualny = pierwszy;
-             while (aktualny->nastepny != NULL)
-             {
-                 aktualny = aktualny->nastepny;
-             }
-             aktualny->nastepny = nowyStudent;
-         }
-     }
-     (*i)++;
- }
-
- void dodajNaPoczatek(struct student** pierwszy, int indeks, char imie[], int ocena, int *i) {          //** bo modifikujemy zmienna pierwszy zadeklarowana w main
-     struct student* nowyStudent = dodajStudenta(indeks, imie, ocena);
-     if (nowyStudent!=NULL)
-     {
-         if (pierwszy == NULL)
-         {
-             pierwszy = nowyStudent;
-         }
-         else
-         {
-             nowyStudent->nastepny = *pierwszy;
-             *pierwszy = nowyStudent;
-         }
-     }
-     (*i)++;
- }
-
- void dodajPo(struct student* pierwszy, int id, int indeks, char imie[], int ocena, int *i) {
-     struct student* nowyStudent = dodajStudenta(indeks, imie, ocena);
-     struct student* aktualny = pierwszy;
-     while (aktualny->nastepny != NULL)
-     {
-         if (aktualny->indeks == id)
-         {
-             nowyStudent->nastepny = aktualny->nastepny;
-             aktualny->nastepny = nowyStudent;
-             (*i)++;
-             break;
-         }
-         else
-         {
-             aktualny = aktualny->nastepny;
-         }
-     }
- }
-
- void usunPoId(struct student* pierwszy, int id, int* i) {
-     struct student* aktualny = pierwszy;
-     while (aktualny->nastepny != NULL)
-     {
-         if (aktualny->nastepny->indeks == id)
-         {
-             struct student* doUsuniecia = aktualny->nastepny;
-             aktualny->nastepny = aktualny->nastepny->nastepny;
-             free(doUsuniecia);
-             (*i)--;
-             break;
-         }
-         else
-         {
-             aktualny = aktualny->nastepny;
-         }
-     }
- }
-
- void dealokacjaStudentow(struct student* pierwszy) {
-     struct student* aktualny = pierwszy;
-     while (aktualny != NULL)
-     {
-         struct student* aux = aktualny;
-         aktualny = aktualny->nastepny;
-         free(aux);
-     }
- }
-
-int main(void) {
-    FILE* input;
-    int i = 0;
-    struct student* pierwszy = NULL;    //Wskazuje na pierwszy element z listy
-    struct student* aktualny = NULL;    //Wskazuje na ostatnio dodany element z listy
-    if (fopen_s(&input, "C:\\Users\\PATOX\\Desktop\\dane.txt", "r")!=0)
+void wypisz_pojazdy(struct pojazd* tab, int rozmiar) {
+    for (int i = 0; i < rozmiar; i++)
     {
-        printf("Blad wczytywania pliku");
-        return 1;
+        printf("%s %s %d %f\n", tab[i].marka, tab[i].model, tab[i].rok_produkcji, tab[i].pojemnosc_silnika);
     }
-    int indeks = 0;
-    char imie[25];
-    int ocena = 0;
-    while (fscanf_s(input,"%d %s %d", &indeks, imie, (unsigned)sizeof(imie), &ocena)==3)  //Dopóki jest w w stanie odczytać dane w formacie, pętla się wykonuje
+}
+
+
+int main() {
+    FILE* wejscie;
+    FILE* wyjscie;
+    fopen_s(&wejscie, "C:\\Users\\PATOX\\Desktop\\dane.txt", "r");
+    struct dane wynik = druga(wejscie);
+    wypisz_pojazdy(wynik.wskaznik, wynik.rozmiar);
+    fopen_s(&wyjscie, "C:\\Users\\PATOX\\Desktop\\dane2.txt", "w");
+    for (int i = 0; i < wynik.rozmiar; i++)
     {
-        if (pierwszy == NULL)                                                             
+        if (wyjscie != NULL)
         {
-            pierwszy = dodajStudenta(indeks, imie, ocena);                                //Jeżeli lista nie posiada jeszcze pierwszego elementu, tworzy go
-            if (pierwszy!=NULL)                                                           
-            {
-                aktualny = pierwszy;                                                        //Jeżeli alokacja w pamięci się udała, ustaw dodaną daną jako dodaną
-                i++;
-            }
+            fprintf_s(wyjscie, "%s %s %d %f\n", wynik.wskaznik[i].marka, wynik.wskaznik[i].model, wynik.wskaznik[i].rok_produkcji, wynik.wskaznik[i].pojemnosc_silnika);
         }
-        else
-        {
-            aktualny->nastepny = dodajStudenta(indeks, imie, ocena);                        //Jeżeli lista zawiera już pierwszy element, dodaje kolejny
-            if (aktualny->nastepny!=NULL)
-            {
-                aktualny = aktualny->nastepny;                                          
-                i++;
-            }
-        }
+        
     }
-    dodajNaKoniec(pierwszy, 123477, "Sebastian", 3, &i);
-    dodajNaPoczatek(&pierwszy, 123466, "Mateusz", 4, &i);           //Modyfikujemy zmienna w main, wiec podajemy adres zmiennej pierwszy
-    dodajPo(pierwszy, 123466, 123444, "Kacper", 2, &i);
-    usunPoId(pierwszy, 123479, &i);
-    wypiszStudentow(pierwszy);
-    printf("\n[Ilosc studentow]: %d\n", i);
-    dealokacjaStudentow(pierwszy);
-    pierwszy = NULL;
-    aktualny = NULL;
     return 0;
 }
-
