@@ -1777,95 +1777,88 @@ int main(void) {
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+#include <math.h>
 
 struct pojazd {
-    char marka[40];
-    char model[40];
-    int rok_produkcji;
-    float pojemnosc_silnika;
+	char marka[40];
+	char model[40];
+	int rok_produkcji;
+	float silnik;
 };
 
-int policz(FILE* wejscie) {
-    int ile = 0;
-    char napis[300];
-    while (!feof(wejscie)) {
-        fgets(napis, sizeof(napis), wejscie);
-        ile++;
-    }
-    rewind(wejscie);
-    return ile;
+int wczytaj_plik(FILE* wejscie) {
+	int ile = 0;
+	char napis[100];
+	while (!feof(wejscie))
+	{
+		fgets(napis, sizeof(napis), wejscie);
+		ile++;
+	}
+	rewind(wejscie);
+	return ile;
 }
 
 struct wynik {
-    int rozmiar;
-    struct pojazd* wskaznik;
+	struct pojazd* wskaznik;
+	int rozmiar;
 };
 
-struct wynik wczytaj(FILE* wejscie) {
-    struct wynik a;
-    int ile = policz(wejscie);
-    struct pojazd* tab = malloc(ile * sizeof(struct pojazd));
-    for (int i = 0; i < ile; i++)
-    {
-        if (fscanf_s(wejscie, "%s %s %d %f", tab[i].marka, (unsigned)sizeof(tab[i].marka), tab[i].model, (unsigned)sizeof(tab[i].model), &tab[i].rok_produkcji, &tab[i].pojemnosc_silnika) != 4)
-        {
-            if (!feof(wejscie))
-            {
-                printf("Blad odczytywania danych");
-                exit(0);
-            }
-            break;
-        }
-    }
-    a.rozmiar = ile;
-    a.wskaznik = tab;
-    return a;
+struct wynik druga(FILE* wejscie) {
+	struct wynik a;
+	int wiersze = wczytaj_plik(wejscie);
+	struct pojazd* tab = malloc(wiersze * sizeof(struct pojazd));
+	for (int i = 0; i < wiersze; ++i) {
+		if (fscanf_s(wejscie, "%s %s %d %f", tab[i].marka, 40, tab[i].model, 40, &tab[i].rok_produkcji, &tab[i].silnik) != 4) {
+			if (!feof(wejscie)) {
+				printf("\nBlad\n");
+				exit(0);
+			}
+			break;
+		}
+	}
+	a.rozmiar = wiersze;
+	a.wskaznik = tab;
+	return a;
+}
+void wypisz(int rozmiar, struct pojazd* tab) {
+	for (int i = 0; i < rozmiar; i++)
+	{
+		printf("%s %s %d %lg\n", tab[i].marka, tab[i].model, tab[i].rok_produkcji, tab[i].silnik);
+	}
+	putchar('\n');
 }
 
-void wypisz(struct pojazd* tab, int rozmiar) {
-    for (int i = 0; i < rozmiar; i++)
-    {
-        printf("%s %s %d %f\n", tab[i].marka, tab[i].model, tab[i].rok_produkcji, tab[i].pojemnosc_silnika);
-    }
-}
+struct pojazd* czwarta(int rozmiar, struct pojazd* tab) {
 
-struct pojazd* realokacja(struct pojazd* tab, int rozmiar) {
-    if (tab = realloc(tab, (rozmiar + 1)*sizeof(struct pojazd))==NULL)
-    {
-        printf("Blad alokowania pamieci, tworzenie nowej tablicy...");
-        struct pojazd* tab2 = malloc((rozmiar + 1) * sizeof(struct pojazd));
-        memmove(tab2, tab, sizeof(tab) + 1);
-        free(tab);
-        scanf_s("%s %s %d %f", tab2[rozmiar].marka, (unsigned)sizeof(tab2[rozmiar].marka), tab2[rozmiar].model, (unsigned)sizeof(tab2[rozmiar].model), &tab2[rozmiar].rok_produkcji, &tab2[rozmiar].pojemnosc_silnika);
-        return tab2;
-    }
-    else
-    {
-        scanf_s("%s %s %d %f", tab[rozmiar].marka, 40, tab[rozmiar].model,40, &tab[rozmiar].rok_produkcji, &tab[rozmiar].pojemnosc_silnika);
-        return tab;
-    }
+	if ((tab = realloc(tab, (rozmiar + 1) * sizeof(struct pojazd))) == NULL) {
+		struct pojazd* tab2 = malloc((rozmiar + 1) * sizeof(struct pojazd));
+		memmove(tab2, tab, sizeof(tab) + 1);
+		free(tab);
+		scanf_s("%s %s %d %f", tab2[rozmiar].marka, tab2[rozmiar].model, &tab2[rozmiar].rok_produkcji, &tab2[rozmiar].silnik);
+		return tab2;
+	}
+	else {
+		scanf_s("%s %s %d %f", tab[rozmiar].marka, 40, tab[rozmiar].model, 40, &tab[rozmiar].rok_produkcji, &tab[rozmiar].silnik);
+		return tab;
+	}
 }
-
 int main() {
-    FILE* wejscie;
-    if (fopen_s(&wejscie, "C:\\Users\\PATOX\\Desktop\\dane.txt", "r") != 0)
-    {
-        printf("Blad wczytywania pliku");
-        exit(0);
-    }
-    FILE* wyjscie;
-    if (fopen_s(&wyjscie, "C:\\Users\\PATOX\\Desktop\\dane2.txt", "w") != 0)
-    {
-        printf("Blad wczytywania pliku");
-        exit(0);
-    }
-    struct wynik b = wczytaj(wejscie);
-    wypisz(b.wskaznik, b.rozmiar);
-    realokacja(b.wskaznik, b.rozmiar);
-    for (int i = 0; i < b.rozmiar + 1; i++)
-    {
-        fprintf(wyjscie, "%s %s %d %f\n", (b.wskaznik)[i].marka, (b.wskaznik)[i].model, (b.wskaznik)[i].rok_produkcji, (b.wskaznik)[i].pojemnosc_silnika);
-    }
-    free(b.wskaznik);
+	FILE* wejscie;
+	if ((fopen_s(&wejscie, "C:\\Users\\PATOX\\Desktop\\dane.txt", "r")) != 0) {
+		printf("\nBlad odczytu\n");
+		exit(0);
+	}
+	FILE* wyjscie;
+	if ((fopen_s(&wyjscie, "C:\\Users\\PATOX\\Desktop\\dane2.txt", "w")) != 0) {
+		printf("\nBlad zapisu\n");
+		exit(0);
+	}
+	printf("%d\n", wczytaj_plik(wejscie));
+	struct wynik b = druga(wejscie);
+	wypisz(b.rozmiar, b.wskaznik);
+	czwarta(b.rozmiar, b.wskaznik);
+	for (int i = 0; i < b.rozmiar + 1; ++i) {
+		fprintf(wyjscie, "%s %s %d %lg\n", b.wskaznik[i].marka, b.wskaznik[i].model, b.wskaznik[i].rok_produkcji, b.wskaznik[i].silnik);
+	}
+	free(b.wskaznik);
 }
