@@ -120,6 +120,15 @@ int policz_rozmiar(struct pomiar* pierwszy) {
 	return rozmiar;
 }
 
+void zdealokuj_liste(struct pomiar* pierwszy) {
+	struct pomiar* aktualny = pierwszy;
+	while (aktualny != NULL)
+	{
+		struct pomiar* temp = aktualny;
+		aktualny = aktualny->nastepny;
+		free(temp);
+	}
+}
 
 int main(){
 	FILE* wejscie;
@@ -215,5 +224,10 @@ int main(){
 	fclose(wyjscie2);
 	fclose(wyjscie3);
 	fclose(wyjscie4);
+	zdealokuj_liste(czujnik1);
+	zdealokuj_liste(czujnik2);
+	zdealokuj_liste(czujnik3);
+	zdealokuj_liste(czujnik4);
+	printf("\nKoniec programu\n");
 	return 0;
 }
