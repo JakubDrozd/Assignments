@@ -24,7 +24,7 @@ struct pomiar *dodaj_pomiar(unsigned int nr_pomiaru, unsigned int nr_czujnika, c
 void wypisz_liste(struct pomiar *pierwszy) {
 	struct pomiar* aktualny = pierwszy;
 	while (aktualny != NULL) {
-		printf("%d %d %s %.2lf\n", aktualny->nr_pomiaru, aktualny->nr_czujnika, aktualny->data_i_czas, aktualny->temp);
+		printf("%d %d %s %lf\n", aktualny->nr_pomiaru, aktualny->nr_czujnika, aktualny->data_i_czas, aktualny->temp);
 		aktualny = aktualny->nastepny;
 	}
 }
@@ -176,45 +176,44 @@ int main(){
 	printf("Ilosc pomiarow dla kazdego czujnika:\nCzujnik 1: %d\nCzujnik 2: %d\nCzujnik 3: %d\nCzujnik 4: %d\n", policz_rozmiar(czujnik1), policz_rozmiar(czujnik2), policz_rozmiar(czujnik3), policz_rozmiar(czujnik4));
 	char nazwa[70];
 	char nazwa_pliku[80];
-	printf_s("Podaj poczatek nazwy plikow: ");
-	scanf_s("%s", nazwa, 69);
-	char path[100] = { 0 };
-	sprintf_s(path, sizeof(path), "C:\\Users\\PATOX\\Desktop\\%s", nazwa);
-
+	printf("\nPodaj nazwe pliku wyjsciowego: \n");
+	scanf_s("%s", nazwa, 70);
+	FILE* wyjscie1 = NULL;
+	FILE* wyjscie2 = NULL;
+	FILE* wyjscie3 = NULL;
+	FILE* wyjscie4 = NULL;
 	for (int i = 1; i <= 4; i++)
 	{
 		sprintf_s(nazwa_pliku, sizeof(nazwa_pliku), "%s%d.txt", nazwa, i);
-		char pelna_nazwa[100] = { 0 };
-		sprintf_s(pelna_nazwa, sizeof(pelna_nazwa),"%s%s", path, nazwa_pliku);
-
-		FILE* wyjscie = NULL;
-		fopen_s(&wyjscie, pelna_nazwa, "w");
-		if (wyjscie == NULL)
+		if (i == 1)
 		{
-			printf("Blad przy otwieraniu pliku %s\n", pelna_nazwa);
-			return 1;
-		}
+			fopen_s(&wyjscie1, nazwa_pliku, "w");
+			wpisz_liste_do_pliku(czujnik1, wyjscie1);
 
-		switch (i)
+		} 
+		else if (i == 2)
 		{
-		case 1:
-			wpisz_liste_do_pliku(czujnik1, wyjscie);
-			break;
-		case 2:
-			wpisz_liste_do_pliku(czujnik2, wyjscie);
-			break;
-		case 3:
-			wpisz_liste_do_pliku(czujnik3, wyjscie);
-			break;
-		case 4:
-			wpisz_liste_do_pliku(czujnik4, wyjscie);
-			break;
-		default:
-			printf("Nieznany numer czujnika: %d\n", i);
-			break;
-		}
+			fopen_s(&wyjscie2, nazwa_pliku, "w");
+			wpisz_liste_do_pliku(czujnik2, wyjscie2);
 
-		fclose(wyjscie);
+		}
+		else if (i == 3)
+		{
+			fopen_s(&wyjscie3, nazwa_pliku, "w");
+			wpisz_liste_do_pliku(czujnik3, wyjscie3);
+
+		}
+		else if (i == 4)
+		{
+			fopen_s(&wyjscie4, nazwa_pliku, "w");
+			wpisz_liste_do_pliku(czujnik4, wyjscie4);
+
+		}
 	}
+	fclose(wejscie);
+	fclose(wyjscie1);
+	fclose(wyjscie2);
+	fclose(wyjscie3);
+	fclose(wyjscie4);
 	return 0;
 }
