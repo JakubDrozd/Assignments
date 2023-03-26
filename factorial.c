@@ -1928,104 +1928,75 @@ struct rozdzielone {
 };
 
 
-struct rozdzielone rozdziel_liste(struct pomiar** pierwszy) {
+struct rozdzielone rozdziel_liste(struct pomiar* pierwszy) {
     struct pomiar* czujnik1 = NULL;
     struct pomiar* czujnik2 = NULL;
     struct pomiar* czujnik3 = NULL;
     struct pomiar* czujnik4 = NULL;
     struct rozdzielone listy;
-    struct pomiar* aktualny = *pierwszy;
-    while (aktualny != NULL)
-    {
-        struct pomiar *nastepny = aktualny->nastepny;
-        aktualny->nastepny = NULL;
-        if (aktualny->nr_czujnika == 1)
-        {
-            if (czujnik1 == NULL)
-            {
-                czujnik1 = aktualny;
+
+    for (struct pomiar* aktualny = pierwszy; aktualny != NULL; aktualny = aktualny->nastepny) {
+        struct pomiar* nowy = (struct pomiar*)malloc(sizeof(struct pomiar));
+        nowy->nr_pomiaru = aktualny->nr_pomiaru;
+        nowy->nr_czujnika = aktualny->nr_czujnika;
+        strcpy_s(nowy->data_i_czas, sizeof(nowy->data_i_czas), aktualny->data_i_czas);
+        nowy->temp = aktualny->temp;
+        nowy->nastepny = NULL;
+
+        if (aktualny->nr_czujnika == 1) {
+            if (czujnik1 == NULL) {
+                czujnik1 = nowy;
             }
-            else
-            {
-                struct pomiar* kolejny = czujnik1;
-                while (kolejny->nastepny != NULL)
-                {
-                    kolejny = kolejny->nastepny;
+            else {
+                struct pomiar* ostatni = czujnik1;
+                while (ostatni->nastepny != NULL) {
+                    ostatni = ostatni->nastepny;
                 }
-                kolejny->nastepny = aktualny;
+                ostatni->nastepny = nowy;
             }
         }
-        else if (aktualny->nr_czujnika == 2)
-        {
-            if (czujnik2 == NULL)
-            {
-                czujnik2 = aktualny;
+        else if (aktualny->nr_czujnika == 2) {
+            if (czujnik2 == NULL) {
+                czujnik2 = nowy;
             }
-            else
-            {
-                struct pomiar* kolejny = czujnik2;
-                while (kolejny->nastepny != NULL)
-                {
-                    kolejny = kolejny->nastepny;
+            else {
+                struct pomiar* ostatni = czujnik2;
+                while (ostatni->nastepny != NULL) {
+                    ostatni = ostatni->nastepny;
                 }
-                kolejny->nastepny = aktualny;
+                ostatni->nastepny = nowy;
             }
         }
-        else if (aktualny->nr_czujnika == 3)
-        {
-            if (czujnik3 == NULL)
-            {
-                czujnik3 = aktualny;
+        else if (aktualny->nr_czujnika == 3) {
+            if (czujnik3 == NULL) {
+                czujnik3 = nowy;
             }
-            else
-            {
-                struct pomiar* kolejny = czujnik3;
-                while (kolejny->nastepny != NULL)
-                {
-                    kolejny = kolejny->nastepny;
+            else {
+                struct pomiar* ostatni = czujnik3;
+                while (ostatni->nastepny != NULL) {
+                    ostatni = ostatni->nastepny;
                 }
-                kolejny->nastepny = aktualny;
+                ostatni->nastepny = nowy;
             }
         }
-        else if (aktualny->nr_czujnika == 4)
-        {
-            if (czujnik4 == NULL)
-            {
-                czujnik4 = aktualny;
+        else if (aktualny->nr_czujnika == 4) {
+            if (czujnik4 == NULL) {
+                czujnik4 = nowy;
             }
-            else
-            {
-                struct pomiar* kolejny = czujnik4;
-                while (kolejny->nastepny != NULL)
-                {
-                    kolejny = kolejny->nastepny;
+            else {
+                struct pomiar* ostatni = czujnik4;
+                while (ostatni->nastepny != NULL) {
+                    ostatni = ostatni->nastepny;
                 }
-                kolejny->nastepny = aktualny;
+                ostatni->nastepny = nowy;
             }
         }
-        aktualny = nastepny;
     }
     listy.czujnik1 = czujnik1;
     listy.czujnik2 = czujnik2;
     listy.czujnik3 = czujnik3;
     listy.czujnik4 = czujnik4;
     return listy;
-}
-
-struct pomiar* usun_min_max(struct pomiar* pierwszy){
-    struct pomiar* minimalny = pierwszy;
-    struct pomiar* aktualny = pierwszy;
-    while (aktualny != NULL)
-    {
-        if (aktualny->temp < minimalny->temp)
-        {
-            minimalny = aktualny;
-        }
-        aktualny = aktualny->nastepny;
-    }
-    printf("\n\nMinimalny: %d %d %s %lf\n\n", minimalny->nr_pomiaru, minimalny->nr_czujnika, minimalny->data_i_czas, minimalny->temp);
-    free(minimalny);
-    return NULL;
 }
 
 
@@ -2079,6 +2050,6 @@ struct pomiar* wczytajPlik(char nazwa_pliku[]) {
 int main() {
     struct pomiar* pierwszy = wczytajPlik("dane.txt");
     ile_pomiarow(pierwszy);
-    struct rozdzielone listy = rozdziel_liste(&pierwszy);
-    wypisz_liste(listy.czujnik2);
+    struct rozdzielone listy = rozdziel_liste(pierwszy);
+    wypisz_liste(pierwszy);
 }
