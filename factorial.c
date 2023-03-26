@@ -1775,99 +1775,310 @@ int main(void) {
 //    return 0;
 //}
 
+//#include <stdio.h>
+//#include <stdlib.h>
+//#include <string.h>
+//
+//struct pojazd {
+//    char marka[40];
+//    char model[40];
+//    int rok_produkcji;
+//    float pojemnosc_silnika;
+//};
+//
+//int ile_wierszy(FILE *plik) {
+//    int ilosc = 0;
+//    while (!feof(plik)) {
+//        char napis[100];
+//        fgets(napis, sizeof(napis), plik);
+//        ilosc++;
+//    }
+//    rewind(plik);
+//    return ilosc;
+//}
+//
+//struct dane {
+//    int rozmiar;
+//    struct pojazd* wskaznik;
+//};
+//
+//struct dane druga(FILE* plik) {
+//    if (plik == NULL)
+//    {
+//        printf("Blad");
+//        exit(0);
+//    }
+//    struct dane a;
+//    int ilosc = ile_wierszy(plik);
+//    struct pojazd* tab = malloc(ilosc * sizeof(struct pojazd));
+//    for (int i = 0; i < ilosc; i++)
+//    {
+//        if (fscanf_s(plik, "%s %s %d %f", tab[i].marka, (unsigned)sizeof(tab[i].marka), tab[i].model, (unsigned)sizeof(tab[i].model), &tab[i].rok_produkcji, &tab[i].pojemnosc_silnika) != 4)
+//        {
+//            printf("Blad odczytu");
+//            exit(0);
+//        }
+//    }
+//    a.rozmiar = ilosc;
+//    a.wskaznik = tab;
+//    return a;
+//}
+//
+//void wypisz_pojazdy(struct pojazd* tab, int rozmiar) {
+//    for (int i = 0; i < rozmiar; i++)
+//    {
+//        printf("%s %s %d %f\n", tab[i].marka, tab[i].model, tab[i].rok_produkcji, tab[i].pojemnosc_silnika);
+//    }
+//}
+//
+//struct pojazd* czwarta(struct pojazd *tab, int rozmiar) {
+//    struct pojazd* nowa;
+//    if ((tab = realloc(tab, (rozmiar + 1) * sizeof(struct pojazd))) == NULL)
+//    {
+//        printf("\nBlad realokacji, tworzenie nowej tablicy...\n");
+//        nowa = malloc((rozmiar + 1) * sizeof(struct pojazd));
+//        memmove(nowa, tab, sizeof((rozmiar + 1) * sizeof(struct pojazd)));
+//        printf("\nPoszerzanie tablicy...\n");
+//        printf("Podaj nowe auto:\n");
+//        scanf_s("%s %s %d %f", tab[rozmiar].marka, 40, tab[rozmiar].model, 40, &tab[rozmiar].rok_produkcji, &tab[rozmiar].pojemnosc_silnika);
+//        free(tab);
+//        return nowa;
+//    }
+//    else
+//    {
+//        printf("\nPoszerzanie tablicy...\n");
+//        printf("Podaj nowe auto:\n");
+//        scanf_s("%s %s %d %f", tab[rozmiar].marka, 40, tab[rozmiar].model, 40, &tab[rozmiar].rok_produkcji, &tab[rozmiar].pojemnosc_silnika);
+//        return tab;
+//    }
+//
+//}
+//
+//int main() {
+//    FILE* wejscie;
+//    FILE* wyjscie;
+//    fopen_s(&wejscie, "C:\\Users\\PATOX\\Desktop\\dane.txt", "r");
+//    struct dane wynik = druga(wejscie);
+//    wypisz_pojazdy(wynik.wskaznik, wynik.rozmiar);
+//    wynik.wskaznik = czwarta(wynik.wskaznik, wynik.rozmiar);
+//    fopen_s(&wyjscie, "C:\\Users\\PATOX\\Desktop\\dane2.txt", "w");
+//    for (int i = 0; i < wynik.rozmiar + 1; i++)
+//    {
+//        fprintf(wyjscie,"%s %s %d %.2f\n", wynik.wskaznik[i].marka, wynik.wskaznik[i].model, wynik.wskaznik[i].rok_produkcji, wynik.wskaznik[i].pojemnosc_silnika);
+//    }
+//    free(wynik.wskaznik);
+//    fclose(wejscie);
+//    fclose(wyjscie);
+//    return 0;
+//}
+
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
+#include <stdlib.h>
 
-struct pojazd {
-    char marka[40];
-    char model[40];
-    int rok_produkcji;
-    float pojemnosc_silnika;
+struct pomiar {
+    unsigned int nr_pomiaru;
+    unsigned int nr_czujnika;
+    char data_i_czas[20];
+    double temp;
+    struct pomiar* nastepny;
 };
 
-int ile_wierszy(FILE *plik) {
-    int ilosc = 0;
-    while (!feof(plik)) {
-        char napis[100];
-        fgets(napis, sizeof(napis), plik);
-        ilosc++;
-    }
-    rewind(plik);
-    return ilosc;
+struct pomiar* dodaj_pomiar(unsigned int nr_pomiaru, unsigned int nr_czujnika, char data_i_czas[20], double temp) {
+    struct pomiar* nowy_pomiar = NULL;
+    nowy_pomiar = malloc(sizeof(struct pomiar));
+    nowy_pomiar->nr_pomiaru = nr_pomiaru;
+    nowy_pomiar->nr_czujnika = nr_czujnika;
+    strcpy_s(nowy_pomiar->data_i_czas, sizeof(nowy_pomiar->data_i_czas), data_i_czas);
+    nowy_pomiar->temp = temp;
+    nowy_pomiar->nastepny = NULL;
+    return nowy_pomiar;
 }
 
-struct dane {
-    int rozmiar;
-    struct pojazd* wskaznik;
-};
-
-struct dane druga(FILE* plik) {
-    if (plik == NULL)
+void wypisz_liste(struct pomiar* pierwszy) {
+    struct pomiar* aktualny = pierwszy;
+    while (aktualny != NULL)
     {
-        printf("Blad");
-        exit(0);
+        printf("%d %d %s %lf\n", aktualny->nr_pomiaru, aktualny->nr_czujnika, aktualny->data_i_czas, aktualny->temp);
+        aktualny = aktualny->nastepny;
     }
-    struct dane a;
-    int ilosc = ile_wierszy(plik);
-    struct pojazd* tab = malloc(ilosc * sizeof(struct pojazd));
-    for (int i = 0; i < ilosc; i++)
+}
+
+void ile_pomiarow(struct pomiar* pierwszy) {
+    int ile = 0;
+    struct pomiar* aktualny = pierwszy;
+    while (aktualny != NULL)
     {
-        if (fscanf_s(plik, "%s %s %d %f", tab[i].marka, (unsigned)sizeof(tab[i].marka), tab[i].model, (unsigned)sizeof(tab[i].model), &tab[i].rok_produkcji, &tab[i].pojemnosc_silnika) != 4)
+        if ((aktualny == pierwszy)  || (aktualny->nastepny == NULL) || (aktualny->nastepny->nastepny == NULL))
         {
-            printf("Blad odczytu");
-            exit(0);
+            printf("%d %d %s %lf\n", aktualny->nr_pomiaru, aktualny->nr_czujnika, aktualny->data_i_czas, aktualny->temp);
         }
+        ile++;
+        aktualny = aktualny->nastepny;
     }
-    a.rozmiar = ilosc;
-    a.wskaznik = tab;
-    return a;
+    printf("\nIlosc pomiarow: %d\n", ile);
 }
 
-void wypisz_pojazdy(struct pojazd* tab, int rozmiar) {
-    for (int i = 0; i < rozmiar; i++)
+
+struct rozdzielone {
+    struct pomiar* czujnik1;
+    struct pomiar* czujnik2;
+    struct pomiar* czujnik3;
+    struct pomiar* czujnik4;
+};
+
+
+struct rozdzielone rozdziel_liste(struct pomiar** pierwszy) {
+    struct pomiar* czujnik1 = NULL;
+    struct pomiar* czujnik2 = NULL;
+    struct pomiar* czujnik3 = NULL;
+    struct pomiar* czujnik4 = NULL;
+    struct rozdzielone listy;
+    struct pomiar* aktualny = *pierwszy;
+    while (aktualny != NULL)
     {
-        printf("%s %s %d %f\n", tab[i].marka, tab[i].model, tab[i].rok_produkcji, tab[i].pojemnosc_silnika);
+        struct pomiar *nastepny = aktualny->nastepny;
+        aktualny->nastepny = NULL;
+        if (aktualny->nr_czujnika == 1)
+        {
+            if (czujnik1 == NULL)
+            {
+                czujnik1 = aktualny;
+            }
+            else
+            {
+                struct pomiar* kolejny = czujnik1;
+                while (kolejny->nastepny != NULL)
+                {
+                    kolejny = kolejny->nastepny;
+                }
+                kolejny->nastepny = aktualny;
+            }
+        }
+        else if (aktualny->nr_czujnika == 2)
+        {
+            if (czujnik2 == NULL)
+            {
+                czujnik2 = aktualny;
+            }
+            else
+            {
+                struct pomiar* kolejny = czujnik2;
+                while (kolejny->nastepny != NULL)
+                {
+                    kolejny = kolejny->nastepny;
+                }
+                kolejny->nastepny = aktualny;
+            }
+        }
+        else if (aktualny->nr_czujnika == 3)
+        {
+            if (czujnik3 == NULL)
+            {
+                czujnik3 = aktualny;
+            }
+            else
+            {
+                struct pomiar* kolejny = czujnik3;
+                while (kolejny->nastepny != NULL)
+                {
+                    kolejny = kolejny->nastepny;
+                }
+                kolejny->nastepny = aktualny;
+            }
+        }
+        else if (aktualny->nr_czujnika == 4)
+        {
+            if (czujnik4 == NULL)
+            {
+                czujnik4 = aktualny;
+            }
+            else
+            {
+                struct pomiar* kolejny = czujnik4;
+                while (kolejny->nastepny != NULL)
+                {
+                    kolejny = kolejny->nastepny;
+                }
+                kolejny->nastepny = aktualny;
+            }
+        }
+        aktualny = nastepny;
     }
+    listy.czujnik1 = czujnik1;
+    listy.czujnik2 = czujnik2;
+    listy.czujnik3 = czujnik3;
+    listy.czujnik4 = czujnik4;
+    return listy;
 }
 
-struct pojazd* czwarta(struct pojazd *tab, int rozmiar) {
-    struct pojazd* nowa;
-    if ((tab = realloc(tab, (rozmiar + 1) * sizeof(struct pojazd))) == NULL)
+struct pomiar* usun_min_max(struct pomiar* pierwszy){
+    struct pomiar* minimalny = pierwszy;
+    struct pomiar* aktualny = pierwszy;
+    while (aktualny != NULL)
     {
-        printf("\nBlad realokacji, tworzenie nowej tablicy...\n");
-        nowa = malloc((rozmiar + 1) * sizeof(struct pojazd));
-        memmove(nowa, tab, sizeof((rozmiar + 1) * sizeof(struct pojazd)));
-        printf("\nPoszerzanie tablicy...\n");
-        printf("Podaj nowe auto:\n");
-        scanf_s("%s %s %d %f", tab[rozmiar].marka, 40, tab[rozmiar].model, 40, &tab[rozmiar].rok_produkcji, &tab[rozmiar].pojemnosc_silnika);
-        free(tab);
-        return nowa;
+        if (aktualny->temp < minimalny->temp)
+        {
+            minimalny = aktualny;
+        }
+        aktualny = aktualny->nastepny;
+    }
+    printf("\n\nMinimalny: %d %d %s %lf\n\n", minimalny->nr_pomiaru, minimalny->nr_czujnika, minimalny->data_i_czas, minimalny->temp);
+    free(minimalny);
+    return NULL;
+}
+
+
+struct pomiar* wczytajPlik(char nazwa_pliku[]) {
+    FILE* wejscie = NULL;
+    struct pomiar *pierwszy = NULL;
+    struct pomiar* nowy = NULL;
+    if (fopen_s(&wejscie, nazwa_pliku, "r")!=0)
+    {
+        printf("\nNie znaleziono pliku\n");
+        exit(0);
     }
     else
     {
-        printf("\nPoszerzanie tablicy...\n");
-        printf("Podaj nowe auto:\n");
-        scanf_s("%s %s %d %f", tab[rozmiar].marka, 40, tab[rozmiar].model, 40, &tab[rozmiar].rok_produkcji, &tab[rozmiar].pojemnosc_silnika);
-        return tab;
+        printf("\nPomyslnie otwarto plik\n");
     }
-
+    unsigned int nr_pomiaru;
+    unsigned int nr_czujnika;
+    char data_i_czas[20];
+    double temp;
+    while (fscanf_s(wejscie,"%d %d %s %lf", &nr_pomiaru, &nr_czujnika, data_i_czas, (unsigned)sizeof(data_i_czas), &temp) == 4)
+    {
+        if (pierwszy == NULL)
+        {
+            pierwszy = dodaj_pomiar(nr_pomiaru, nr_czujnika, data_i_czas, temp);
+            if (pierwszy != NULL)
+            {
+                nowy = pierwszy;
+            }
+        }
+        else
+        {
+            nowy->nastepny = dodaj_pomiar(nr_pomiaru, nr_czujnika, data_i_czas, temp);
+            if (nowy->nastepny != NULL)
+            {
+                nowy = nowy->nastepny;
+            }
+        }
+    }
+    fclose(wejscie);
+    if (pierwszy == NULL)
+    {
+        return NULL;
+    }
+    else
+    {
+        return pierwszy;
+    }
 }
 
 int main() {
-    FILE* wejscie;
-    FILE* wyjscie;
-    fopen_s(&wejscie, "C:\\Users\\PATOX\\Desktop\\dane.txt", "r");
-    struct dane wynik = druga(wejscie);
-    wypisz_pojazdy(wynik.wskaznik, wynik.rozmiar);
-    wynik.wskaznik = czwarta(wynik.wskaznik, wynik.rozmiar);
-    fopen_s(&wyjscie, "C:\\Users\\PATOX\\Desktop\\dane2.txt", "w");
-    for (int i = 0; i < wynik.rozmiar + 1; i++)
-    {
-        fprintf(wyjscie,"%s %s %d %.2f\n", wynik.wskaznik[i].marka, wynik.wskaznik[i].model, wynik.wskaznik[i].rok_produkcji, wynik.wskaznik[i].pojemnosc_silnika);
-    }
-    free(wynik.wskaznik);
-    fclose(wejscie);
-    fclose(wyjscie);
-    return 0;
+    struct pomiar* pierwszy = wczytajPlik("dane.txt");
+    ile_pomiarow(pierwszy);
+    struct rozdzielone listy = rozdziel_liste(&pierwszy);
+    wypisz_liste(listy.czujnik2);
 }
