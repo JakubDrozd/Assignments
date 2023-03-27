@@ -2343,6 +2343,16 @@ void przenies_koniec(struct pomiar** pierwszy, struct pomiar* element) {
         poprzedni = aktualny;
         aktualny = aktualny->nastepny;
     }
+
+    if (poprzedni == NULL)
+    {
+        *pierwszy = element->nastepny;
+    }
+    else
+    {
+        poprzedni->nastepny = element->nastepny;
+    }
+
     struct pomiar* ostatni = *pierwszy;
     while (ostatni->nastepny != NULL)
     {
@@ -2393,6 +2403,26 @@ int main() {
     ile_pomiarow(listy.czujnik1);
     dodaj_min_max(&listy.czujnik1);
     ile_pomiarow(listy.czujnik1);
+
+    printf("\n[CZUJNIK 2]\n");
+    ile_pomiarow(listy.czujnik2);
+    dodaj_min_max(&listy.czujnik2);
+    ile_pomiarow(listy.czujnik2);
+
+    printf("\n[CZUJNIK 3]\n");
+    ile_pomiarow(listy.czujnik3);
+    dodaj_min_max(&listy.czujnik3);
+    ile_pomiarow(listy.czujnik3);
+
+    printf("\n[CZUJNIK 4]\n");
+    ile_pomiarow(listy.czujnik4);
+    dodaj_min_max(&listy.czujnik4);
+    ile_pomiarow(listy.czujnik4);
+
+    dealokuj_liste(listy.czujnik1);
+    dealokuj_liste(listy.czujnik2);
+    dealokuj_liste(listy.czujnik3);
+    dealokuj_liste(listy.czujnik4);
 
     return 0;
 }
