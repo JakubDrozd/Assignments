@@ -303,7 +303,7 @@
 //#define MAX 100
 //
 //void info() {
-//	printf("Program daje uzytkownikowi stworzyc tablie prostokatna, znajduje najwieksza wartosc w ostatniej kolumnie i wypisuje wiersze, ktorych wszystkie elementy sa mniejsze od tej wartosci.\nAutor: Jakub Drozd\n");
+//	printf("Program daje uzytkownikowi stworzyc tablie prostokatna, znajduje najwieksza wartosc w tempej kolumnie i wypisuje wiersze, ktorych wszystkie elementy sa mniejsze od tej wartosci.\nAutor: Jakub Drozd\n");
 //}
 //
 //int wczytajRozmiar() {
@@ -1582,7 +1582,7 @@ int main(void) {
 //    FILE* input;
 //    int i = 0;
 //    struct student* pierwszy = NULL;    //Wskazuje na pierwszy element z listy
-//    struct student* aktualny = NULL;    //Wskazuje na ostatnio dodany element z listy
+//    struct student* aktualny = NULL;    //Wskazuje na tempo dodany element z listy
 //    if (fopen_s(&input, "C:\\Users\\PATOX\\Desktop\\dane.txt", "r")!=0)
 //    {
 //        printf("Blad wczytywania pliku");
@@ -1872,6 +1872,259 @@ int main(void) {
 //    return 0;
 //}
 
+//#include <stdio.h>
+//#include <stdlib.h>
+//
+//struct pomiar {
+//    unsigned int nr_pomiaru;
+//    unsigned int nr_czujnika;
+//    char data_i_czas[20];
+//    double temp;
+//    struct pomiar* nastepny;
+//};
+//
+//struct pomiar* dodaj_pomiar(unsigned int nr_pomiaru, unsigned int nr_czujnika, char data_i_czas[20], double temp) {
+//    struct pomiar* nowy_pomiar = NULL;
+//    nowy_pomiar = malloc(sizeof(struct pomiar));
+//    nowy_pomiar->nr_pomiaru = nr_pomiaru;
+//    nowy_pomiar->nr_czujnika = nr_czujnika;
+//    strcpy_s(nowy_pomiar->data_i_czas, sizeof(nowy_pomiar->data_i_czas), data_i_czas);
+//    nowy_pomiar->temp = temp;
+//    nowy_pomiar->nastepny = NULL;
+//    return nowy_pomiar;
+//}
+//
+//void wypisz_liste(struct pomiar* pierwszy) {
+//    struct pomiar* aktualny = pierwszy;
+//    while (aktualny != NULL)
+//    {
+//        printf("%d %d %s %lf\n", aktualny->nr_pomiaru, aktualny->nr_czujnika, aktualny->data_i_czas, aktualny->temp);
+//        aktualny = aktualny->nastepny;
+//    }
+//}
+//
+//void ile_pomiarow(struct pomiar* pierwszy) {
+//    int ile = 0;
+//    struct pomiar* aktualny = pierwszy;
+//    while (aktualny != NULL)
+//    {
+//        if ((aktualny == pierwszy)  || (aktualny->nastepny == NULL) || (aktualny->nastepny->nastepny == NULL))
+//        {
+//            printf("\n|%d %d %s %lf|\n", aktualny->nr_pomiaru, aktualny->nr_czujnika, aktualny->data_i_czas, aktualny->temp);
+//        }
+//        ile++;
+//        aktualny = aktualny->nastepny;
+//    }
+//    printf("\n!!!Ilosc pomiarow: %d!!!\n\n\n\n", ile);
+//}
+//
+//
+//struct rozdzielone {
+//    struct pomiar* czujnik1;
+//    struct pomiar* czujnik2;
+//    struct pomiar* czujnik3;
+//    struct pomiar* czujnik4;
+//};
+//
+//
+//struct rozdzielone rozdziel_liste(struct pomiar* pierwszy) {
+//    struct pomiar* czujnik1 = NULL;
+//    struct pomiar* czujnik2 = NULL;
+//    struct pomiar* czujnik3 = NULL;
+//    struct pomiar* czujnik4 = NULL;
+//    struct rozdzielone listy;
+//
+//    for (struct pomiar* aktualny = pierwszy; aktualny != NULL; aktualny = aktualny->nastepny) {
+//        struct pomiar* nowy = (struct pomiar*)malloc(sizeof(struct pomiar));
+//        nowy->nr_pomiaru = aktualny->nr_pomiaru;
+//        nowy->nr_czujnika = aktualny->nr_czujnika;
+//        strcpy_s(nowy->data_i_czas, sizeof(nowy->data_i_czas), aktualny->data_i_czas);
+//        nowy->temp = aktualny->temp;
+//        nowy->nastepny = NULL;
+//
+//        if (aktualny->nr_czujnika == 1) {
+//            if (czujnik1 == NULL) {
+//                czujnik1 = nowy;
+//            }
+//            else {
+//                struct pomiar* temp = czujnik1;
+//                while (temp->nastepny != NULL) {
+//                    temp = temp->nastepny;
+//                }
+//                temp->nastepny = nowy;
+//            }
+//        }
+//        else if (aktualny->nr_czujnika == 2) {
+//            if (czujnik2 == NULL) {
+//                czujnik2 = nowy;
+//            }
+//            else {
+//                struct pomiar* temp = czujnik2;
+//                while (temp->nastepny != NULL) {
+//                    temp = temp->nastepny;
+//                }
+//                temp->nastepny = nowy;
+//            }
+//        }
+//        else if (aktualny->nr_czujnika == 3) {
+//            if (czujnik3 == NULL) {
+//                czujnik3 = nowy;
+//            }
+//            else {
+//                struct pomiar* temp = czujnik3;
+//                while (temp->nastepny != NULL) {
+//                    temp = temp->nastepny;
+//                }
+//                temp->nastepny = nowy;
+//            }
+//        }
+//        else if (aktualny->nr_czujnika == 4) {
+//            if (czujnik4 == NULL) {
+//                czujnik4 = nowy;
+//            }
+//            else {
+//                struct pomiar* temp = czujnik4;
+//                while (temp->nastepny != NULL) {
+//                    temp = temp->nastepny;
+//                }
+//                temp->nastepny = nowy;
+//            }
+//        }
+//    }
+//    listy.czujnik1 = czujnik1;
+//    listy.czujnik2 = czujnik2;
+//    listy.czujnik3 = czujnik3;
+//    listy.czujnik4 = czujnik4;
+//    return listy;
+//}
+//
+//
+//struct pomiar* wczytajPlik(char nazwa_pliku[]) {
+//    FILE* wejscie = NULL;
+//    struct pomiar *pierwszy = NULL;
+//    struct pomiar* nowy = NULL;
+//    if (fopen_s(&wejscie, nazwa_pliku, "r")!=0)
+//    {
+//        printf("\nNie znaleziono pliku\n");
+//        exit(0);
+//    }
+//    else
+//    {
+//        printf("\nPomyslnie otwarto plik\n");
+//    }
+//    unsigned int nr_pomiaru;
+//    unsigned int nr_czujnika;
+//    char data_i_czas[20];
+//    double temp;
+//    while (fscanf_s(wejscie,"%d %d %s %lf", &nr_pomiaru, &nr_czujnika, data_i_czas, (unsigned)sizeof(data_i_czas), &temp) == 4)
+//    {
+//        if (pierwszy == NULL)
+//        {
+//            pierwszy = dodaj_pomiar(nr_pomiaru, nr_czujnika, data_i_czas, temp);
+//            if (pierwszy != NULL)
+//            {
+//                nowy = pierwszy;
+//            }
+//        }
+//        else
+//        {
+//            nowy->nastepny = dodaj_pomiar(nr_pomiaru, nr_czujnika, data_i_czas, temp);
+//            if (nowy->nastepny != NULL)
+//            {
+//                nowy = nowy->nastepny;
+//            }
+//        }
+//    }
+//    fclose(wejscie);
+//    return pierwszy;
+//}
+//
+//void dealokuj_liste(struct pomiar* pierwszy) {
+//    struct pomiar* aktualny = pierwszy;
+//    while (aktualny != NULL)
+//    {
+//        struct pomiar* temp = aktualny;
+//        aktualny = aktualny->nastepny;
+//        free(temp);
+//    }
+//    pierwszy = NULL;
+//}
+//
+//void usun_element(struct pomiar* pierwszy, int nr_pomiaru) {
+//    struct pomiar* aktualny = pierwszy;
+//    while (aktualny->nastepny != NULL)
+//    {
+//        if (aktualny->nastepny->nr_pomiaru == nr_pomiaru)
+//        {
+//            struct pomiar* temp = aktualny->nastepny;
+//            aktualny->nastepny = aktualny->nastepny->nastepny;
+//            free(temp);
+//        }
+//        aktualny = aktualny->nastepny;
+//    }
+//}
+//
+//
+//struct pomiar* usun_min_max(struct pomiar* pierwszy){
+//    struct pomiar* aktualny = pierwszy;
+//    struct pomiar* minimalny = pierwszy;
+//    struct pomiar* maksymalny = pierwszy;
+//    struct pomiar* pomoc = pierwszy->nastepny;
+//    while (aktualny != NULL)
+//    {
+//        if (aktualny->temp < minimalny->temp)
+//        {
+//            minimalny = aktualny;
+//        }
+//        if (aktualny->temp > maksymalny->temp)
+//        {
+//            maksymalny = aktualny;
+//        }
+//        aktualny = aktualny->nastepny;
+//    }
+//    printf("\n[Minimalna temp: %d %d %s %lf]\n", minimalny->nr_pomiaru, minimalny->nr_czujnika, minimalny->data_i_czas, minimalny->temp);
+//    printf("\n[Maksymalna temp: %d %d %s %lf]\n", maksymalny->nr_pomiaru, maksymalny->nr_czujnika, maksymalny->data_i_czas, maksymalny->temp);
+//    usun_element(pierwszy, minimalny->nr_pomiaru);
+//    usun_element(pierwszy, maksymalny->nr_pomiaru);
+//    if (pierwszy != NULL)
+//    {
+//        return pierwszy;
+//    }
+//    else
+//    {
+//        return pomoc;
+//    }
+//}
+//
+//int main() {
+//    struct pomiar* pierwszy = wczytajPlik("dane.txt");
+//    ile_pomiarow(pierwszy);
+//    struct rozdzielone listy = rozdziel_liste(pierwszy);
+//    dealokuj_liste(pierwszy);
+//
+//    printf("\n[CZUJNIK 1]\n");
+//    ile_pomiarow(listy.czujnik1);
+//    usun_min_max(listy.czujnik1);
+//    ile_pomiarow(listy.czujnik1);
+//
+//    printf("\n[CZUJNIK 2]\n");
+//    ile_pomiarow(listy.czujnik2);
+//    usun_min_max(listy.czujnik2);
+//    ile_pomiarow(listy.czujnik2);
+//
+//    printf("\n[CZUJNIK 3]\n");
+//    ile_pomiarow(listy.czujnik3);
+//    usun_min_max(listy.czujnik3);
+//    ile_pomiarow(listy.czujnik3);
+//
+//    printf("\n[CZUJNIK 4]\n");
+//    ile_pomiarow(listy.czujnik4);
+//    usun_min_max(listy.czujnik4);
+//    ile_pomiarow(listy.czujnik4);
+//}
+
+//                          2!
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -1882,6 +2135,7 @@ struct pomiar {
     char data_i_czas[20];
     double temp;
     struct pomiar* nastepny;
+    struct pomiar* poprzedni;
 };
 
 struct pomiar* dodaj_pomiar(unsigned int nr_pomiaru, unsigned int nr_czujnika, char data_i_czas[20], double temp) {
@@ -1909,7 +2163,7 @@ void ile_pomiarow(struct pomiar* pierwszy) {
     struct pomiar* aktualny = pierwszy;
     while (aktualny != NULL)
     {
-        if ((aktualny == pierwszy)  || (aktualny->nastepny == NULL) || (aktualny->nastepny->nastepny == NULL))
+        if ((aktualny == pierwszy) || (aktualny->nastepny == NULL) || (aktualny->nastepny->nastepny == NULL))
         {
             printf("\n|%d %d %s %lf|\n", aktualny->nr_pomiaru, aktualny->nr_czujnika, aktualny->data_i_czas, aktualny->temp);
         }
@@ -1948,11 +2202,12 @@ struct rozdzielone rozdziel_liste(struct pomiar* pierwszy) {
                 czujnik1 = nowy;
             }
             else {
-                struct pomiar* ostatni = czujnik1;
-                while (ostatni->nastepny != NULL) {
-                    ostatni = ostatni->nastepny;
+                struct pomiar* temp = czujnik1;
+                while (temp->nastepny != NULL) {
+                    temp = temp->nastepny;
                 }
-                ostatni->nastepny = nowy;
+                temp->nastepny = nowy;
+                nowy->poprzedni = temp;
             }
         }
         else if (aktualny->nr_czujnika == 2) {
@@ -1960,11 +2215,12 @@ struct rozdzielone rozdziel_liste(struct pomiar* pierwszy) {
                 czujnik2 = nowy;
             }
             else {
-                struct pomiar* ostatni = czujnik2;
-                while (ostatni->nastepny != NULL) {
-                    ostatni = ostatni->nastepny;
+                struct pomiar* temp = czujnik2;
+                while (temp->nastepny != NULL) {
+                    temp = temp->nastepny;
                 }
-                ostatni->nastepny = nowy;
+                temp->nastepny = nowy;
+                nowy->poprzedni = temp;
             }
         }
         else if (aktualny->nr_czujnika == 3) {
@@ -1972,11 +2228,12 @@ struct rozdzielone rozdziel_liste(struct pomiar* pierwszy) {
                 czujnik3 = nowy;
             }
             else {
-                struct pomiar* ostatni = czujnik3;
-                while (ostatni->nastepny != NULL) {
-                    ostatni = ostatni->nastepny;
+                struct pomiar* temp = czujnik3;
+                while (temp->nastepny != NULL) {
+                    temp = temp->nastepny;
                 }
-                ostatni->nastepny = nowy;
+                temp->nastepny = nowy;
+                nowy->poprzedni = temp;
             }
         }
         else if (aktualny->nr_czujnika == 4) {
@@ -1984,11 +2241,12 @@ struct rozdzielone rozdziel_liste(struct pomiar* pierwszy) {
                 czujnik4 = nowy;
             }
             else {
-                struct pomiar* ostatni = czujnik4;
-                while (ostatni->nastepny != NULL) {
-                    ostatni = ostatni->nastepny;
+                struct pomiar* temp = czujnik4;
+                while (temp->nastepny != NULL) {
+                    temp = temp->nastepny;
                 }
-                ostatni->nastepny = nowy;
+                temp->nastepny = nowy;
+                nowy->poprzedni = temp;
             }
         }
     }
@@ -2002,9 +2260,10 @@ struct rozdzielone rozdziel_liste(struct pomiar* pierwszy) {
 
 struct pomiar* wczytajPlik(char nazwa_pliku[]) {
     FILE* wejscie = NULL;
-    struct pomiar *pierwszy = NULL;
+    struct pomiar* pierwszy = NULL;
     struct pomiar* nowy = NULL;
-    if (fopen_s(&wejscie, nazwa_pliku, "r")!=0)
+    struct pomiar* ostatni = NULL;
+    if (fopen_s(&wejscie, nazwa_pliku, "r") != 0)
     {
         printf("\nNie znaleziono pliku\n");
         exit(0);
@@ -2017,7 +2276,7 @@ struct pomiar* wczytajPlik(char nazwa_pliku[]) {
     unsigned int nr_czujnika;
     char data_i_czas[20];
     double temp;
-    while (fscanf_s(wejscie,"%d %d %s %lf", &nr_pomiaru, &nr_czujnika, data_i_czas, (unsigned)sizeof(data_i_czas), &temp) == 4)
+    while (fscanf_s(wejscie, "%d %d %s %lf", &nr_pomiaru, &nr_czujnika, data_i_czas, (unsigned)sizeof(data_i_czas), &temp) == 4)
     {
         if (pierwszy == NULL)
         {
@@ -2025,26 +2284,21 @@ struct pomiar* wczytajPlik(char nazwa_pliku[]) {
             if (pierwszy != NULL)
             {
                 nowy = pierwszy;
+                ostatni = nowy;
             }
         }
         else
         {
-            nowy->nastepny = dodaj_pomiar(nr_pomiaru, nr_czujnika, data_i_czas, temp);
-            if (nowy->nastepny != NULL)
+            nowy = dodaj_pomiar(nr_pomiaru, nr_czujnika, data_i_czas, temp);
+            if (nowy != NULL)
             {
-                nowy = nowy->nastepny;
+                ostatni->nastepny = nowy;
+                ostatni = nowy;
             }
         }
     }
     fclose(wejscie);
-    if (pierwszy == NULL)
-    {
-        return NULL;
-    }
-    else
-    {
-        return pierwszy;
-    }
+    return pierwszy;
 }
 
 void dealokuj_liste(struct pomiar* pierwszy) {
@@ -2058,86 +2312,58 @@ void dealokuj_liste(struct pomiar* pierwszy) {
     pierwszy = NULL;
 }
 
-void usun_element(struct pomiar* pierwszy, int nr_pomiaru) {
-    struct pomiar* aktualny = pierwszy;
-    while (aktualny->nastepny != NULL)
-    {
-        if (aktualny->nastepny->nr_pomiaru == nr_pomiaru)
-        {
-            struct pomiar* temp = aktualny->nastepny;
-            aktualny->nastepny = aktualny->nastepny->nastepny;
-            free(temp);
-        }
+
+void przenies_poczatek(struct pomiar** pierwszy, struct pomiar* element) {
+    if (*pierwszy == NULL) {
+        return;
+    }
+
+    if ((*pierwszy)->nr_pomiaru == element->nr_pomiaru) { 
+        return;
+    };
+    struct pomiar* poprzedni = NULL;
+    struct pomiar* aktualny = *pierwszy;
+    while (aktualny != NULL && aktualny->nr_pomiaru != element->nr_pomiaru) {
+        poprzedni = aktualny;
         aktualny = aktualny->nastepny;
     }
+
+    if (aktualny == NULL) return;
+
+    poprzedni->nastepny = aktualny->nastepny;
+    aktualny->nastepny = *pierwszy;
+    *pierwszy = aktualny;
 }
 
-void dodaj_element(struct pomiar* pierwszy, struct pomiar* element) {
-    struct pomiar* aktualny = pierwszy;
-    while (aktualny->nastepny != NULL)
+void przenies_koniec(struct pomiar** pierwszy, struct pomiar* element) {
+    struct pomiar* poprzedni = NULL;
+    struct pomiar* aktualny = *pierwszy;
+    while (aktualny != element && aktualny != NULL)
     {
+        poprzedni = aktualny;
         aktualny = aktualny->nastepny;
     }
-    aktualny->nastepny = element;
+    struct pomiar* ostatni = *pierwszy;
+    while (ostatni->nastepny != NULL)
+    {
+        ostatni = ostatni->nastepny;
+    }
+    poprzedni->nastepny = element->nastepny;
+    ostatni->nastepny = element;
+    element->nastepny = NULL;
 }
 
-struct pomiar* dodaj_min_max(struct pomiar* pierwszy) {
-    struct pomiar* aktualny = pierwszy;
-
-    struct pomiar* minimalny = (struct pomiar*)malloc(sizeof(struct pomiar));
-    minimalny->nr_pomiaru = aktualny->nr_pomiaru;
-    minimalny->nr_czujnika = aktualny->nr_czujnika;
-    strcpy_s(minimalny->data_i_czas, sizeof(minimalny->data_i_czas), aktualny->data_i_czas);
-    minimalny->temp = aktualny->temp;
-    minimalny->nastepny = NULL;
-
-    struct pomiar* maksymalny = (struct pomiar*)malloc(sizeof(struct pomiar));
-    maksymalny->nr_pomiaru = aktualny->nr_pomiaru;
-    maksymalny->nr_czujnika = aktualny->nr_czujnika;
-    strcpy_s(maksymalny->data_i_czas, sizeof(maksymalny->data_i_czas), aktualny->data_i_czas);
-    maksymalny->temp = aktualny->temp;
-    maksymalny->nastepny = NULL;
-
-    struct pomiar* pomoc = pierwszy->nastepny;
+struct pomiar* dodaj_min_max(struct pomiar** pierwszy) {
+    struct pomiar* aktualny = *pierwszy;
+    struct pomiar* minimalny = NULL;
+    struct pomiar* maksymalny = NULL;
     while (aktualny != NULL)
     {
-        if (aktualny->temp < minimalny->temp)
-        {
-            minimalny->nr_pomiaru = aktualny->nr_pomiaru;
-            minimalny->nr_czujnika = aktualny->nr_czujnika;
-            strcpy_s(minimalny->data_i_czas, sizeof(minimalny->data_i_czas), aktualny->data_i_czas);
-            minimalny->temp = aktualny->temp;
-            minimalny->nastepny = NULL;
-        }
-        if (aktualny->temp > maksymalny->temp)
-        {
-            maksymalny->nr_pomiaru = aktualny->nr_pomiaru;
-            maksymalny->nr_czujnika = aktualny->nr_czujnika;
-            strcpy_s(maksymalny->data_i_czas, sizeof(maksymalny->data_i_czas), aktualny->data_i_czas);
-            maksymalny->temp = aktualny->temp;
-            maksymalny->nastepny = NULL;
-        }
-        aktualny = aktualny->nastepny;
-    }
-    printf("\n[Minimalna temp: %d %d %s %lf]\n", minimalny->nr_pomiaru, minimalny->nr_czujnika, minimalny->data_i_czas, minimalny->temp);
-    printf("\n[Maksymalna temp: %d %d %s %lf]\n", maksymalny->nr_pomiaru, maksymalny->nr_czujnika, maksymalny->data_i_czas, maksymalny->temp);
-    dodaj_element(pierwszy, maksymalny);
-    dodaj_element(pierwszy, minimalny);
-    return pierwszy;
-}
-
-struct pomiar* usun_min_max(struct pomiar* pierwszy){
-    struct pomiar* aktualny = pierwszy;
-    struct pomiar* minimalny = pierwszy;
-    struct pomiar* maksymalny = pierwszy;
-    struct pomiar* pomoc = pierwszy->nastepny;
-    while (aktualny != NULL)
-    {
-        if (aktualny->temp < minimalny->temp)
+        if (minimalny == NULL || aktualny->temp < minimalny->temp)
         {
             minimalny = aktualny;
         }
-        if (aktualny->temp > maksymalny->temp)
+        if (maksymalny == NULL || aktualny->temp > maksymalny->temp)
         {
             maksymalny = aktualny;
         }
@@ -2145,17 +2371,17 @@ struct pomiar* usun_min_max(struct pomiar* pierwszy){
     }
     printf("\n[Minimalna temp: %d %d %s %lf]\n", minimalny->nr_pomiaru, minimalny->nr_czujnika, minimalny->data_i_czas, minimalny->temp);
     printf("\n[Maksymalna temp: %d %d %s %lf]\n", maksymalny->nr_pomiaru, maksymalny->nr_czujnika, maksymalny->data_i_czas, maksymalny->temp);
-    usun_element(pierwszy, minimalny->nr_pomiaru);
-    usun_element(pierwszy, maksymalny->nr_pomiaru);
-    if (pierwszy != NULL)
+    if (maksymalny != NULL)
     {
-        return pierwszy;
+        przenies_poczatek(&(*pierwszy), maksymalny);
     }
-    else
+    if (minimalny != NULL)
     {
-        return pomoc;
+        przenies_koniec(&(*pierwszy), minimalny);
     }
+    return *pierwszy;
 }
+
 
 int main() {
     struct pomiar* pierwszy = wczytajPlik("dane.txt");
@@ -2165,21 +2391,8 @@ int main() {
 
     printf("\n[CZUJNIK 1]\n");
     ile_pomiarow(listy.czujnik1);
-    dodaj_min_max(listy.czujnik1);
+    dodaj_min_max(&listy.czujnik1);
     ile_pomiarow(listy.czujnik1);
 
-    printf("\n[CZUJNIK 2]\n");
-    ile_pomiarow(listy.czujnik2);
-    dodaj_min_max(listy.czujnik2);
-    ile_pomiarow(listy.czujnik2);
-
-    printf("\n[CZUJNIK 3]\n");
-    ile_pomiarow(listy.czujnik3);
-    dodaj_min_max(listy.czujnik3);
-    ile_pomiarow(listy.czujnik3);
-
-    printf("\n[CZUJNIK 4]\n");
-    ile_pomiarow(listy.czujnik4);
-    dodaj_min_max(listy.czujnik4);
-    ile_pomiarow(listy.czujnik4);
+    return 0;
 }
