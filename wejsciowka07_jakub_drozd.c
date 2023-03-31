@@ -186,6 +186,7 @@ struct pomiar* wczytaj_plik(char nazwa[20]) {
 			}
 		}
 	}
+	fclose(wejscie);
 	return pierwszy;
 }
 
