@@ -2709,12 +2709,7 @@ void dealokacja_listy(struct pomiar** pierwszy){
     *pierwszy = NULL;
 }
 
-void zamien(struct pomiar** pierwszy, struct pomiar* element1, struct pomiar* element2) {
-    struct pomiar* poprzednik1 = element1->poprzedni;
-    struct pomiar* nastepnik1 = element1->nastepny;
-    struct pomiar* poprzednik2 = element2->poprzedni;
-    struct pomiar* nastepnik2 = element2->nastepny;
-
+void zamien(struct pomiar** pierwszy, struct pomiar** ostatni, struct pomiar* element1, struct pomiar* element2) {
     if (element1->poprzedni != NULL) {
         element1->poprzedni->nastepny = element2;
     }
@@ -2736,6 +2731,30 @@ void zamien(struct pomiar** pierwszy, struct pomiar* element1, struct pomiar* el
     temp = element1->nastepny;
     element1->nastepny = element2->nastepny;
     element2->nastepny = temp;
+
+    if (element1->nastepny != NULL) {
+        element1->nastepny->poprzedni = element1;
+    }
+    else {
+        (*pierwszy)->poprzedni = element1;
+    }
+    if (element2->nastepny != NULL) {
+        element2->nastepny->poprzedni = element2;
+    }
+    else {
+        (*pierwszy)->poprzedni = element2;
+    }
+
+    if (element1->nastepny == NULL)
+    {
+        *ostatni = element1;
+    }
+    else if (element2->nastepny == NULL)
+    {
+        *ostatni = element2;
+    }
+    (*pierwszy)->poprzedni = NULL;
+    (*ostatni)->nastepny = NULL;
 }
 
 int main() {
@@ -2748,11 +2767,8 @@ int main() {
     struct listy lista = rozdziel_liste(pierwszy);
     //
 
-    printf("\n[CZUJNIK 1]\n");
-    zamien(&lista.czujnik1, znajdz(lista.czujnik1, 1), znajdz(lista.czujnik1, 5));
-    struct pomiar* ostatni = znajdz_ostatni(lista.czujnik1);
-    reverse(ostatni);
-    /*printf("\nPrzed:\n");
+    printf("\n[CZUJNIK 1]");
+    printf("\nPrzed:\n");
     ile_pomiarow(lista.czujnik1);
     min_max(lista.czujnik1);
     printf("\nPo zmianach:\n");
@@ -2782,7 +2798,7 @@ int main() {
     dealokacja_listy(&(lista.czujnik1));
     dealokacja_listy(&(lista.czujnik2));
     dealokacja_listy(&(lista.czujnik3));
-    dealokacja_listy(&(lista.czujnik4));*/
+    dealokacja_listy(&(lista.czujnik4));
 
     return 0;
 }
