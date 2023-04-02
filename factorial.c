@@ -2679,6 +2679,25 @@ struct pomiar* wczytaj_plik(char nazwa[]) {
     return pierwszy;
 }
 
+struct pomiar* znajdz(struct pomiar* pierwszy, int nr_pomiaru) {
+    struct pomiar* aktualny = pierwszy;
+    while (aktualny != NULL)
+    {
+        if (aktualny->nr_pomiaru == nr_pomiaru)
+        {
+
+            return aktualny;
+        }
+        else
+        {
+            aktualny = aktualny->nastepny;
+        }
+    }
+    printf("Nie znaleziono\n");
+    return NULL;
+}
+
+
 void dealokacja_listy(struct pomiar** pierwszy){
     struct pomiar* aktualny = *pierwszy;
     while (aktualny != NULL)
@@ -2690,6 +2709,34 @@ void dealokacja_listy(struct pomiar** pierwszy){
     *pierwszy = NULL;
 }
 
+void zamien(struct pomiar** pierwszy, struct pomiar* element1, struct pomiar* element2) {
+    struct pomiar* poprzednik1 = element1->poprzedni;
+    struct pomiar* nastepnik1 = element1->nastepny;
+    struct pomiar* poprzednik2 = element2->poprzedni;
+    struct pomiar* nastepnik2 = element2->nastepny;
+
+    if (element1->poprzedni != NULL) {
+        element1->poprzedni->nastepny = element2;
+    }
+    else {
+        *pierwszy = element2;
+    }
+
+    if (element2->poprzedni != NULL) {
+        element2->poprzedni->nastepny = element1;
+    }
+    else {
+        *pierwszy = element1;
+    }
+
+    struct pomiar* temp = element1->poprzedni;
+    element1->poprzedni = element2->poprzedni;
+    element2->poprzedni = temp;
+
+    temp = element1->nastepny;
+    element1->nastepny = element2->nastepny;
+    element2->nastepny = temp;
+}
 
 int main() {
     printf("\n[GLOWNA LISTA]\n");
@@ -2701,8 +2748,11 @@ int main() {
     struct listy lista = rozdziel_liste(pierwszy);
     //
 
-    printf("\n[CZUJNIK 1]");
-    printf("\nPrzed:\n");
+    printf("\n[CZUJNIK 1]\n");
+    zamien(&lista.czujnik1, znajdz(lista.czujnik1, 1), znajdz(lista.czujnik1, 5));
+    struct pomiar* ostatni = znajdz_ostatni(lista.czujnik1);
+    reverse(ostatni);
+    /*printf("\nPrzed:\n");
     ile_pomiarow(lista.czujnik1);
     min_max(lista.czujnik1);
     printf("\nPo zmianach:\n");
@@ -2732,7 +2782,7 @@ int main() {
     dealokacja_listy(&(lista.czujnik1));
     dealokacja_listy(&(lista.czujnik2));
     dealokacja_listy(&(lista.czujnik3));
-    dealokacja_listy(&(lista.czujnik4));
+    dealokacja_listy(&(lista.czujnik4));*/
 
     return 0;
 }
