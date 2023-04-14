@@ -27,10 +27,9 @@ void wypisz_tab(double tab[], int m) {
 	}
 }
 
-void test_start(int liczba, int* punkty) {
+void test_start(int liczba, int* punkty, double *czas_testu) {
 	time_t start_testu;
 	time_t koniec_testu;
-	double czas_testu;
 	char odpowiedz;
 	time(&start_testu);
 	for (int i = 0; i < liczba ; i++)
@@ -44,21 +43,22 @@ void test_start(int liczba, int* punkty) {
 		}
 	}
 	time(&koniec_testu);
-	czas_testu = difftime(koniec_testu, start_testu);
-	printf("Czas testu : %.1lf%c\n", czas_testu, 's');
+	*czas_testu = difftime(koniec_testu, start_testu);
+	printf("Czas testu : %.1lf%c\n", *czas_testu, 's');
 	printf("Wynik: %d\n", *punkty);
 }
 
 int main() {
 	srand((unsigned)time(NULL));
 	FILE* wyjscie;
+	double czas_testu;
 	char nick[25];
 	podaj_nick(nick);
 	printf("Nick: %s\n", nick);
 	int liczba = podaj_liczbe();
 	printf("Liczba: %d\n", liczba);
 	int punkty = 0;
-	test_start(liczba, &punkty);
+	test_start(liczba, &punkty, &czas_testu);
 	char sciezka[30];
 	sciezka[29] = '\0';
 	strcpy_s(sciezka, sizeof(sciezka), nick);
@@ -84,7 +84,7 @@ int main() {
 		printf("\nBlad otwarcia pliku\n");
 		exit(0);
 	}
-	fprintf_s(wyjscie, "%s", "sukces\n");
+	fprintf_s(wyjscie, "Czas: %.1lf%c | Punkty: %d/%d\n", czas_testu, 's', punkty, liczba);
 	fclose(wyjscie);
 	return 0;
 }
