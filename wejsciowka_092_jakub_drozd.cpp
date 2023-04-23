@@ -150,10 +150,15 @@ int main() {
 	Kolo tablica_kol[3]{ kolo1, kolo2, kolo3 };
 	TrapezRownoramienny tablica_trapez[3]{ trapez1, trapez2, trapez3 };
 
-	std::cout << "Wybierz typ figury, ktory chcesz zmodyfikowac:\n[k] - kolo \t [t] - trapez" << std::endl;
+	std::cout << "Wybierz typ figury, ktory chcesz zmodyfikowac:\n[k] - kolo \t [t] - trapez \t [q] - Koniec programu" << std::endl;
 	std::cin >> znak;
 	while (true)
 	{
+		if (znak == 'q')
+		{
+			std::cout << "Zakonczenie dzialania programu" << std::endl;
+			return 0;
+		}
 		if (znak == 'k')
 		{
 			int wybor;
@@ -201,15 +206,60 @@ int main() {
 			}
 			else
 			{
-				std::cout << "Operacja nieznana, konie programu" << std::endl;
+				std::cout << "Operacja nieznana, koniec programu" << std::endl;
 				return 0;
 			}
-			std::cout << "Wybierz typ figury, ktory chcesz zmodyfikowac:\n[k] - kolo \t [t] - trapez" << std::endl;
+			std::cout << "Wybierz typ figury, ktory chcesz zmodyfikowac:\n[k] - kolo \t [t] - trapez \t [q] - Koniec programu" << std::endl;
 			std::cin >> znak;
 		}
 		else if (znak == 't')
 		{
 			std::cout << "[Wybrales trapez]" << std::endl;
+			int wybor;
+			int wybor_modyfikacji;
+			std::cout << "Podaj numer 1-3 aby wybrac trapez: ";
+			std::cin >> wybor;
+			TrapezRownoramienny& aktualny_trapez = tablica_trapez[wybor - 1];
+			std::cout << "Wybierz modyfikacje, ktora chcesz przeprowadzic: " << std::endl;
+			std::cout << "[1] - Ustawienie wymiarow\t[2] - Przeksztalcenie wzgledem osi x" << std::endl;
+			std::cin >> wybor_modyfikacji;
+			if (wybor_modyfikacji == 1)
+			{
+				double polozenie_x;
+				double polozenie_y;
+				double wysokosc;
+				double podstawa_a;
+				double podstawa_b;
+				std::cout << "[Ustawianie wymiarow figury nr " << wybor << "]" << std::endl;
+				std::cout << "Podaj wspolrzedne lewego dolnego wierzcholka figury: ";
+				std::cin >> polozenie_x >> polozenie_y;
+				std::cout << "Podaj rozmiar podstawy dolnej: ";
+				std::cin >> podstawa_a;
+				std::cout << "Podaj rozmiar podstawy gornej: ";
+				std::cin >> podstawa_b;
+				std::cout << "Podaj wysokosc: ";
+				std::cin >> wysokosc;
+				aktualny_trapez.ustaw_wymiary(polozenie_x, polozenie_y, podstawa_a, podstawa_b, wysokosc);
+				std::cout << "[Wymiary figury nr " << wybor << "]" << std::endl;
+				aktualny_trapez.odczyt();
+			}
+			else if (wybor_modyfikacji == 2)
+			{
+				double n;
+				std::cout << "[Przeksztalcanie wzgledem osi x]" << std::endl;
+				std::cout << "Podaj os wzgledem ktorej ma zostac wykonane przeksztalcenie x = ";
+				std::cin >> n;
+				aktualny_trapez.przeksztalcenie(n);
+				std::cout << "[Po przeksztalceniu]" << std::endl;
+				aktualny_trapez.odczyt();
+			}
+			else
+			{
+				std::cout << "Operacja nieznana, koniec programu" << std::endl;
+				return 0;
+			}
+			std::cout << "Wybierz typ figury, ktory chcesz zmodyfikowac:\n[k] - kolo \t [t] - trapez \t [q] - Koniec programu" << std::endl;
+			std::cin >> znak;
 		}
 		else
 		{
