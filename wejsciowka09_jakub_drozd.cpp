@@ -67,8 +67,7 @@ public:
 	}
 	void przeksztalcenie(int n) {
 		double nowe_polozenie_x = 0;
-		double spr = polozenie_x + podstawa_a;
-		if (spr == n)
+		if ((polozenie_x + podstawa_a) == n)
 		{
 			nowe_polozenie_x = n;
 		}
