@@ -78,7 +78,7 @@ public:
 		}
 		else
 		{
-			nowe_polozenie_x = 2 * n - polozenie_x - podstawa_a;
+			nowe_polozenie_x = 2.0 * n - polozenie_x - podstawa_a;
 		}
 
 		polozenie_x = nowe_polozenie_x;
