@@ -150,7 +150,7 @@ int main() {
 	Kolo tablica_kol[3]{ kolo1, kolo2, kolo3 };
 	TrapezRownoramienny tablica_trapez[3]{ trapez1, trapez2, trapez3 };
 
-	std::cout << "Wybierz typ figury, ktory chcesz zmodyfikowac:\n[k] - kolo \t [t] - trapez \t [q] - Koniec programu" << std::endl;
+	std::cout << "Wybierz typ figury, ktory chcesz zmodyfikowac:\n[k] - kolo \t [t] - trapez \t [dowolny inny znak] - Koniec programu" << std::endl;
 	std::cin >> znak;
 	while (true)
 	{
@@ -209,7 +209,7 @@ int main() {
 				std::cout << "Operacja nieznana, koniec programu" << std::endl;
 				return 0;
 			}
-			std::cout << "Wybierz typ figury, ktory chcesz zmodyfikowac:\n[k] - kolo \t [t] - trapez \t [q] - Koniec programu" << std::endl;
+			std::cout << "Wybierz typ figury, ktory chcesz zmodyfikowac:\n[k] - kolo \t [t] - trapez \t [dowolny inny znak] - Koniec programu" << std::endl;
 			std::cin >> znak;
 		}
 		else if (znak == 't')
@@ -258,12 +258,12 @@ int main() {
 				std::cout << "Operacja nieznana, koniec programu" << std::endl;
 				return 0;
 			}
-			std::cout << "Wybierz typ figury, ktory chcesz zmodyfikowac:\n[k] - kolo \t [t] - trapez \t [q] - Koniec programu" << std::endl;
+			std::cout << "Wybierz typ figury, ktory chcesz zmodyfikowac:\n[k] - kolo \t [t] - trapez \t [dowolny inny znak] - Koniec programu" << std::endl;
 			std::cin >> znak;
 		}
 		else
 		{
-			std::cout << "!!!Nieznana odpowiedz, koniec programu!!!" << std::endl;
+			std::cout << "Zakonczenie pracy programu" << std::endl;
 			return 0;
 		}
 	}
