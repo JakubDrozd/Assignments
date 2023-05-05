@@ -150,6 +150,7 @@ void Wykladowca::dodaj_klase(const char* nazwa_pliku) {
         aktualny = aktualny->nast;
     }
     aktualny->nast = moja_klasa;
+    fclose(input);
 }
 
 void Wykladowca::wypisz() {
@@ -194,8 +195,14 @@ int main() {
     Wykladowca* wykl4 = new Wykladowca("grupa4.txt");
     wykl4->wypisz();
 
+    std::cout << "\nWykladowca 5: " << std::endl;        //Tworzenie wykladowcy 5 jako kopia wykladowcy 3 + grupa 4
+    Wykladowca* wykl5 = new Wykladowca(*wykl3);
+    wykl5->dodaj_klase("grupa4.txt");
+    wykl5->wypisz();
+
     delete wykl1;
     delete wykl2;
     delete wykl3;
     delete wykl4;
+    delete wykl5;
 }
