@@ -53,9 +53,7 @@ Prostokat::Prostokat(Prostokat& src) {
 }
 
 Prostokat::~Prostokat() {
-	Prostokat* temp = nast;
-	nast = nullptr;
-	delete temp;
+		delete nast;
 }
 
 void Prostokat::ustaw_wymiary(double x, double y, double a, double h) {
@@ -140,6 +138,7 @@ public:
 	TrapezRownoramienny();
 	TrapezRownoramienny(double x, double y, double a, double b, double h);
 	TrapezRownoramienny(TrapezRownoramienny& src);
+	~TrapezRownoramienny();
 
 	void ustaw_wymiary(double x, double y, double a, double b, double h);
 	void odczyt();
@@ -172,6 +171,10 @@ TrapezRownoramienny::TrapezRownoramienny(TrapezRownoramienny& src) {
 	podstawa_b = src.podstawa_b;
 	wysokosc = src.wysokosc;
 	nast = src.nast;
+}
+
+TrapezRownoramienny::~TrapezRownoramienny() {
+		delete nast;
 }
 
 void TrapezRownoramienny::ustaw_wymiary(double x, double y, double a, double b, double h) {
@@ -288,22 +291,8 @@ public:
 		return prostokat;
 	}
 	~blejtram() {
-		TrapezRownoramienny* aktualny = pierw_trap;
-		while (aktualny != nullptr)
-		{
-			TrapezRownoramienny* temp = aktualny;
-			aktualny = aktualny->nast;
-			delete temp;
-		}
-		pierw_trap = nullptr;
-
-		Prostokat* curr = pierw_pros;
-		while (curr != nullptr)
-		{
-			Prostokat* temp = curr;
-			curr = curr->nast;
-			delete temp;
-		}
+		delete pierw_trap;
+		delete pierw_pros;
 	}
 private:
 };
