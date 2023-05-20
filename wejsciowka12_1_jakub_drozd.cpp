@@ -5,7 +5,7 @@
 #include <conio.h>
 
 #define MAX_PRZEDMIOTOW 10
-#define MAX_DLUGOSC 13
+#define MAX_DLUGOSC 18
 
 class Osoba {
 public:
@@ -102,28 +102,6 @@ void Osoba::setEmail(const char* a_email) {
 	strcpy(email, a_email);
 }
 
-void dodaj_osobe(Osoba** pierwszy, Osoba* osoba) {
-	if (*pierwszy == nullptr)
-	{
-		*pierwszy = osoba;
-		return;
-	}
-	Osoba* aktualny = *pierwszy;
-	while (aktualny->nast != nullptr)
-	{
-		aktualny = aktualny->nast;
-	}
-	aktualny->nast = osoba;
-}
-
-void wypisz_osoby(Osoba* pierwszy) {
-	Osoba* aktualny = pierwszy;
-	while (aktualny != nullptr)
-	{
-		aktualny->wypisz();
-		aktualny = aktualny->nast;
-	}
-}
 
 class Student : public Osoba {
 public:
@@ -199,6 +177,7 @@ private:
 public:
 	int ile_magistrantow;
 	char lista_przedmiotow[MAX_PRZEDMIOTOW][MAX_DLUGOSC];
+	Pracownik* nast;
 
 	Pracownik& operator = (Pracownik& src) {
 		strcpy(imie, src.imie);
@@ -244,6 +223,7 @@ public:
 
 	Pracownik(const char* a_imie, const char* a_nazwisko, const char* a_email, int magi, const char tab[MAX_PRZEDMIOTOW][MAX_DLUGOSC]) : Osoba(a_imie, a_nazwisko, a_email), ile_magistrantow(magi) {
 		memcpy(lista_przedmiotow, tab, sizeof(lista_przedmiotow));
+		nast = nullptr;
 	}
 
 	Pracownik() : Osoba(), ile_magistrantow(1) {
@@ -251,6 +231,7 @@ public:
 		{
 			strcpy(lista_przedmiotow[i], "ABCDEF");
 		}
+		nast = nullptr;
 	};
 
 	Pracownik(Pracownik& src) : Osoba(src) {
@@ -259,6 +240,7 @@ public:
 		{
 			strcpy(lista_przedmiotow[i], src.lista_przedmiotow[i]);
 		}
+		nast = nullptr;
 	};
 
 	void wypisz() {
@@ -301,25 +283,24 @@ void wczytaj_Tab(char tab[MAX_PRZEDMIOTOW][MAX_DLUGOSC]) {
 	}
 }
 
-void lista_dodaj(Osoba** pierwsza, Osoba* osoba) {
-	if (*pierwsza == nullptr)
+void dodaj_osobe(Pracownik** pierwszy, Pracownik* pracownik) {
+	if (*pierwszy == nullptr)
 	{
-		*pierwsza = osoba;
-		return;
+		*pierwszy = pracownik;
 	}
 	else
 	{
-		Osoba* aktualna = *pierwsza;
-		while (aktualna->nast != nullptr)
+		Pracownik* aktualny = *pierwszy;
+		while (aktualny->nast != nullptr)
 		{
-			aktualna = aktualna->nast;
+			aktualny = aktualny->nast;
 		}
-		aktualna->nast = osoba;
+		aktualny->nast = pracownik;
 	}
 }
 
-void wypisz_liste(Osoba* pierwszy) {
-	Osoba* aktualny = pierwszy;
+void wypisz_liste(Pracownik* pierwszy) {
+	Pracownik* aktualny = pierwszy;
 	while (aktualny != nullptr)
 	{
 		aktualny->wypisz();
@@ -327,11 +308,11 @@ void wypisz_liste(Osoba* pierwszy) {
 	}
 }
 
-void sumuj_liste(Osoba** pierwszy) {
-	Osoba* aktualny = (*pierwszy)->nast;
+void sumuj_liste(Pracownik* pierwszy) {
+	Pracownik* aktualny = pierwszy->nast;
 	while (aktualny != nullptr)
 	{
-		**pierwszy += *aktualny;
+		*pierwszy += *aktualny;
 		aktualny = aktualny->nast;
 	}
 }
@@ -354,13 +335,24 @@ int main() {
 
 	Pracownik* p3 = new Pracownik("Anna", "Jarzab", "jjarzab@wp.pl", 4, przedmioty2);
 
-	*s1 += *s2;
+	/**s1 += *s2;
 
 	*s1 = *s2 = *s3;
 
-	*p1 = *p2 += *p3;
+	*p1 = *p2 += *p3;*/
 
-	s1->wypisz();
+	/*s1->wypisz();
+	p1->wypisz();*/
+
+	Pracownik* pierwszy = nullptr;
+	dodaj_osobe(&pierwszy, p1);
+	dodaj_osobe(&pierwszy, p2);
+	dodaj_osobe(&pierwszy, p3);
+
+	wypisz_liste(pierwszy);
+
+	sumuj_liste(pierwszy);
+
 	p1->wypisz();
 
 	std::cout << "\nKoniec\n" << std::endl;
