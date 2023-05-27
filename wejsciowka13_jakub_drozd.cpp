@@ -186,7 +186,7 @@ public:
 		std::time_t czas = std::time(nullptr);
 		std::tm* teraz = std::localtime(&czas);
 		int aktualnyRok = teraz->tm_year + 1900;
-		cout << "Czas na uczelni: " << aktualnyRok - this->rok_rozpoczecia;
+		cout << "Ile lat uczy sie na uczelni: " << aktualnyRok - this->rok_rozpoczecia << endl;
 	}
 };
 
@@ -316,8 +316,7 @@ public:
 				ilosc_przedmiotow++;
 			}
 		}
-		cout << "Ilosc przedmiotow: " << ilosc_przedmiotow<< endl;
-		cout << "Czas na uczelni: " << (0.5 * ile_magistrantow) + ilosc_przedmiotow + 0.5 << endl;
+		cout << "Ile lat pracuje: " << (0.5 * ile_magistrantow) + ilosc_przedmiotow + 0.5 << endl;
 	}
 };
 
@@ -360,7 +359,7 @@ void wypisz_inicjaly_i_czas(Osoba* pierwszy) {
 	{
 		aktualny->inicjaly();
 		aktualny->czas_na_uczelni();
-		printf("\n\n");
+		printf("\n");
 		aktualny = aktualny->nast;
 	}
 }
