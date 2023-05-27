@@ -42,6 +42,7 @@ public:
 		return *this;
 	}
 	virtual void inicjaly() = 0;
+	virtual void czas_na_uczelni() = 0;
 
 private:
 
@@ -181,6 +182,12 @@ public:
 		int number = this->nr_indeksu % 1000;
 		cout << "Inicjaly studenta: " << fname << fsur << number << endl;
 	}
+	void czas_na_uczelni() override {
+		std::time_t czas = std::time(nullptr);
+		std::tm* teraz = std::localtime(&czas);
+		int aktualnyRok = teraz->tm_year + 1900;
+		cout << "Czas na uczelni: " << aktualnyRok - this->rok_rozpoczecia;
+	}
 };
 
 class Pracownik : public Osoba {
@@ -299,6 +306,19 @@ public:
 		}
 		printf("\n");
 	}
+
+	void czas_na_uczelni() override {
+		int ilosc_przedmiotow = 0;
+		for (int i = 0; i < MAX_PRZEDMIOTOW; i++)
+		{
+			if (strlen(lista_przedmiotow[i]) > 0)
+			{
+				ilosc_przedmiotow++;
+			}
+		}
+		cout << "Ilosc przedmiotow: " << ilosc_przedmiotow<< endl;
+		cout << "Czas na uczelni: " << (0.5 * ile_magistrantow) + ilosc_przedmiotow + 0.5 << endl;
+	}
 };
 
 void wczytaj_Tab(char tab[MAX_PRZEDMIOTOW][MAX_DLUGOSC]) {
@@ -334,11 +354,13 @@ void wypisz_liste(Osoba* pierwszy) {
 	}
 }
 
-void wypisz_inicjaly(Osoba* pierwszy) {
+void wypisz_inicjaly_i_czas(Osoba* pierwszy) {
 	Osoba* aktualny = pierwszy;
 	while (aktualny != nullptr)
 	{
 		aktualny->inicjaly();
+		aktualny->czas_na_uczelni();
+		printf("\n\n");
 		aktualny = aktualny->nast;
 	}
 }
@@ -346,14 +368,14 @@ void wypisz_inicjaly(Osoba* pierwszy) {
 int main() {
 
 	char przedmioty1[MAX_PRZEDMIOTOW][MAX_DLUGOSC] = { {"0"}, {"0"},{"0"}, {"0"}, {"0"}, {"0"}};
-	char przedmioty2[MAX_PRZEDMIOTOW][MAX_DLUGOSC] = { {"1"}, {"1"},{"1"}, {"1"}, {"1"}, {"1"} };
-	char przedmioty3[MAX_PRZEDMIOTOW][MAX_DLUGOSC] = { {"2"}, {"2"},{"2"}, {"2"}, {"2"}, {"2"} };
+	char przedmioty2[MAX_PRZEDMIOTOW][MAX_DLUGOSC] = { {"1"}, {"1"},{"1"}, {"1"}, {"1"}, {"1"}, {"1"}, {"1"}, };
+	char przedmioty3[MAX_PRZEDMIOTOW][MAX_DLUGOSC] = { {"2"}, {"2"},{"2"}, {"2"}, {"2"}, {"2"}, {"2"}, {"2"}, {"2"} };
 
 	Osoba* pierwszy = nullptr;
 
 	Student* s1 = new Student("Jakub", "Drozd", "kdrozd@onet.pl", 123479, 2022);
 	Student* s2 = new Student("Piotr", "Zeb", "pzeb@wp.pl", 123463, 2021);
-	Student* s3 = new Student("Maciek", "Nowakowski", "mnowak123@gmail.com", 123554 ,2021);
+	Student* s3 = new Student("Maciek", "Nowakowski", "mnowak123@gmail.com", 123554 ,2019);
 
 	Pracownik* p1 = new Pracownik("Hubert", "Zembrowski", "hzembrowski@uksw.edu.pl", 5, przedmioty1);
 	Pracownik* p2 = new Pracownik("Bozena", "Tkacz", "btkacz@uksw.edu.pl", 7, przedmioty2);
@@ -366,7 +388,9 @@ int main() {
 	dodaj_osobe(&pierwszy, p2);
 	dodaj_osobe(&pierwszy, p3);
 
-	wypisz_inicjaly(pierwszy);
+	wypisz_inicjaly_i_czas(pierwszy);
+
+	delete pierwszy;
 
 	std::cout << "\nKoniec\n" << std::endl;
 
