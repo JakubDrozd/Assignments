@@ -146,9 +146,9 @@ int main() {
 	printf("\n");
 	zbiorek->remove("Jakub");
 	zbiorek->remove("Kukuszka");
-	std::cout << "Jakub: " << (zbiorek->exists("Jakub") ? "true" : "false") << std::endl;
-	std::cout << "Kukuszka: " << (zbiorek->exists("Kukuszka") ? "true" : "false") << std::endl;
-	std::cout << "Drozd: " << (zbiorek->exists("Drozd") ? "true" : "false") << std::endl;
+	std::cout << "Exists (Jakub): " << (zbiorek->exists("Jakub") ? "true" : "false") << std::endl;
+	std::cout << "Exists (Kukuszka): " << (zbiorek->exists("Kukuszka") ? "true" : "false") << std::endl;
+	std::cout << "Exists (Drozd): " << (zbiorek->exists("Drozd") ? "true" : "false") << std::endl;
 	printf("\n");
 	zbiorek->display();
 	delete zbiorek;
