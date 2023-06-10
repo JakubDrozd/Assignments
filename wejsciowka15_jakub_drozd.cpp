@@ -4,6 +4,10 @@
 #include <string>
 #include <sstream>
 
+std::ostream& operator<<(std::ostream& os, const std::string& s) {
+	os << s.c_str() << "\n";
+	return os;
+}
 
 class Osoba {
 	public:
@@ -401,26 +405,21 @@ public:
 
 int main(){
 
-	Student* s1 = new Student("Pawel", "Gawel", "pgawel@wp.pl", 123323, 2018);
-	Student* s2 = new Student(*s1);
-	s2->setImie("George"); s2->setNazwisko("Floyd");
-	Student* s3 = new Student(*s1);
-	s3->setImie("Maja"); s3->setNazwisko("Kopka");
+	Kontener<std::string>* napiski = new Kontener<std::string>("napisy.txt");
 
-	Kontener<Student>* kontenerek = new Kontener<Student>("lista_osob.txt");
+	napiski->insert("Napis1");
+	napiski->insert("Napis2");
+	napiski->rewind();
+	napiski->insert("Napis3");
+	napiski->get();
+	napiski->insert("Napis4");
+	napiski->rewind();
+	napiski->get();
+	napiski->insert("Napis5");
 
+	napiski->save();
 
-	kontenerek->insert(*s1);
-	kontenerek->insert(*s2);
-	kontenerek->rewind();
-	kontenerek->insert(*s3);
-
-	kontenerek->rewind();
-	kontenerek->get();
-
-	kontenerek->save();
-
-	delete kontenerek;
+	delete napiski;
 
 	return 0;
 }
