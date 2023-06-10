@@ -4,6 +4,7 @@
 #include <string>
 #include <sstream>
 
+
 class Osoba {
 	public:
 	
@@ -224,11 +225,19 @@ public:
 
 	
 	std::string konterer_plik;
+
 	Element<T> *pierwszy;
+
+	Element<T>* wskaznik;
 
 	Kontener() {
 		konterer_plik = "";
 		pierwszy = nullptr;
+		wskaznik = nullptr;
+	}
+
+	Kontener(std::string nazwa_pliku){
+		open(nazwa_pliku);
 	}
 
 	~Kontener() {
@@ -268,7 +277,10 @@ public:
 				aktualny->nast = nowy;
 			}
 		}
+
 		this->konterer_plik = nazwa_pliku;
+		this->wskaznik = pierwszy;
+
 		plik.close();
 	}
 
@@ -306,11 +318,9 @@ public:
 
 		if (!plik)
 		{
-			std::cerr << "Nie udalo sie otworzyc pliku o nazwie: " << nazwa_pliku << std::endl;
-			return;
+			std::cerr << "Nie udalo sie otworzyc pliku o nazwie lub plik nie istnieje: " << nazwa_pliku << std::endl;
 		}
-		else
-		{
+
 			Element<T>* aktualny = pierwszy;
 			while (aktualny != nullptr)
 			{
@@ -318,7 +328,6 @@ public:
 				aktualny = aktualny->nast;
 			}
 
-		}
 
 		plik.close();
 	}
@@ -331,15 +340,87 @@ public:
 			aktualny = aktualny->nast;
 		}
 	}
+
+	T& get() {
+		if (wskaznik == nullptr)
+		{
+			std::cout << "Brak elementu pod wskaznikiem" << std::endl;
+		}
+
+		T& wynik = wskaznik->dane;
+
+		if (wskaznik->nast == nullptr)
+		{
+			wskaznik = nullptr;
+		}
+		else
+		{
+			wskaznik = wskaznik->nast;
+		}
+
+		return wynik;
+	}
+
+	void insert(T dane) {
+		if (wskaznik == nullptr)
+		{
+			return;
+		}
+		else
+		{
+			Element<T>* nowy = new Element<T>(dane);
+			nowy->nast = wskaznik->nast;
+			wskaznik->nast = nowy;
+			wskaznik = nowy;
+		}
+	}
+
+	bool end() {
+		if (wskaznik == nullptr)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	void rewind() {
+		if (pierwszy != nullptr)
+		{
+			wskaznik = pierwszy;
+		}
+		else
+		{
+			wskaznik = nullptr;
+		}
+	}
 };
 
 
 int main(){
-	Kontener<Student>* kontenerek = new Kontener<Student>();
-	kontenerek->open("dane.txt");
-	kontenerek->wypisz();
 
-	kontenerek->save("listaOsob.txt");
+	Student* s1 = new Student("Pawel", "Gawel", "pgawel@wp.pl", 123323, 2018);
+	Student* s2 = new Student(*s1);
+	s2->setImie("George"); s2->setNazwisko("Floyd");
+	Student* s3 = new Student(*s1);
+	s3->setImie("Maja"); s3->setNazwisko("Kopka");
+
+	Kontener<Student>* kontenerek = new Kontener<Student>("lista_osob.txt");
+
+
+	kontenerek->insert(*s1);
+	kontenerek->insert(*s2);
+	kontenerek->rewind();
+	kontenerek->insert(*s3);
+
+	kontenerek->rewind();
+	kontenerek->get();
+
+	kontenerek->save();
+
+	delete kontenerek;
 
 	return 0;
 }
