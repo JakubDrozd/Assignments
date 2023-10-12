@@ -31,8 +31,8 @@ ostream& rysuj_linie(ostream& stream) {
 ostream& operator<<(ostream& stream, const Dane& dane) {
 	stream << scianka << setw(6) << setfill('0') << dane.ID << scianka;
 	stream << setw(10) << setfill(' ') << left << dane.nick << scianka;
-	stream << setw(6) << setfill(' ') << right << dane.level << scianka;
-	stream << setw(7) << setfill(' ') << right << fixed << setprecision(1) << dane.pkt << scianka;
+	stream << setw(7) << setfill(' ') << right << dane.level << scianka;
+	stream << setw(6) << setfill(' ') << right << fixed << setprecision(1) << dane.pkt << scianka;
 	return stream;
 }
 
@@ -87,8 +87,8 @@ ostream& stopka(ostream& stream, Tablica<T, rozmiar>& tabelka) {
 	stream << rysuj_linie;
 	stream << scianka << setw(6) << setfill('0') << 0 << scianka;
 	stream << setw(10) << setfill(' ') << " " << scianka;
-	stream << setw(6) << setfill(' ') << right << maxLevelDane.level << scianka;
-	stream << setw(7) << setfill(' ') << right << fixed << setprecision(1) << maxLevelDane.pkt << scianka << endl;
+	stream << setw(7) << setfill(' ') << right << maxLevelDane.level << scianka;
+	stream << setw(6) << setfill(' ') << right << fixed << setprecision(1) << maxLevelDane.pkt << scianka << endl;
 
 
 	return stream;
@@ -137,4 +137,5 @@ int main() {
 	nazwa_pliku += ".txt";
 	write(tabelka, nazwa_pliku);
 	cout << (tabelka[0] > tabelka[1]) << endl;
+	system(("start " + nazwa_pliku).c_str());
 }
