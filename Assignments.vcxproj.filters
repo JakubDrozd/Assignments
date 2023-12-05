@@ -66,5 +66,110 @@
     <ClCompile Include="wejsciowka03_jakub_drozd.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="wejsciowka04_jakub_drozd.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="wejsciowka05_jakub_drozd.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="wejsciowka05_02_drozd_jakub.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="wejsciowka06_jakub_drozd.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="listy.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="wejsciowka07_jakub_drozd.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="test1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="wejsciowka08_jakub_drozd.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="wejsciowka09_jakub_drozd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="wejsciowka_092_jakub_drozd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="wejsciowka10_jakub_drozd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="wejsciowka10_02_jakub_drozd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="wejsciowka11_jakub_drozd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="wejsciowka11_2_jakub_drozd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="wejsciowka11_3_jakub_drozd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="wejsciowka12_jakub_drozd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="wejsciowka12_1_jakub_drozd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="wejsciowka13_jakub_drozd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="wejsciowka13_1_jakub_drozd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="wejsciowka14_jakub_drozd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="wejsciowka14_1_jakub_drozd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="wejsciowka15_jakub_drozd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zwp1_jakub_drozd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zwp1_1_jakub_drozd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zwp1_1_test_jakub_drozd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zwp2_jakub_drozd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zwp2_1_jakub_drozd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zwp2_2_jakub_drozd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="test_stos.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zwp3_1_jakub_drozd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="iterator_test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="traits_and_mixins.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ztp4_1_jakub_drozd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ztp4_2_jakub_drozd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="test_kontenery_stl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

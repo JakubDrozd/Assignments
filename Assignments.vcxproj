@@ -129,6 +129,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="factorial.c" />
+    <ClCompile Include="iterator_test.cpp" />
     <ClCompile Include="lab01_drozd.c" />
     <ClCompile Include="lab02_drozd.c" />
     <ClCompile Include="lab03_drozd.c" />
@@ -146,8 +147,42 @@
     <ClCompile Include="lab12_drozd.c" />
     <ClCompile Include="lab13_drozd.c" />
     <ClCompile Include="lab15_drozd.c" />
+    <ClCompile Include="listy.c" />
+    <ClCompile Include="test_kontenery_stl.cpp" />
+    <ClCompile Include="test_stos.cpp" />
+    <ClCompile Include="traits_and_mixins.cpp" />
+    <ClCompile Include="ztp4_1_jakub_drozd.cpp" />
+    <ClCompile Include="ztp4_2_jakub_drozd.cpp" />
+    <ClCompile Include="zwp1_1_test_jakub_drozd.cpp" />
+    <ClCompile Include="test1.cpp" />
     <ClCompile Include="wejsciowka02_jakub_drozd.c" />
     <ClCompile Include="wejsciowka03_jakub_drozd.c" />
+    <ClCompile Include="wejsciowka04_jakub_drozd.c" />
+    <ClCompile Include="wejsciowka05_02_drozd_jakub.c" />
+    <ClCompile Include="wejsciowka05_jakub_drozd.c" />
+    <ClCompile Include="wejsciowka06_jakub_drozd.c" />
+    <ClCompile Include="wejsciowka07_jakub_drozd.c" />
+    <ClCompile Include="wejsciowka08_jakub_drozd.c" />
+    <ClCompile Include="wejsciowka09_jakub_drozd.cpp" />
+    <ClCompile Include="wejsciowka10_02_jakub_drozd.cpp" />
+    <ClCompile Include="wejsciowka10_jakub_drozd.cpp" />
+    <ClCompile Include="wejsciowka11_2_jakub_drozd.cpp" />
+    <ClCompile Include="wejsciowka11_3_jakub_drozd.cpp" />
+    <ClCompile Include="wejsciowka11_jakub_drozd.cpp" />
+    <ClCompile Include="wejsciowka12_1_jakub_drozd.cpp" />
+    <ClCompile Include="wejsciowka12_jakub_drozd.cpp" />
+    <ClCompile Include="wejsciowka13_1_jakub_drozd.cpp" />
+    <ClCompile Include="wejsciowka13_jakub_drozd.cpp" />
+    <ClCompile Include="wejsciowka14_1_jakub_drozd.cpp" />
+    <ClCompile Include="wejsciowka14_jakub_drozd.cpp" />
+    <ClCompile Include="wejsciowka15_jakub_drozd.cpp" />
+    <ClCompile Include="wejsciowka_092_jakub_drozd.cpp" />
+    <ClCompile Include="zwp1_jakub_drozd.cpp" />
+    <ClCompile Include="zwp1_1_jakub_drozd.cpp" />
+    <ClCompile Include="zwp2_jakub_drozd.cpp" />
+    <ClCompile Include="zwp2_1_jakub_drozd.cpp" />
+    <ClCompile Include="zwp2_2_jakub_drozd.cpp" />
+    <ClCompile Include="zwp3_1_jakub_drozd.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
