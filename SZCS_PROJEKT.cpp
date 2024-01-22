@@ -1,31 +1,66 @@
-﻿#include <iostream>
+﻿#define _CRT_SECURE_NO_WARNINGS
+
+#include <iostream>
 #include <fstream>
 #include <vector>
 #include <string>
 #include <sstream>
 #include <cctype>
 #include <algorithm>
+#include <random>
 
-struct Klient {
+class Klient {
+public:
     std::string pesel;
     std::string numerTel;
     std::string imie;
     std::string nazwisko;
 };
 
-struct Zamowienie {
+class Zamowienie {
+public:
     int numerZamowienia;
     std::string pesel;
     std::string numerCzesci;
     std::string opisZamowienia;
 };
 
-struct Czesc {
+class Czesc {
+public:
     std::string numerID;
     std::string nazwa;
     std::string opis;
-    bool operator==(const Czesc& czesc) {
-        return this->numerID == czesc.numerID;
+    bool naStanie;
+};
+
+
+class Kontrola {
+public:
+    static bool sprawdzPesel(const std::string& pesel) {
+        return pesel.length() == 11 && std::all_of(pesel.begin(), pesel.end(), ::isdigit);
+    }
+
+    static bool sprawdzNumerTelefonu(const std::string& numer) {
+        return numer.length() == 9 && std::all_of(numer.begin(), numer.end(), ::isdigit);
+    }
+
+    static bool czyZawieraCyfry(const std::string& s) {
+        return std::any_of(s.begin(), s.end(), ::isdigit);
+    }
+
+    static int sprawdzNumerCzesci(const std::string& s, const std::vector<Czesc>& container) {
+        if (!(s.length() == 5 && std::all_of(s.begin(), s.end(), ::isdigit))) {
+            return -1;
+        }
+        auto it = std::find_if(container.begin(), container.end(),
+            [&](const Czesc& item) {
+                return item.numerID == s;
+            });
+        return (it != container.end()) ? 0 : -2;
+    }
+
+    static void clearScreen() {
+        std::system("cls");
     }
 };
 
@@ -112,56 +147,24 @@ private:
     }
 
     void inicjalizujCzesci() {
-        czesci.push_back({ "10001", "Filtr oleju", "Filtr do silnika benzynowego" });
-        czesci.push_back({ "10002", "Filtr powietrza", "Filtr do silnika diesla" });
-        czesci.push_back({ "10003", "Pasek rozrzadu", "Pasek do silnika 1.9 TDI" });
-        czesci.push_back({ "10004", "Swieca zaplonowa", "Swieca do silnika benzynowego" });
-        czesci.push_back({ "10005", "Amortyzator", "Amortyzator przedni do modelu XYZ" });
-        czesci.push_back({ "10006", "Opona letnia", "Rozmiar 205/55 R16" });
-        czesci.push_back({ "10007", "Lampy przednie", "Halogeny do modelu ABC" });
-        czesci.push_back({ "10008", "Klocki hamulcowe", "Komplet klockow do osi przedniej" });
-        czesci.push_back({ "10009", "Rozrusznik", "Rozrusznik elektryczny 12V" });
-        czesci.push_back({ "10010", "Wycieraczki", "Komplet wycieraczek przednich" });
+        czesci.push_back({ "10001", "Filtr oleju", "Filtr do silnika benzynowego", true });
+        czesci.push_back({ "10002", "Filtr powietrza", "Filtr do silnika diesla", true });
+        czesci.push_back({ "10003", "Pasek rozrzadu", "Pasek do silnika 1.9 TDI", false });
+        czesci.push_back({ "10004", "Swieca zaplonowa", "Swieca do silnika benzynowego", true });
+        czesci.push_back({ "10005", "Amortyzator", "Amortyzator przedni do modelu XYZ", false });
+        czesci.push_back({ "10006", "Opona letnia", "Rozmiar 205/55 R16", true });
+        czesci.push_back({ "10007", "Lampy przednie", "Halogeny do modelu ABC", false });
+        czesci.push_back({ "10008", "Klocki hamulcowe", "Komplet klockow do osi przedniej", false });
+        czesci.push_back({ "10009", "Rozrusznik", "Rozrusznik elektryczny 12V", true });
+        czesci.push_back({ "10010", "Wycieraczki", "Komplet wycieraczek przednich", true});
     }
 };
-bool sprawdzPesel(const std::string& pesel) {
-    return pesel.length() == 11 && std::all_of(pesel.begin(), pesel.end(), ::isdigit);
-}
-
-bool sprawdzNumerTelefonu(const std::string& numer) {
-    return numer.length() == 9 && std::all_of(numer.begin(), numer.end(), ::isdigit);
-}
-
-bool czyZawieraCyfry(const std::string& s) {
-    return std::any_of(s.begin(), s.end(), ::isdigit);
-}
-
-int sprawdzNumerCzesci(const std::string& s, const std::vector<Czesc>& container) {
-    if (!(s.length() == 5 && std::all_of(s.begin(), s.end(), ::isdigit)))
-    {
-        return -1;
-    }
-    auto it = container.begin();
-    it = std::find_if(container.begin(), container.end(),
-        [&](const Czesc& item) {
-            return item.numerID == s;
-        });
-    if (it == container.end())
-    {
-        return -2;
-    }
-    return 0;
-}
-
-void clearScreen() {
-    std::system("cls");
-}
 
 void wczytajDaneKlienta(Klient& klient) {
     while (true) {
         std::cout << "Podaj PESEL: ";
         std::cin >> klient.pesel;
-        if (!sprawdzPesel(klient.pesel)) {
+        if (!Kontrola::sprawdzPesel(klient.pesel)) {
             std::cout << "Niepoprawny PESEL. Sprobuj ponownie.\n";
             continue;
         }
@@ -171,7 +174,7 @@ void wczytajDaneKlienta(Klient& klient) {
     while (true) {
         std::cout << "Podaj numer telefonu: ";
         std::cin >> klient.numerTel;
-        if (!sprawdzNumerTelefonu(klient.numerTel)) {
+        if (!Kontrola::sprawdzNumerTelefonu(klient.numerTel)) {
             std::cout << "Niepoprawny numer telefonu. Sprobuj ponownie.\n";
             continue;
         }
@@ -182,7 +185,7 @@ void wczytajDaneKlienta(Klient& klient) {
     while (true) {
         std::cout << "Podaj imie: ";
         std::getline(std::cin, klient.imie);
-        if (czyZawieraCyfry(klient.imie)) {
+        if (Kontrola::czyZawieraCyfry(klient.imie)) {
             std::cout << "Imie nie moze zawierac cyfr. Sprobuj ponownie.\n";
             continue;
         }
@@ -192,7 +195,7 @@ void wczytajDaneKlienta(Klient& klient) {
     while (true) {
         std::cout << "Podaj nazwisko: ";
         std::getline(std::cin, klient.nazwisko);
-        if (czyZawieraCyfry(klient.nazwisko)) {
+        if (Kontrola::czyZawieraCyfry(klient.nazwisko)) {
             std::cout << "Nazwisko nie moze zawierac cyfr. Sprobuj ponownie.\n";
             continue;
         }
@@ -201,24 +204,38 @@ void wczytajDaneKlienta(Klient& klient) {
 }
 
 void wczytajDaneZamowienia(Zamowienie& zamowienie, BazaDanych& baza) {
-    while (true)
-    {
+    while (true) {
         std::cout << "Podaj 5-cyfrowy numer czesci: ";
         std::getline(std::cin, zamowienie.numerCzesci);
-        if (sprawdzNumerCzesci(zamowienie.numerCzesci, baza.czesci) == -1)
-        {
-            std::cout << "Numer czesci musi byc 5-cyfrowym numerem. Sprobuj ponownie.\n";
+
+        int sprawdz = Kontrola::sprawdzNumerCzesci(zamowienie.numerCzesci, baza.czesci);
+        if (sprawdz == -1 || sprawdz == -2) {
+            std::cout << "Niepoprawny numer czesci. Sprobuj ponownie.\n";
             continue;
         }
-        if (sprawdzNumerCzesci(zamowienie.numerCzesci, baza.czesci) == -2)
-        {
-            std::cout << "Czesc o podanym numerze nie istnieje. Sprobuj ponownie.\n";
-            continue;
+
+        auto czesc = std::find_if(baza.czesci.begin(), baza.czesci.end(), [&](const Czesc& item) {
+            return item.numerID == zamowienie.numerCzesci;
+            });
+
+        if (!czesc->naStanie) {
+            std::cout << "Wybrana czesc nie znajduje sie na stanie magazynu.\n";
+            std::random_device rd;
+            std::mt19937 gen(rd());
+            std::uniform_int_distribution<> distr(1, 7);
+            int dniDoDostawy = distr(gen);
+
+            std::time_t teraz = std::time(0);
+            std::tm* dataDostawy = std::localtime(&teraz);
+            dataDostawy->tm_mday += dniDoDostawy;
+            std::mktime(dataDostawy);
+
+            std::cout << "Przewidywana data dostawy: " << dataDostawy->tm_mday << "-" << dataDostawy->tm_mon + 1 << "-" << dataDostawy->tm_year + 1900 << "\n";
         }
+
+        zamowienie.opisZamowienia = czesc->nazwa;
         break;
     }
-    std::cout << "Opis zamowienia: ";
-    std::getline(std::cin, zamowienie.opisZamowienia);
 
     zamowienie.numerZamowienia = baza.generujNumerZamowienia();
 }
@@ -236,7 +253,7 @@ int main() {
     int wybor;
 
     do {
-        clearScreen();
+       Kontrola::clearScreen();
         std::cout << "Menu glowne\n";
         std::cout << "1. Zamow czesci\n";
         std::cout << "2. Wyswietl zamowienia\n";
@@ -268,7 +285,7 @@ int main() {
             std::cin.get();
         }
         else if (wybor == 3) {
-            clearScreen();
+            Kontrola::clearScreen();
             baza.wyswietlCzesci();
             std::cout << "Nacisnij dowolny klawisz, aby kontynuowac...\n";
             std::cin.get();
