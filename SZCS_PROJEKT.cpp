@@ -141,6 +141,7 @@ private:
                     });
                 zamowienie.opisZamowienia = it->nazwa;
             }
+            ostatniNumerZamowienia = zamowienie.numerZamowienia;
             zamowienia.push_back(zamowienie);
         }
         plik.close();
@@ -157,6 +158,18 @@ private:
         czesci.push_back({ "10008", "Klocki hamulcowe", "Komplet klockow do osi przedniej", false });
         czesci.push_back({ "10009", "Rozrusznik", "Rozrusznik elektryczny 12V", true });
         czesci.push_back({ "10010", "Wycieraczki", "Komplet wycieraczek przednich", true});
+        czesci.push_back({ "10011", "Alternator", "Alternator do silnika diesla", false });
+        czesci.push_back({ "10012", "Tlumik koncowy", "Tlumik do modelu sportowego", true });
+        czesci.push_back({ "10013", "Zbiornik paliwa", "Zbiornik paliwa 60l do modelu sedan", false });
+        czesci.push_back({ "10014", "Pompa wody", "Pompa wody do silnika V8", true });
+        czesci.push_back({ "10015", "Filtr kabinowy", "Filtr przeciwpylkowy do klimatyzacji", true });
+        czesci.push_back({ "10016", "Lozysko kola", "Przednie lozysko kola do SUV", false });
+        czesci.push_back({ "10017", "Zestaw sprzegla", "Kompletny zestaw sprzegla do manualnej skrzyni biegow", true });
+        czesci.push_back({ "10018", "Radiator chlodnicy", "Radiator do systemu chlodzenia silnika", false });
+        czesci.push_back({ "10019", "Pasek klinowy", "Pasek klinowy do alternatora", true });
+        czesci.push_back({ "10020", "Wahacz zawieszenia", "Dolny wahacz przedniego zawieszenia", true });
+
+
     }
 };
 
@@ -263,6 +276,7 @@ int main() {
         std::cin >> wybor;
 
         if (wybor == 1) {
+            Kontrola::clearScreen();
             Klient klient;
             Zamowienie zamowienie;
             wczytajDaneKlienta(klient);
@@ -276,9 +290,9 @@ int main() {
             std::cout << "Zamowienie zostalo zlozone. Numer zamowienia: " << zamowienie.numerZamowienia << "\n";
             std::cout << "Nacisnij dowolny klawisz, aby kontynuowac...\n";
             std::cin.get();
-            std::cin.get();
         }
         else if (wybor == 2) {
+            Kontrola::clearScreen();
             wyswietlZamowienia(baza);
             std::cout << "Nacisnij dowolny klawisz, aby kontynuowac...\n";
             std::cin.get();
