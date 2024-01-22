@@ -168,7 +168,34 @@
     <ClCompile Include="ztp4_2_jakub_drozd.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="test_kontenery_stl.cpp">
+    <ClCompile Include="ztp5_1_jakub_drozd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ztp5_2_jakub_drozd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ztp6_1_jakub_drozd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ztp6_2_jakub_drozd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="variation_ztp6_1_jakub_drozd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="variation_ztp6_2_jakub_drozd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ztp7_01_jakub_drozd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ztp7_02_jakub_drozd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="var_ztp7_1_jakub_drozd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="var_ztp7_2_jakub_drozd.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
