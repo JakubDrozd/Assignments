@@ -62,6 +62,50 @@ public:
     static void clearScreen() {
         std::system("cls");
     }
+
+    static void generujFakture(const Zamowienie& zamowienie, const Klient& klient, const Czesc& czesc) {
+        std::ofstream plik("faktura_" + std::to_string(zamowienie.numerZamowienia) + ".txt");
+
+        if (!plik) {
+            std::cerr << "Nie mozna utworzyc pliku faktury.\n";
+            return;
+        }
+
+        std::time_t teraz = std::time(nullptr);
+        char dataWystawienia[20];
+        char dataSprzedazy[20];
+        std::strftime(dataWystawienia, sizeof(dataWystawienia), "%Y-%m-%d", std::localtime(&teraz));
+
+        std::tm dataDostawyTm = *std::localtime(&teraz);
+        dataDostawyTm.tm_mday += czesc.naStanie ? 0 : 7;
+        std::mktime(&dataDostawyTm);
+        std::strftime(dataSprzedazy, sizeof(dataSprzedazy), "%Y-%m-%d", &dataDostawyTm);
+
+        std::random_device rd;
+        std::mt19937 gen(rd());
+        std::uniform_int_distribution<> distr(150, 1000);
+        int losowaCena = distr(gen);
+
+        plik << "Data wystawienia: " << dataWystawienia << "\n";
+        plik << "Data sprzedazy: " << dataSprzedazy << "\n\n";
+        plik << "Sprzedawca: Sklep z czesciami samochodowymi\n";
+        plik << "NIP: 123456789\n";
+        plik << "Adres: Kasprzowicza 62 / 11, 01-871 Warszawa\n\n";
+        plik << "Nabywca:\n";
+        plik << klient.imie << " " << klient.nazwisko << "\n";
+        plik << "PESEL: " << klient.pesel << "\n";
+        plik << "Telefon: " << klient.numerTel << "\n\n";
+        plik << "Faktura nr: " << zamowienie.numerZamowienia << "\n\n";
+        plik << "Lp. Nazwa produktu Cena\n";
+        plik << "1 " << czesc.nazwa << " " << losowaCena << " PLN\n\n";
+        plik << "Sposob platnosci: na miejscu, gotowka\n";
+        plik << "Termin platnosci: " << dataSprzedazy << "\n\n";
+        plik << "Podpis sprzedajacego\n\n";
+        plik << "Podpis kupujacego\n";
+
+        plik.close();
+        std::cout << "Faktura zostala wygenerowana jako 'faktura_" << zamowienie.numerZamowienia << ".txt'.\n";
+    }
 };
 
 class BazaDanych {
@@ -97,6 +141,23 @@ public:
     void wyswietlCzesci() {
         for (const auto& czesc : czesci) {
             std::cout << "[" << czesc.numerID << "]: " << czesc.nazwa << " - \"" << czesc.opis << "\"\n-\n";
+        }
+    }
+
+    Czesc znajdzCzescPoID(const std::string& s) {
+        auto it = czesci.begin();
+        it = find_if(czesci.begin(), czesci.end(),
+            [&](const Czesc& item) {
+                return item.numerID == s;
+            });
+        if (it != czesci.end())
+        {
+            return *it;
+        }
+        else
+        {
+            std::cerr << "Nie znaleziono czesci o ID: " << s << std::endl;
+            return Czesc();
         }
     }
 
@@ -279,16 +340,23 @@ int main() {
             Kontrola::clearScreen();
             Klient klient;
             Zamowienie zamowienie;
+            Czesc czesc;
             wczytajDaneKlienta(klient);
             wczytajDaneZamowienia(zamowienie, baza);
 
             zamowienie.pesel = klient.pesel;
-
+            czesc = baza.znajdzCzescPoID(zamowienie.numerCzesci);
             baza.dodajKlienta(klient);
             baza.dodajZamowienie(zamowienie);
 
-            std::cout << "Zamowienie zostalo zlozone. Numer zamowienia: " << zamowienie.numerZamowienia << "\n";
-            std::cout << "Nacisnij dowolny klawisz, aby kontynuowac...\n";
+            char odpowiedz;
+            std::cout << "Czy chcesz otrzymac fakture? (t/n): ";
+            std::cin >> odpowiedz;
+            if (odpowiedz == 't' || odpowiedz == 'T') {
+                Kontrola::generujFakture(zamowienie, klient, czesc);
+            }
+            std::cout << "Nacisnij Enter, aby kontynuowac...";
+            std::cin.ignore();
             std::cin.get();
         }
         else if (wybor == 2) {
